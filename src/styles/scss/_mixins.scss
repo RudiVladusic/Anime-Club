@@ -1,0 +1,70 @@
+@mixin mainContentStyles {
+  display: grid;
+  gap: 0 2em;
+  grid-template-columns: repeat(20, 200px);
+  grid-template-rows: auto;
+  place-items: center start;
+  scrollbar-width: none;
+
+  // box-shadow: $boxShadowForCards;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  // padding: 1em;
+  overflow-x: scroll;
+
+  a {
+    padding: 0 4em;
+  }
+}
+
+@mixin defaultButton {
+  border: none;
+  text-transform: uppercase;
+  color: $white;
+  letter-spacing: 0.05em;
+  padding: 0.25em;
+  outline: thick double lighten($white, 10%);
+  background: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+
+  &:hover {
+    background: lighten($white, 10%);
+    outline: thick double lighten($purple, 10%);
+    color: $black;
+  }
+}
+
+@mixin controlButtons {
+  position: absolute;
+  top: 0;
+  // transform: translate(-50%, -50%);
+  height: 100%;
+  // padding: 0.5em;
+
+  background: rgba(45, 40, 62, 0.8);
+  color: $white;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 35px;
+  // height: 300px;
+  // width: 60px;
+  cursor: pointer;
+  font-weight: bold;
+
+  transition: all 0.25s ease-in-out;
+}
+
+@mixin loadingStyle {
+  background: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  animation: loading_animation 0.75s ease-in-out alternate infinite;
+  margin: 0.25em;
+}

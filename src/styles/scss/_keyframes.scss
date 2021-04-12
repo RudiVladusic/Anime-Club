@@ -1,0 +1,69 @@
+@import "./variables";
+
+@keyframes mobile_nav_animation {
+  0% {
+    transform: translateX(-100vw);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes loading_animation {
+  0%,
+  100% {
+    transform: translateY(-20px);
+    background: $white;
+  }
+
+  50% {
+    transform: translateY(0px);
+    background: $purple;
+  }
+}
+
+@keyframes button_animation {
+  from {
+    transform: translateX(-100%);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes article_information_text {
+  from {
+    transform: translateX(100%);
+    opacity: 0.5;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes article_information_date {
+  from {
+    transform: translateY(100%);
+    opacity: 0.5;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade_in_article {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
