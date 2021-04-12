@@ -3,7 +3,6 @@ import AnimeCard from "./AnimeCard";
 import { useRef } from "react";
 
 const ResultBlock = ({ animeResults, isLoading, isError, sideScroll }) => {
-  console.log(animeResults);
   const animeCont = useRef(null);
   return (
     <main className="searchMain">

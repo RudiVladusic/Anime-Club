@@ -24,19 +24,29 @@
   text-transform: uppercase;
   color: $white;
   letter-spacing: 0.05em;
-  padding: 0.25em;
-  outline: thick double lighten($white, 10%);
+  padding: 0.5em;
+  outline: 5px double lighten($white, 10%);
   background: transparent;
   font-size: inherit;
   font-family: inherit;
   cursor: pointer;
-  transition: all 0.5s ease-in-out;
+  transition: outline-offset 0.25s ease-in-out;
+  outline-offset: -4px;
 
   &:hover {
     background: lighten($white, 10%);
     outline: thick double lighten($purple, 10%);
     color: $black;
+    outline-offset: 0;
   }
+}
+
+@mixin borders {
+  content: "";
+  background: $purple;
+  height: 1px;
+  display: block;
+  width: 100%;
 }
 
 @mixin controlButtons {

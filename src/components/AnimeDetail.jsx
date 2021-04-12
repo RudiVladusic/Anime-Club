@@ -11,7 +11,6 @@ const AnimeDetail = ({ match }) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    console.log("scrolling");
   }, []);
 
   const [animeDetail, setAnimeDetail] = useState([]);

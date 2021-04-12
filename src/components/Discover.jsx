@@ -22,7 +22,9 @@ const Discover = ({ filterAnime, discoverAnime, sideScroll }) => {
 
   return (
     <main className="discoverMain">
-      <header className="discoverMainHeader">Discover anime</header>
+      <header className="discoverMainHeader">
+        <p>Discover anime</p>
+      </header>
       <select
         id="genreSelect"
         name="Genre"

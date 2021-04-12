@@ -100,6 +100,24 @@
   }
 }
 
+@-webkit-keyframes border_animation {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes border_animation {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
 @-webkit-keyframes article_information_date {
   from {
     -webkit-transform: translateY(100%);
@@ -200,7 +218,7 @@ nav {
 
 nav .navHeader {
   font-size: 24px;
-  font-weight: bold;
+  letter-spacing: 0.1em;
 }
 
 nav .navHeader span {
@@ -214,7 +232,7 @@ nav .navHeader span {
 }
 
 nav a {
-  padding: 0 0.8em;
+  padding: 0 0.7em;
   text-decoration: none;
   color: #d1d7e0;
 }
@@ -374,7 +392,16 @@ nav .burger .bar {
   color: #d1d7e0;
   text-transform: uppercase;
   font-size: 24px;
-  border-bottom: 1px solid #b068da;
+}
+
+.heroContainer :nth-child(1) h2::after {
+  content: "";
+  background: #802bb1;
+  height: 1px;
+  display: block;
+  width: 100%;
+  -webkit-animation: border_animation 1.25s ease-in-out;
+          animation: border_animation 1.25s ease-in-out;
 }
 
 @media (max-width: 700px) {
@@ -400,25 +427,26 @@ nav .burger .bar {
   text-transform: uppercase;
   color: #d1d7e0;
   letter-spacing: 0.05em;
-  padding: 0.25em;
-  outline: thick double #eff1f5;
+  padding: 0.5em;
+  outline: 5px double #eff1f5;
   background: transparent;
   font-size: inherit;
   font-family: inherit;
   cursor: pointer;
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition: outline-offset 0.25s ease-in-out;
+  transition: outline-offset 0.25s ease-in-out;
+  outline-offset: -4px;
   -webkit-animation: none;
           animation: none;
   place-self: flex-start;
   text-decoration: none;
-  transition: all 0.5s ease-in-out;
 }
 
 .heroContainer :nth-child(3):hover {
   background: #eff1f5;
   outline: thick double #9b3fd0;
   color: #141414;
+  outline-offset: 0;
 }
 
 main {
@@ -451,7 +479,12 @@ main .mainHeader {
 
 main .mainHeader::after {
   content: "";
-  border-top: 1px solid #802bb1;
+  background: #802bb1;
+  height: 1px;
+  display: block;
+  width: 100%;
+  -webkit-animation: border_animation 1.25s ease-in-out;
+          animation: border_animation 1.25s ease-in-out;
 }
 
 @media (max-width: 700px) {
@@ -478,7 +511,6 @@ main .mainHeader::after {
 }
 
 .discoverMain .discoverMainHeader {
-  place-self: center;
   padding: 1em;
   color: #d1d7e0;
   text-transform: uppercase;
@@ -494,7 +526,10 @@ main .mainHeader::after {
 
 .discoverMain .discoverMainHeader::after {
   content: "";
-  border-top: 1px solid #802bb1;
+  background: #802bb1;
+  height: 1px;
+  display: block;
+  width: 100%;
 }
 
 @media (max-width: 700px) {
@@ -523,14 +558,15 @@ main .mainHeader::after {
 }
 
 .searchMain {
+  padding: 0.5em;
   background: -webkit-gradient(linear, left top, right top, color-stop(50%, #141414), color-stop(75%, rgba(20, 20, 20, 0.5)), to(rgba(20, 20, 20, 0.1))), url("../../images/search.jpg") no-repeat right 0% top 50%/calc(100vw / 1.75) 100%;
   background: linear-gradient(90deg, #141414 50%, rgba(20, 20, 20, 0.5) 75%, rgba(20, 20, 20, 0.1) 100%), url("../../images/search.jpg") no-repeat right 0% top 50%/calc(100vw / 1.75) 100%;
-  padding: 0.5em;
 }
 
 @media (max-width: 700px) {
   .searchMain {
-    min-height: 700px;
+    min-height: 800px;
+    height: 100vh;
     background: -webkit-gradient(linear, left top, right top, color-stop(50%, #141414), color-stop(80%, rgba(20, 20, 20, 0.5)), to(rgba(20, 20, 20, 0))), url("../../images/search.jpg") no-repeat center center/cover;
     background: linear-gradient(90deg, #141414 50%, rgba(20, 20, 20, 0.5) 80%, rgba(20, 20, 20, 0) 100%), url("../../images/search.jpg") no-repeat center center/cover;
   }
@@ -843,7 +879,11 @@ form input::placeholder {
 .animeCont .articleInformation :nth-child(1) ::after,
 .specialsCont .articleInformation :nth-child(1) ::after {
   content: "";
-  border-top: 1px solid #d1d7e0;
+  background: #802bb1;
+  height: 1px;
+  display: block;
+  width: 100%;
+  background: #d1d7e0;
 }
 
 .trendingAnimeCont .articleInformation :nth-child(2),
@@ -855,14 +895,15 @@ form input::placeholder {
   text-transform: uppercase;
   color: #d1d7e0;
   letter-spacing: 0.05em;
-  padding: 0.25em;
-  outline: thick double #eff1f5;
+  padding: 0.5em;
+  outline: 5px double #eff1f5;
   background: transparent;
   font-size: inherit;
   font-family: inherit;
   cursor: pointer;
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition: outline-offset 0.25s ease-in-out;
+  transition: outline-offset 0.25s ease-in-out;
+  outline-offset: -4px;
 }
 
 .trendingAnimeCont .articleInformation :nth-child(2):hover,
@@ -873,6 +914,7 @@ form input::placeholder {
   background: #eff1f5;
   outline: thick double #9b3fd0;
   color: #141414;
+  outline-offset: 0;
 }
 
 .trendingAnimeCont .articleInformation :nth-child(3),
@@ -962,10 +1004,10 @@ form input::placeholder {
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
   place-items: flex-start;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding: 0.5em;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding: 2em 0.5em;
 }
 
 .animeDetail article {
@@ -1016,16 +1058,30 @@ form input::placeholder {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  border-bottom: 1px solid #b068da;
+}
+
+.animeDetail .animeDetailContainer .descriptionContainer header::after {
+  content: "";
+  background: #802bb1;
+  height: 1px;
+  display: block;
+  width: 100%;
 }
 
 .animeDetail .animeDetailContainer .descriptionContainer header .title {
   text-transform: uppercase;
   font-size: 20px;
-  border-bottom: 1px solid #b068da;
   letter-spacing: 0.1em;
   font-weight: bold;
   max-width: 60ch;
+}
+
+.animeDetail .animeDetailContainer .descriptionContainer header .title::after {
+  content: "";
+  background: #802bb1;
+  height: 1px;
+  display: block;
+  width: 100%;
 }
 
 .animeDetail .animeDetailContainer .descriptionContainer header .genre {
@@ -1100,7 +1156,9 @@ form input::placeholder {
   color: #d1d7e0;
   font-size: 16px;
   padding: 0.5em;
-  border-left: 1px solid #b068da;
+  -webkit-box-shadow: 2.5px 2.5px 15px 5px #000000;
+          box-shadow: 2.5px 2.5px 15px 5px #000000;
+  place-self: center flex-end;
 }
 
 .animeDetail .animeOtherInfo a {
@@ -1119,13 +1177,13 @@ form input::placeholder {
 }
 
 select {
-  place-self: center flex-start;
+  place-self: flex-start;
   background: #2d283e;
   outline: none;
   border: none;
   color: #d1d7e0;
   font-size: inherit;
-  margin: 0 0 5.5em 0;
+  margin: 0 0 5.5em 1.25em;
   padding: 0.5em;
 }
 
