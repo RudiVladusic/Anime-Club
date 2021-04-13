@@ -87,7 +87,6 @@ function App() {
       if (scrollAmount >= distance) {
         clearInterval(slideTimer);
       }
-      // console.log(step);
     }, speed);
   };
 
