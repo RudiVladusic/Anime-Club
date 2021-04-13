@@ -98,11 +98,25 @@ nav {
       width: 30px;
       height: 3px;
       background: $white;
+      transition: all 0.5s ease-in-out;
     }
 
     @media (max-width: 700px) {
       display: flex;
     }
+  }
+}
+
+.open {
+  :nth-child(1) {
+    transform: translate(0, 6px) rotate(40deg);
+  }
+  :nth-child(2) {
+    transform: translateX(-100%);
+    display: none;
+  }
+  :nth-child(3) {
+    transform: translate(0, -6px) rotate(-40deg);
   }
 }
 
@@ -178,8 +192,8 @@ nav {
 
   :nth-child(1) h2 {
     color: $white;
-    text-transform: uppercase;
     font-size: $desktopFontSizeHeader;
+    font-weight: normal;
 
     &::after {
       @include borders();
@@ -206,6 +220,10 @@ nav {
     animation: none;
     place-self: flex-start;
     text-decoration: none;
+  }
+
+  span {
+    color: darken($white, 20%);
   }
 }
 
@@ -271,6 +289,22 @@ main {
   }
 }
 
+select {
+  place-self: flex-start;
+  background: $main;
+  outline: none;
+  border: none;
+  color: $white;
+  font-size: inherit;
+  font-family: inherit;
+  margin: 0 0 1em 1.5em;
+  padding: 0.5em;
+
+  @media (max-width: 700px) {
+    font-size: $mobileFontSizeSmaller;
+  }
+}
+
 .heroMain {
   background: linear-gradient(
       90deg,
@@ -278,7 +312,7 @@ main {
       rgba(20, 20, 20, 0.5) 75%,
       rgba(20, 20, 20, 0.1) 100%
     ),
-    url("../../images/hero.png") no-repeat right 10% top 50% / cover;
+    url("../../images/hero.jpg") no-repeat right 10% top 50% / cover;
   min-height: calc(80vh - 200px);
   width: 100%;
   display: flex;
@@ -310,6 +344,10 @@ main {
       ),
       url("../../images/search.jpg") no-repeat center center/ cover;
   }
+
+  .controlCont {
+    margin: 0 0 5em 0;
+  }
 }
 
 .aboutMain {
@@ -320,7 +358,7 @@ main {
       rgba(20, 20, 20, 0.5) 75%,
       rgba(20, 20, 20, 0.1) 100%
     ),
-    url("../../images/about.png") no-repeat center center / cover;
+    url("../../images/about.jpg") no-repeat center center / cover;
 }
 
 .detailMain {
@@ -545,10 +583,12 @@ form {
   flex-flow: row wrap;
   place-items: flex-start;
   justify-content: space-evenly;
-  padding: 2em 0.5em;
+  padding: 2em 1em;
 
   article {
-    max-width: 1000px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
   }
 
   .animeDetailContainer {
@@ -594,6 +634,10 @@ form {
           &::after {
             @include borders();
           }
+
+          span {
+            color: darken($white, 20%);
+          }
         }
         .genre {
           font-size: $mobileFontSizeMain;
@@ -631,7 +675,8 @@ form {
 
   .trailerContainer {
     padding: 0.5em;
-
+    margin: 1em 0;
+    width: 100%;
     .trailer {
       overflow: hidden;
       position: relative;
@@ -662,35 +707,28 @@ form {
   .animeOtherInfo {
     color: $white;
     font-size: $mobileFontSizeMain;
-    padding: 0.5em;
-    box-shadow: 2.5px 2.5px 15px 5px #000000;
-    place-self: center flex-end;
+    padding: 1.5em 0.5em;
+    border-left: 1px solid $purple;
+
+    @media (max-width: 800px) {
+      font-size: $mobileFontSizeSmaller;
+    }
 
     a {
-      color: $white;
-      text-decoration: 1px lighten($purple, 20%) double underline;
+      color: lighten($purple, 20%);
+      text-decoration: 1px lighten($purple, 20%) solid underline;
     }
 
     p {
       max-width: 60ch;
-      padding: 0 0 1em 0;
+      padding: 0 0 0.5em 0;
     }
 
     span {
       font-weight: bold;
+      color: darken($white, 20%);
     }
   }
-}
-
-select {
-  place-self: flex-start;
-  background: $main;
-  outline: none;
-  border: none;
-  color: $white;
-  font-size: inherit;
-  margin: 0 0 5.5em 1.25em;
-  padding: 0.5em;
 }
 
 footer {

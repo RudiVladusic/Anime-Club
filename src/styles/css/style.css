@@ -277,6 +277,8 @@ nav .burger .bar {
   width: 30px;
   height: 3px;
   background: #d1d7e0;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 @media (max-width: 700px) {
@@ -285,6 +287,22 @@ nav .burger .bar {
     display: -ms-flexbox;
     display: flex;
   }
+}
+
+.open :nth-child(1) {
+  -webkit-transform: translate(0, 6px) rotate(40deg);
+          transform: translate(0, 6px) rotate(40deg);
+}
+
+.open :nth-child(2) {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  display: none;
+}
+
+.open :nth-child(3) {
+  -webkit-transform: translate(0, -6px) rotate(-40deg);
+          transform: translate(0, -6px) rotate(-40deg);
 }
 
 .mobileNav {
@@ -390,8 +408,8 @@ nav .burger .bar {
 
 .heroContainer :nth-child(1) h2 {
   color: #d1d7e0;
-  text-transform: uppercase;
   font-size: 24px;
+  font-weight: normal;
 }
 
 .heroContainer :nth-child(1) h2::after {
@@ -447,6 +465,10 @@ nav .burger .bar {
   outline: thick double #9b3fd0;
   color: #141414;
   outline-offset: 0;
+}
+
+.heroContainer span {
+  color: #94a2b7;
 }
 
 main {
@@ -538,9 +560,27 @@ main .mainHeader::after {
   }
 }
 
+select {
+  place-self: flex-start;
+  background: #2d283e;
+  outline: none;
+  border: none;
+  color: #d1d7e0;
+  font-size: inherit;
+  font-family: inherit;
+  margin: 0 0 1em 1.5em;
+  padding: 0.5em;
+}
+
+@media (max-width: 700px) {
+  select {
+    font-size: 14px;
+  }
+}
+
 .heroMain {
-  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #141414), color-stop(75%, rgba(20, 20, 20, 0.5)), to(rgba(20, 20, 20, 0.1))), url("../../images/hero.png") no-repeat right 10% top 50%/cover;
-  background: linear-gradient(90deg, #141414 50%, rgba(20, 20, 20, 0.5) 75%, rgba(20, 20, 20, 0.1) 100%), url("../../images/hero.png") no-repeat right 10% top 50%/cover;
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #141414), color-stop(75%, rgba(20, 20, 20, 0.5)), to(rgba(20, 20, 20, 0.1))), url("../../images/hero.jpg") no-repeat right 10% top 50%/cover;
+  background: linear-gradient(90deg, #141414 50%, rgba(20, 20, 20, 0.5) 75%, rgba(20, 20, 20, 0.1) 100%), url("../../images/hero.jpg") no-repeat right 10% top 50%/cover;
   min-height: calc(80vh - 200px);
   width: 100%;
   display: -webkit-box;
@@ -572,11 +612,15 @@ main .mainHeader::after {
   }
 }
 
+.searchMain .controlCont {
+  margin: 0 0 5em 0;
+}
+
 .aboutMain {
   -webkit-animation: fade_in_article 0.5s ease-in-out;
           animation: fade_in_article 0.5s ease-in-out;
-  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #141414), color-stop(75%, rgba(20, 20, 20, 0.5)), to(rgba(20, 20, 20, 0.1))), url("../../images/about.png") no-repeat center center/cover;
-  background: linear-gradient(90deg, #141414 50%, rgba(20, 20, 20, 0.5) 75%, rgba(20, 20, 20, 0.1) 100%), url("../../images/about.png") no-repeat center center/cover;
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #141414), color-stop(75%, rgba(20, 20, 20, 0.5)), to(rgba(20, 20, 20, 0.1))), url("../../images/about.jpg") no-repeat center center/cover;
+  background: linear-gradient(90deg, #141414 50%, rgba(20, 20, 20, 0.5) 75%, rgba(20, 20, 20, 0.1) 100%), url("../../images/about.jpg") no-repeat center center/cover;
 }
 
 .detailMain {
@@ -1007,11 +1051,20 @@ form input::placeholder {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  padding: 2em 0.5em;
+  padding: 2em 1em;
 }
 
 .animeDetail article {
-  max-width: 1000px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .animeDetail .animeDetailContainer {
@@ -1084,6 +1137,10 @@ form input::placeholder {
   width: 100%;
 }
 
+.animeDetail .animeDetailContainer .descriptionContainer header .title span {
+  color: #94a2b7;
+}
+
 .animeDetail .animeDetailContainer .descriptionContainer header .genre {
   font-size: 16px;
   color: #94a2b7;
@@ -1122,6 +1179,8 @@ form input::placeholder {
 
 .animeDetail .trailerContainer {
   padding: 0.5em;
+  margin: 1em 0;
+  width: 100%;
 }
 
 .animeDetail .trailerContainer .trailer {
@@ -1155,36 +1214,30 @@ form input::placeholder {
 .animeDetail .animeOtherInfo {
   color: #d1d7e0;
   font-size: 16px;
-  padding: 0.5em;
-  -webkit-box-shadow: 2.5px 2.5px 15px 5px #000000;
-          box-shadow: 2.5px 2.5px 15px 5px #000000;
-  place-self: center flex-end;
+  padding: 1.5em 0.5em;
+  border-left: 1px solid #802bb1;
+}
+
+@media (max-width: 800px) {
+  .animeDetail .animeOtherInfo {
+    font-size: 14px;
+  }
 }
 
 .animeDetail .animeOtherInfo a {
-  color: #d1d7e0;
-  -webkit-text-decoration: 1px #b068da double underline;
-          text-decoration: 1px #b068da double underline;
+  color: #b068da;
+  -webkit-text-decoration: 1px #b068da solid underline;
+          text-decoration: 1px #b068da solid underline;
 }
 
 .animeDetail .animeOtherInfo p {
   max-width: 60ch;
-  padding: 0 0 1em 0;
+  padding: 0 0 0.5em 0;
 }
 
 .animeDetail .animeOtherInfo span {
   font-weight: bold;
-}
-
-select {
-  place-self: flex-start;
-  background: #2d283e;
-  outline: none;
-  border: none;
-  color: #d1d7e0;
-  font-size: inherit;
-  margin: 0 0 5.5em 1.25em;
-  padding: 0.5em;
+  color: #94a2b7;
 }
 
 footer {

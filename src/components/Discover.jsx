@@ -4,21 +4,15 @@ import { useRef, useState } from "react";
 
 const Discover = ({ filterAnime, discoverAnime, sideScroll }) => {
   const animeDiscoverCont = useRef(null);
-  // x = 12 y = 40
   const [selectValue, setSelectValue] = useState("select");
 
   const getRandomGenre = (min, max, exclude) => {
     let calc = Math.floor(Math.random() * (max - min) + min);
     if (calc === exclude || calc === 33 || calc === 34) {
-      // console.log(calc);
       calc += 2;
-      console.log("hit");
     }
-    console.log(calc);
     return calc;
   };
-
-  // getRandomGenre(1, 40, 12);
 
   return (
     <main className="discoverMain">
@@ -31,7 +25,6 @@ const Discover = ({ filterAnime, discoverAnime, sideScroll }) => {
         defaultValue={selectValue}
         onChange={(e) => {
           filterAnime(e.target.value);
-          console.log(e.target.value);
         }}
       >
         <option

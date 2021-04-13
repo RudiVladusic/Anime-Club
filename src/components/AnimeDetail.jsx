@@ -28,7 +28,9 @@ const AnimeDetail = ({ match }) => {
     opening_themes,
     studios,
     producers,
+    type,
   } = animeDetail;
+  console.log(animeDetail);
 
   return (
     <main className="detailMain">
@@ -40,7 +42,9 @@ const AnimeDetail = ({ match }) => {
             </div>
             <div className="descriptionContainer">
               <header>
-                <p className="title">{title}</p>
+                <p className="title">
+                  {title} <span>({type})</span>
+                </p>
                 <p className="genre">
                   <span>Genre: </span>
                   {genres ? genres.map((genre) => genre.name).join(", ") : ""}
@@ -60,6 +64,70 @@ const AnimeDetail = ({ match }) => {
               )}
             </div>
           </div>
+
+          <aside className="animeOtherInfo">
+            <p>
+              <span>Score: </span>
+              {score ? score : "Not scored"}
+            </p>
+            <p>
+              <span>Scored by: </span>
+              {scored_by ? `${scored_by} members` : `Not scored`}
+            </p>
+
+            <p>
+              <span>Rating: </span>
+              {rating}
+            </p>
+            <p>
+              <span>Status: </span>
+              {status}
+            </p>
+            <p>
+              <span>Opening theme: </span>
+              {opening_themes
+                ? opening_themes.slice(0, 3).join(", ")
+                : "Not listed"}
+            </p>
+
+            {studios ? (
+              <>
+                <p>
+                  <span>Production</span>:{" "}
+                  {studios.map((studio) => studio.name)}
+                </p>
+                <p>
+                  <span>Producer info: </span>
+                  <a href={studios.map((link) => link.url)}>
+                    {studios.map((name) => name.name)}
+                  </a>
+                </p>
+              </>
+            ) : (
+              <>
+                <p>
+                  <span>Production</span>: Not listed
+                </p>
+                <p>
+                  <span>Link </span>: Not listed
+                </p>
+              </>
+            )}
+
+            {producers ? (
+              <>
+                <p>
+                  <span>Producers: </span>
+                  {producers.map((producer) => producer.name).join(", ")}
+                </p>
+              </>
+            ) : (
+              <p>
+                <span>Producers: </span> Not listed
+              </p>
+            )}
+          </aside>
+
           <div className="trailerContainer">
             <div className="trailer">
               {trailer_url ? (
@@ -75,67 +143,6 @@ const AnimeDetail = ({ match }) => {
             </div>
           </div>
         </article>
-        <aside className="animeOtherInfo">
-          <p>
-            <span>Score: </span>
-            {score ? score : "Not scored"}
-          </p>
-          <p>
-            <span>Scored by: </span>
-            {scored_by ? `${scored_by} members` : `Not scored`}
-          </p>
-
-          <p>
-            <span>Rating: </span>
-            {rating}
-          </p>
-          <p>
-            <span>Status: </span>
-            {status}
-          </p>
-          <p>
-            <span>Opening theme: </span>
-            {opening_themes
-              ? opening_themes.slice(0, 3).join(", ")
-              : "Not listed"}
-          </p>
-
-          {studios ? (
-            <>
-              <p>
-                <span>Production</span>: {studios.map((studio) => studio.name)}
-              </p>
-              <p>
-                <span>Producer info: </span>{" "}
-                <a href={studios.map((link) => link.url)}>
-                  {studios.map((name) => name.name)}
-                </a>
-              </p>
-            </>
-          ) : (
-            <>
-              <p>
-                <span>Production</span> : Not listed
-              </p>
-              <p>
-                <span>Link </span>: Not listed
-              </p>
-            </>
-          )}
-
-          {producers ? (
-            <>
-              <p>
-                <span>Producers: </span>
-                {producers.map((producer) => producer.name).join(", ")}
-              </p>
-            </>
-          ) : (
-            <p>
-              <span>Producers: </span> Not listed
-            </p>
-          )}
-        </aside>
       </section>
     </main>
   );

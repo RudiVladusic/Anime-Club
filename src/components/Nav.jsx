@@ -3,7 +3,9 @@ import { useState } from "react";
 
 const Nav = () => {
   const [navIsOpen, setNavIsOpen] = useState(false);
+  const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const navClass = `mobileNav`;
+  const burgerClass = `burger`;
 
   return (
     <>
@@ -19,7 +21,13 @@ const Nav = () => {
           <Link to="/discover">Discover</Link>
         </div>
 
-        <div className="burger" onClick={() => setNavIsOpen(!navIsOpen)}>
+        <div
+          className={isBurgerOpen ? `${burgerClass} open` : `${burgerClass}`}
+          onClick={() => {
+            setNavIsOpen(!navIsOpen);
+            setIsBurgerOpen(!isBurgerOpen);
+          }}
+        >
           <div className="bar"></div>
           <div className="bar"></div>
           <div className="bar"></div>
@@ -27,13 +35,31 @@ const Nav = () => {
       </nav>
 
       <div className={navIsOpen ? `${navClass} navActive` : `${navClass}`}>
-        <Link onClick={() => setNavIsOpen(!navIsOpen)} to="/search">
+        <Link
+          onClick={() => {
+            setNavIsOpen(!navIsOpen);
+            setIsBurgerOpen(!isBurgerOpen);
+          }}
+          to="/search"
+        >
           Search
         </Link>
-        <Link onClick={() => setNavIsOpen(!navIsOpen)} to="/about">
+        <Link
+          onClick={() => {
+            setIsBurgerOpen(!isBurgerOpen);
+            setNavIsOpen(!navIsOpen);
+          }}
+          to="/about"
+        >
           About
         </Link>
-        <Link onClick={() => setNavIsOpen(!navIsOpen)} to="/discover">
+        <Link
+          onClick={() => {
+            setIsBurgerOpen(!isBurgerOpen);
+            setNavIsOpen(!navIsOpen);
+          }}
+          to="/discover"
+        >
           Discover
         </Link>
       </div>
