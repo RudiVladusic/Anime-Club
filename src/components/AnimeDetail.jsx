@@ -30,7 +30,6 @@ const AnimeDetail = ({ match }) => {
     producers,
     type,
   } = animeDetail;
-  console.log(animeDetail);
 
   return (
     <main className="detailMain">
