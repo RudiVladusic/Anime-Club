@@ -194,6 +194,7 @@ nav {
     color: $white;
     font-size: $desktopFontSizeHeader;
     font-weight: normal;
+    text-transform: uppercase;
 
     &::after {
       @include borders();

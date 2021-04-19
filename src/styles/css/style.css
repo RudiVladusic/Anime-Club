@@ -410,6 +410,7 @@ nav .burger .bar {
   color: #d1d7e0;
   font-size: 24px;
   font-weight: normal;
+  text-transform: uppercase;
 }
 
 .heroContainer :nth-child(1) h2::after {
