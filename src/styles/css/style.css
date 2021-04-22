@@ -425,7 +425,7 @@ nav .burger .bar {
 
 @media (max-width: 700px) {
   .heroContainer :nth-child(1) h2 {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 
@@ -437,7 +437,7 @@ nav .burger .bar {
 
 @media (max-width: 700px) {
   .heroContainer :nth-child(2) {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -753,7 +753,7 @@ form input::placeholder {
 @media (max-width: 700px) {
   .controlCont .controlLeft,
   .controlCont .controlRight {
-    max-height: calc(250px / 1.1618);
+    max-height: calc(300px / 1.1618);
   }
   .controlCont .controlLeft:hover,
   .controlCont .controlRight:hover {
@@ -832,8 +832,8 @@ form input::placeholder {
   .animeDiscoverCont article,
   .animeCont article,
   .specialsCont article {
-    max-width: calc(200px / 1.1618);
-    max-height: calc(250px / 1.1618);
+    max-width: calc(250px / 1.1618);
+    max-height: calc(300px / 1.1618);
   }
   .trendingAnimeCont article .articleInformation,
   .upcomingAnimeCont article .articleInformation,
