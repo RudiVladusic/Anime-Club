@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Vollkorn&display=swap");
 @-webkit-keyframes mobile_nav_animation {
   0% {
     -webkit-transform: translateX(-100vw);
@@ -8,7 +9,6 @@
             transform: translateX(0);
   }
 }
-
 @keyframes mobile_nav_animation {
   0% {
     -webkit-transform: translateX(-100vw);
@@ -171,11 +171,11 @@
 
 html {
   line-height: 1.6;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background: #141414;
+  font-family: "Roboto", sans-serif;
+  background: #101010;
   height: 100%;
   scroll-behavior: smooth;
-  scrollbar-color: #802bb1 #141414;
+  scrollbar-color: #802bb1 #101010;
   scrollbar-width: thin;
 }
 
@@ -192,6 +192,9 @@ img {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 10px;
+  display: block;
+  -webkit-box-shadow: 2.5px 2.5px 15px 5px #000;
+          box-shadow: 2.5px 2.5px 15px 5px #000;
 }
 
 nav {
@@ -211,7 +214,8 @@ nav {
           justify-content: space-between;
   text-transform: uppercase;
   background: #4c495d;
-  background: #1a1a1a;
+  background: #161616;
+  background: #101010;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
@@ -219,6 +223,7 @@ nav {
 nav .navHeader {
   font-size: 24px;
   letter-spacing: 0.1em;
+  font-family: "Vollkorn", serif;
 }
 
 nav .navHeader span {
@@ -406,11 +411,18 @@ nav .burger .bar {
           animation: fade_in_article 1s ease-in-out;
 }
 
+.heroContainer span {
+  font-family: "roboto", sans-serif;
+  font-size: 16px;
+  color: #94a2b7;
+}
+
 .heroContainer :nth-child(1) h2 {
   color: #d1d7e0;
   font-size: 24px;
-  font-weight: normal;
+  font-weight: 400;
   text-transform: uppercase;
+  font-family: "Vollkorn", serif;
 }
 
 .heroContainer :nth-child(1) h2::after {
@@ -418,9 +430,8 @@ nav .burger .bar {
   background: #802bb1;
   height: 1px;
   display: block;
-  width: 100%;
-  -webkit-animation: border_animation 1.25s ease-in-out;
-          animation: border_animation 1.25s ease-in-out;
+  -webkit-animation: border_animation 1.25s ease-in-out forwards;
+          animation: border_animation 1.25s ease-in-out forwards;
 }
 
 @media (max-width: 700px) {
@@ -464,12 +475,8 @@ nav .burger .bar {
 .heroContainer :nth-child(3):hover {
   background: #eff1f5;
   outline: thick double #9b3fd0;
-  color: #141414;
+  color: #101010;
   outline-offset: 0;
-}
-
-.heroContainer span {
-  color: #94a2b7;
 }
 
 main {
@@ -498,6 +505,8 @@ main .mainHeader {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  font-family: "Vollkorn", serif;
+  max-width: 60ch;
 }
 
 main .mainHeader::after {
@@ -505,9 +514,8 @@ main .mainHeader::after {
   background: #802bb1;
   height: 1px;
   display: block;
-  width: 100%;
-  -webkit-animation: border_animation 1.25s ease-in-out;
-          animation: border_animation 1.25s ease-in-out;
+  -webkit-animation: border_animation 1.25s ease-in-out forwards;
+          animation: border_animation 1.25s ease-in-out forwards;
 }
 
 @media (max-width: 700px) {
@@ -545,6 +553,8 @@ main .mainHeader::after {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  font-family: "Vollkorn", serif;
+  max-width: 60ch;
 }
 
 .discoverMain .discoverMainHeader::after {
@@ -552,7 +562,8 @@ main .mainHeader::after {
   background: #802bb1;
   height: 1px;
   display: block;
-  width: 100%;
+  -webkit-animation: border_animation 1s ease-in-out forwards;
+          animation: border_animation 1s ease-in-out forwards;
 }
 
 @media (max-width: 700px) {
@@ -580,8 +591,8 @@ select {
 }
 
 .heroMain {
-  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #141414), color-stop(75%, rgba(20, 20, 20, 0.5)), to(rgba(20, 20, 20, 0.1))), url("../../images/hero.jpg") no-repeat right 10% top 50%/cover;
-  background: linear-gradient(90deg, #141414 50%, rgba(20, 20, 20, 0.5) 75%, rgba(20, 20, 20, 0.1) 100%), url("../../images/hero.jpg") no-repeat right 10% top 50%/cover;
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #0e0e0e), color-stop(75%, rgba(14, 14, 14, 0.5)), to(rgba(14, 14, 14, 0.1))), url("../../images/hero.jpg") no-repeat right 10% top 50%/cover;
+  background: linear-gradient(90deg, #0e0e0e 50%, rgba(14, 14, 14, 0.5) 75%, rgba(14, 14, 14, 0.1) 100%), url("../../images/hero.jpg") no-repeat right 10% top 50%/cover;
   min-height: calc(80vh - 200px);
   width: 100%;
   display: -webkit-box;
@@ -617,6 +628,12 @@ select {
   margin: 0 0 5em 0;
 }
 
+@media (max-width: 700px) {
+  .searchMain .controlCont {
+    margin: 0 0 50% 0;
+  }
+}
+
 .aboutMain {
   -webkit-animation: fade_in_article 0.5s ease-in-out;
           animation: fade_in_article 0.5s ease-in-out;
@@ -625,7 +642,7 @@ select {
 }
 
 .detailMain {
-  background: #141414;
+  background: #101010;
 }
 
 .error {
@@ -648,60 +665,66 @@ form {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   place-items: center;
   position: absolute;
   top: 4em;
   left: 0;
   right: 0;
   margin: 0 auto;
-  background: #2d283e;
-  width: calc(100vw / 1.05);
+  padding: 1em;
+  font-size: 20px;
   -webkit-animation: fade_in_article 0.5s ease-in-out;
           animation: fade_in_article 0.5s ease-in-out;
-  -webkit-box-shadow: 5px 5px 10px 5px #000000;
-          box-shadow: 5px 5px 10px 5px #000000;
 }
 
 form button {
   height: 100%;
   padding: 0.5em;
-  font-family: inherit;
-  background: #531c73;
-  text-transform: uppercase;
+  background: none;
   color: #d1d7e0;
-  font-size: 16px;
+  font-size: inherit;
   cursor: pointer;
 }
 
 form input {
   padding: 0.5em;
-  -webkit-box-flex: 2;
-      -ms-flex-positive: 2;
-          flex-grow: 2;
-  position: relative;
+  width: 80%;
   background: transparent;
   outline: none;
   color: #d1d7e0;
   font-size: 16px;
+  border-bottom: 1px solid #d1d7e0;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 
 form input::-webkit-input-placeholder {
-  opacity: 1;
+  opacity: 0.9;
+  color: #d1d7e0;
 }
 
 form input:-ms-input-placeholder {
-  opacity: 1;
+  opacity: 0.9;
+  color: #d1d7e0;
 }
 
 form input::-ms-input-placeholder {
-  opacity: 1;
+  opacity: 0.9;
+  color: #d1d7e0;
 }
 
 form input::placeholder {
-  opacity: 1;
+  opacity: 0.9;
+  color: #d1d7e0;
+}
+
+form input:focus {
+  outline: 1px solid #b068da;
+  border-bottom: 0;
+  border-radius: 10px;
 }
 
 .controlCont {
@@ -719,7 +742,7 @@ form input::placeholder {
   border: none;
   outline: none;
   font-family: inherit;
-  font-size: 35px;
+  font-size: 30px;
   cursor: pointer;
   font-weight: bold;
   -webkit-transition: all 0.25s ease-in-out;
@@ -736,7 +759,7 @@ form input::placeholder {
   border: none;
   outline: none;
   font-family: inherit;
-  font-size: 35px;
+  font-size: 30px;
   cursor: pointer;
   font-weight: bold;
   -webkit-transition: all 0.25s ease-in-out;
@@ -916,6 +939,7 @@ form input::placeholder {
   font-size: 20px;
   text-transform: none;
   padding: 0 0.25em;
+  font-family: "Vollkorn", serif;
 }
 
 .trendingAnimeCont .articleInformation :nth-child(1) ::after,
@@ -927,7 +951,6 @@ form input::placeholder {
   background: #802bb1;
   height: 1px;
   display: block;
-  width: 100%;
   background: #d1d7e0;
 }
 
@@ -958,7 +981,7 @@ form input::placeholder {
 .specialsCont .articleInformation :nth-child(2):hover {
   background: #eff1f5;
   outline: thick double #9b3fd0;
-  color: #141414;
+  color: #101010;
   outline-offset: 0;
 }
 
@@ -968,6 +991,7 @@ form input::placeholder {
 .animeCont .articleInformation :nth-child(3),
 .specialsCont .articleInformation :nth-child(3) {
   padding: 0 0.5em;
+  font-weight: 600;
 }
 
 .trendingAnimeCont .active,
@@ -1004,6 +1028,16 @@ form input::placeholder {
 .specialsCont .active :nth-child(1) {
   -webkit-animation: article_information_text 0.5s ease-in-out;
           animation: article_information_text 0.5s ease-in-out;
+}
+
+.trendingAnimeCont .active :nth-child(1)::after,
+.upcomingAnimeCont .active :nth-child(1)::after,
+.animeDiscoverCont .active :nth-child(1)::after,
+.animeCont .active :nth-child(1)::after,
+.specialsCont .active :nth-child(1)::after {
+  -webkit-animation: border_animation 1s ease-in-out forwards;
+          animation: border_animation 1s ease-in-out forwards;
+  background: #e4b849;
 }
 
 .aboutCont {
@@ -1083,11 +1117,6 @@ form input::placeholder {
   padding: 0.5em;
 }
 
-.animeDetail .animeDetailContainer .imageContainer img {
-  -webkit-box-shadow: 5px 5px 10px 5px #000000;
-          box-shadow: 5px 5px 10px 5px #000000;
-}
-
 @media (max-width: 800px) {
   .animeDetail .animeDetailContainer .imageContainer {
     width: 100px;
@@ -1119,7 +1148,7 @@ form input::placeholder {
   background: #802bb1;
   height: 1px;
   display: block;
-  width: 100%;
+  background: #45175f;
 }
 
 .animeDetail .animeDetailContainer .descriptionContainer header .title {
@@ -1128,6 +1157,7 @@ form input::placeholder {
   letter-spacing: 0.1em;
   font-weight: bold;
   max-width: 60ch;
+  font-family: "Vollkorn", serif;
 }
 
 .animeDetail .animeDetailContainer .descriptionContainer header .title::after {
@@ -1135,11 +1165,14 @@ form input::placeholder {
   background: #802bb1;
   height: 1px;
   display: block;
-  width: 100%;
+  background: #45175f;
 }
 
 .animeDetail .animeDetailContainer .descriptionContainer header .title span {
   color: #94a2b7;
+  font-family: "roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .animeDetail .animeDetailContainer .descriptionContainer header .genre {
@@ -1173,8 +1206,11 @@ form input::placeholder {
   background: transparent;
   font-family: inherit;
   font-size: inherit;
-  color: #c691e4;
   text-decoration: underline;
+  color: inherit;
+  -webkit-text-decoration: underline dotted #9b3fd0;
+          text-decoration: underline dotted #9b3fd0;
+  text-underline-offset: 0.25em;
   cursor: pointer;
 }
 
@@ -1195,6 +1231,9 @@ form input::placeholder {
   text-align: center;
   font-size: 20px;
   color: #d1d7e0;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  font-weight: 600;
 }
 
 @media (max-width: 700px) {
@@ -1216,7 +1255,7 @@ form input::placeholder {
   color: #d1d7e0;
   font-size: 16px;
   padding: 1.5em 0.5em;
-  border-left: 1px solid #802bb1;
+  border-left: 1px solid #45175f;
 }
 
 @media (max-width: 800px) {
@@ -1254,7 +1293,8 @@ footer {
       -ms-flex-pack: center;
           justify-content: center;
   padding: 0.5em;
-  background: #212121;
+  background: #101010;
+  font-size: 20px;
 }
 
 footer a {

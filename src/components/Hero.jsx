@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilm } from "@fortawesome/free-solid-svg-icons";
 const Hero = () => {
   return (
     <div className="heroMain">
@@ -14,7 +15,7 @@ const Hero = () => {
           they ever commit a crime. But is it a perfect system?
         </p>
         <Link className="heroLink" to="/anime/39491" role="button">
-          Trailer 🎞️
+          Trailer <FontAwesomeIcon icon={faFilm} />
         </Link>
       </div>
     </div>

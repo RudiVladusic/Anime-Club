@@ -6,12 +6,9 @@
   place-items: center start;
   scrollbar-width: none;
 
-  // box-shadow: $boxShadowForCards;
-
   &::-webkit-scrollbar {
     display: none;
   }
-  // padding: 1em;
   overflow-x: scroll;
 
   a {
@@ -46,7 +43,6 @@
   background: $purple;
   height: 1px;
   display: block;
-  width: 100%;
 }
 
 @mixin controlButtons {
@@ -58,7 +54,7 @@
   border: none;
   outline: none;
   font-family: inherit;
-  font-size: 35px;
+  font-size: 30px;
   cursor: pointer;
   font-weight: bold;
   transition: all 0.25s ease-in-out;

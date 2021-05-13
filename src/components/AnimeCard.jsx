@@ -27,8 +27,8 @@ const AnimeCard = ({ anime }) => {
           <p>{`${title}`}</p>
         </header>
         <button>Details</button>
-        {start_date ? <p>Start date : {start_date.slice(0, 10)}</p> : ``}
-        {airing_start ? <p>Start date: {airing_start.slice(0, 10)}</p> : ``}
+        {start_date && <p>Start date : {start_date.slice(0, 10)}</p>}
+        {airing_start && <p>Start date: {airing_start.slice(0, 10)}</p>}
       </div>
     </article>
   );

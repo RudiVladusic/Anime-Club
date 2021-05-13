@@ -1,6 +1,8 @@
 import AnimeCard from "./AnimeCard";
 import { Link } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const Discover = ({ filterAnime, discoverAnime, sideScroll }) => {
   const animeDiscoverCont = useRef(null);
@@ -13,6 +15,10 @@ const Discover = ({ filterAnime, discoverAnime, sideScroll }) => {
     }
     return calc;
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <main className="discoverMain">
@@ -65,7 +71,7 @@ const Discover = ({ filterAnime, discoverAnime, sideScroll }) => {
                 sideScroll(animeDiscoverCont.current, 10, 450, -25);
               }}
             >
-              {"<"}
+              <FontAwesomeIcon icon={faArrowLeft} />
             </button>
             <button
               className="controlRight"
@@ -73,7 +79,7 @@ const Discover = ({ filterAnime, discoverAnime, sideScroll }) => {
                 sideScroll(animeDiscoverCont.current, 10, 450, 25);
               }}
             >
-              {">"}
+              <FontAwesomeIcon icon={faArrowRight} />
             </button>
           </>
         ) : (

@@ -1,6 +1,8 @@
 import AnimeCard from "./AnimeCard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const Content = ({ upcomingAnime, airingAnime, specials, sideScroll }) => {
   const trendingAnimeCont = useRef(null);
@@ -30,7 +32,7 @@ const Content = ({ upcomingAnime, airingAnime, specials, sideScroll }) => {
               sideScroll(trendingAnimeCont.current, 10, 450, -25);
             }}
           >
-            {"<"}
+            <FontAwesomeIcon icon={faArrowLeft} />
           </button>
           <button
             className="controlRight"
@@ -38,7 +40,7 @@ const Content = ({ upcomingAnime, airingAnime, specials, sideScroll }) => {
               sideScroll(trendingAnimeCont.current, 10, 450, 25);
             }}
           >
-            {">"}
+            <FontAwesomeIcon icon={faArrowRight} />
           </button>
         </div>
 
@@ -61,7 +63,7 @@ const Content = ({ upcomingAnime, airingAnime, specials, sideScroll }) => {
               sideScroll(upcomingAnimeCont.current, 10, 450, -25);
             }}
           >
-            {"<"}
+            <FontAwesomeIcon icon={faArrowLeft} />
           </button>
           <button
             className="controlRight"
@@ -69,7 +71,7 @@ const Content = ({ upcomingAnime, airingAnime, specials, sideScroll }) => {
               sideScroll(upcomingAnimeCont.current, 10, 450, 25);
             }}
           >
-            {">"}
+            <FontAwesomeIcon icon={faArrowRight} />
           </button>
         </div>
         <header className="mainHeader">Specials </header>
@@ -90,7 +92,7 @@ const Content = ({ upcomingAnime, airingAnime, specials, sideScroll }) => {
               sideScroll(specialsCont.current, 10, 450, -25);
             }}
           >
-            {"<"}
+            <FontAwesomeIcon icon={faArrowLeft} />
           </button>
           <button
             className="controlRight"
@@ -98,7 +100,7 @@ const Content = ({ upcomingAnime, airingAnime, specials, sideScroll }) => {
               sideScroll(specialsCont.current, 10, 450, 25);
             }}
           >
-            {">"}
+            <FontAwesomeIcon icon={faArrowRight} />
           </button>
         </div>
       </main>
