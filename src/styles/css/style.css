@@ -425,18 +425,10 @@ nav .burger .bar {
   font-family: "Vollkorn", serif;
 }
 
-.heroContainer :nth-child(1) h2::after {
-  content: "";
-  background: #802bb1;
-  height: 1px;
-  display: block;
-  -webkit-animation: border_animation 1.25s ease-in-out forwards;
-          animation: border_animation 1.25s ease-in-out forwards;
-}
-
 @media (max-width: 700px) {
   .heroContainer :nth-child(1) h2 {
     font-size: 16px;
+    text-shadow: 3px 3px 5px #000;
   }
 }
 
@@ -449,6 +441,7 @@ nav .burger .bar {
 @media (max-width: 700px) {
   .heroContainer :nth-child(2) {
     font-size: 14px;
+    text-shadow: 3px 3px 5px #000;
   }
 }
 
@@ -470,6 +463,8 @@ nav .burger .bar {
           animation: none;
   place-self: flex-start;
   text-decoration: none;
+  outline: thick double #9b3fd0;
+  outline-offset: -4px;
 }
 
 .heroContainer :nth-child(3):hover {
@@ -501,12 +496,15 @@ main .mainHeader {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  place-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   font-family: "Vollkorn", serif;
-  max-width: 60ch;
 }
 
 main .mainHeader::after {
@@ -514,8 +512,10 @@ main .mainHeader::after {
   background: #802bb1;
   height: 1px;
   display: block;
-  -webkit-animation: border_animation 1.25s ease-in-out forwards;
-          animation: border_animation 1.25s ease-in-out forwards;
+  background: #d1d7e0;
+  margin: 0 1em 0 0.25em;
+  -webkit-animation: border_animation 1s ease-in-out forwards;
+          animation: border_animation 1s ease-in-out forwards;
 }
 
 @media (max-width: 700px) {
@@ -549,12 +549,15 @@ main .mainHeader::after {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  place-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   font-family: "Vollkorn", serif;
-  max-width: 60ch;
 }
 
 .discoverMain .discoverMainHeader::after {
@@ -564,6 +567,8 @@ main .mainHeader::after {
   display: block;
   -webkit-animation: border_animation 1s ease-in-out forwards;
           animation: border_animation 1s ease-in-out forwards;
+  background: #d1d7e0;
+  margin: 0 1em 0 0.25em;
 }
 
 @media (max-width: 700px) {
@@ -591,8 +596,8 @@ select {
 }
 
 .heroMain {
-  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #0e0e0e), color-stop(75%, rgba(14, 14, 14, 0.5)), to(rgba(14, 14, 14, 0.1))), url("../../images/hero.jpg") no-repeat right 10% top 50%/cover;
-  background: linear-gradient(90deg, #0e0e0e 50%, rgba(14, 14, 14, 0.5) 75%, rgba(14, 14, 14, 0.1) 100%), url("../../images/hero.jpg") no-repeat right 10% top 50%/cover;
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #101010), color-stop(75%, rgba(14, 10, 10, 0.5)), to(rgba(10, 10, 10, 0.1))), url("../../images/hero.jpg") no-repeat right 10% top 50%/cover;
+  background: linear-gradient(90deg, #101010 50%, rgba(14, 10, 10, 0.5) 75%, rgba(10, 10, 10, 0.1) 100%), url("../../images/hero.jpg") no-repeat right 10% top 50%/cover;
   min-height: calc(80vh - 200px);
   width: 100%;
   display: -webkit-box;
@@ -607,6 +612,13 @@ select {
           justify-content: center;
   place-items: flex-start;
   padding: 0.5em;
+}
+
+@media (max-width: 700px) {
+  .heroMain {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(10, 10, 10, 0.8)), to(rgba(10, 10, 10, 0.8))), url("../../images//hero.jpg") no-repeat center center/cover;
+    background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), url("../../images//hero.jpg") no-repeat center center/cover;
+  }
 }
 
 .searchMain {
@@ -777,6 +789,7 @@ form input:focus {
   .controlCont .controlLeft,
   .controlCont .controlRight {
     max-height: calc(300px / 1.1618);
+    font-size: 20px;
   }
   .controlCont .controlLeft:hover,
   .controlCont .controlRight:hover {

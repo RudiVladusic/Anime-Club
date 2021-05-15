@@ -206,13 +206,10 @@ nav {
     font-weight: 400;
     text-transform: uppercase;
     font-family: "Vollkorn", serif;
-    &::after {
-      @include borders();
-      animation: border_animation 1.25s ease-in-out forwards;
-    }
 
     @media (max-width: 700px) {
       font-size: $mobileFontSizeMain;
+      text-shadow: 3px 3px 5px #000;
     }
   }
 
@@ -223,6 +220,7 @@ nav {
 
     @media (max-width: 700px) {
       font-size: $mobileFontSizeSmaller;
+      text-shadow: 3px 3px 5px #000;
     }
   }
 
@@ -231,6 +229,8 @@ nav {
     animation: none;
     place-self: flex-start;
     text-decoration: none;
+    outline: thick double lighten($purple, 10%);
+    outline-offset: -4px;
   }
 }
 
@@ -245,13 +245,16 @@ main {
     text-transform: uppercase;
     font-size: $desktopFontSizeHeader;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    place-items: center;
+    justify-content: space-between;
     font-family: "Vollkorn", serif;
-    max-width: 60ch;
 
     &::after {
       @include borders();
-      animation: border_animation 1.25s ease-in-out forwards;
+      background: $white;
+      margin: 0 1em 0 0.25em;
+      animation: border_animation 1s ease-in-out forwards;
     }
     @media (max-width: 700px) {
       font-size: $mobileFontSizeHeader;
@@ -287,12 +290,16 @@ main {
     text-transform: uppercase;
     font-size: $desktopFontSizeHeader;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    place-items: center;
+    justify-content: space-between;
     font-family: "Vollkorn", serif;
-    max-width: 60ch;
+
     &::after {
       @include borders();
       animation: border_animation 1s ease-in-out forwards;
+      background: $white;
+      margin: 0 1em 0 0.25em;
     }
     @media (max-width: 700px) {
       font-size: $mobileFontSizeHeader;
@@ -319,9 +326,9 @@ select {
 .heroMain {
   background: linear-gradient(
       90deg,
-      rgba(14, 14, 14, 1) 50%,
-      rgba(14, 14, 14, 0.5) 75%,
-      rgba(14, 14, 14, 0.1) 100%
+      #101010 50%,
+      rgba(14, 10, 10, 0.5) 75%,
+      rgba(10, 10, 10, 0.1) 100%
     ),
     url("../../images/hero.jpg") no-repeat right 10% top 50% / cover;
   min-height: calc(80vh - 200px);
@@ -331,6 +338,11 @@ select {
   justify-content: center;
   place-items: flex-start;
   padding: 0.5em;
+
+  @media (max-width: 700px) {
+    background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)),
+      url("../../images//hero.jpg") no-repeat center center/cover;
+  }
 }
 
 .searchMain {
@@ -462,6 +474,7 @@ form {
 
     @media (max-width: 700px) {
       max-height: calc(300px / 1.1618);
+      font-size: $mobileFontSizeHeader;
 
       &:hover {
         background: none;
