@@ -1130,7 +1130,7 @@ form input:focus {
   padding: 0.5em;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 700px) {
   .animeDetail .animeDetailContainer .imageContainer {
     width: 100px;
     height: 100px;
@@ -1198,7 +1198,7 @@ form input:focus {
   font-weight: 600;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 700px) {
   .animeDetail .animeDetailContainer .descriptionContainer header .genre {
     font-size: 14px;
   }
@@ -1209,7 +1209,7 @@ form input:focus {
   font-size: 20px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 700px) {
   .animeDetail .animeDetailContainer .descriptionContainer .synopsis {
     font-size: 16px;
   }
@@ -1271,7 +1271,7 @@ form input:focus {
   border-left: 1px solid #45175f;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 700px) {
   .animeDetail .animeOtherInfo {
     font-size: 14px;
   }
