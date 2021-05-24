@@ -2,18 +2,16 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Nav = () => {
-  const [navIsOpen, setNavIsOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
-  const navClass = `mobileNav`;
-  const burgerClass = `burger`;
 
   return (
     <>
       <nav>
-        <div className="navHeader">
+        <div className="nav-header">
           <Link to="/">Anime Club</Link>
         </div>
-        <div className="desktopNavLinks">
+        <div className="desktop-nav-links">
           <Link to="/search">Search</Link>
 
           <Link to="/about">About</Link>
@@ -22,9 +20,9 @@ const Nav = () => {
         </div>
 
         <div
-          className={isBurgerOpen ? `${burgerClass} open` : `${burgerClass}`}
+          className={isBurgerOpen ? `burger open` : `burger`}
           onClick={() => {
-            setNavIsOpen(!navIsOpen);
+            setIsNavOpen(!isNavOpen);
             setIsBurgerOpen(!isBurgerOpen);
           }}
         >
@@ -34,10 +32,10 @@ const Nav = () => {
         </div>
       </nav>
 
-      <div className={navIsOpen ? `${navClass} navActive` : `${navClass}`}>
+      <div className={isNavOpen ? `mobile-nav active` : `mobile-nav`}>
         <Link
           onClick={() => {
-            setNavIsOpen(!navIsOpen);
+            setIsNavOpen(!isNavOpen);
             setIsBurgerOpen(!isBurgerOpen);
           }}
           to="/search"
@@ -47,7 +45,7 @@ const Nav = () => {
         <Link
           onClick={() => {
             setIsBurgerOpen(!isBurgerOpen);
-            setNavIsOpen(!navIsOpen);
+            setIsNavOpen(!isNavOpen);
           }}
           to="/about"
         >
@@ -56,7 +54,7 @@ const Nav = () => {
         <Link
           onClick={() => {
             setIsBurgerOpen(!isBurgerOpen);
-            setNavIsOpen(!navIsOpen);
+            setIsNavOpen(!isNavOpen);
           }}
           to="/discover"
         >

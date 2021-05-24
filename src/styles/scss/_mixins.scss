@@ -1,18 +1,12 @@
 @mixin mainContentStyles {
   display: grid;
-  gap: 0 2em;
+  gap: 2.5em 2.5em;
   grid-template-columns: repeat(20, 200px);
-  grid-template-rows: auto;
-  place-items: center start;
   scrollbar-width: none;
+  overflow-x: scroll;
 
   &::-webkit-scrollbar {
     display: none;
-  }
-  overflow-x: scroll;
-
-  a {
-    padding: 0 4em;
   }
 }
 
@@ -31,30 +25,32 @@
   outline-offset: -4px;
 
   &:hover {
-    background: lighten($white, 10%);
-    outline: thick double lighten($purple, 10%);
-    color: $black;
+    outline: thick double lighten($accent, 10%);
     outline-offset: 0;
   }
 }
 
 @mixin borders {
   content: "";
-  background: $purple;
+  background: $accent;
   height: 1px;
   display: block;
 }
 
 @mixin controlButtons {
   position: absolute;
-  top: 0;
-  height: 100%;
-  background: rgba(45, 40, 62, 0.8);
+  top: 50%;
+  background: rgba(20, 20, 20, 0.8);
   color: $white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  transform: translate(0, -50%);
+  background: $night-sky;
   border: none;
   outline: none;
   font-family: inherit;
-  font-size: 30px;
+  font-size: 1.75em;
   cursor: pointer;
   font-weight: bold;
   transition: all 0.25s ease-in-out;

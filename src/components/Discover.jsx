@@ -21,8 +21,8 @@ const Discover = ({ filterAnime, discoverAnime, sideScroll }) => {
   }, []);
 
   return (
-    <main className="discoverMain">
-      <header className="discoverMainHeader">
+    <main className="discover-content">
+      <header className="main-content__header">
         <p>Discover</p>
       </header>
       <select
@@ -52,8 +52,8 @@ const Discover = ({ filterAnime, discoverAnime, sideScroll }) => {
         <option value={getRandomGenre(1, 40, 12)}>Random</option>
       </select>
 
-      <div className="controlCont">
-        <div className="animeDiscoverCont" ref={animeDiscoverCont}>
+      <div className="control-cont">
+        <div className="discover-content__cont" ref={animeDiscoverCont}>
           {discoverAnime.map((anime) => {
             return (
               <Link key={anime.mal_id} to={`/anime/${anime.mal_id}`}>
@@ -63,10 +63,10 @@ const Discover = ({ filterAnime, discoverAnime, sideScroll }) => {
           })}
         </div>
 
-        {discoverAnime.length > 0 ? (
+        {discoverAnime.length > 0 && (
           <>
             <button
-              className="controlLeft"
+              className="control-cont__left"
               onClick={() => {
                 sideScroll(animeDiscoverCont.current, 10, 450, -25);
               }}
@@ -74,7 +74,7 @@ const Discover = ({ filterAnime, discoverAnime, sideScroll }) => {
               <FontAwesomeIcon icon={faArrowLeft} />
             </button>
             <button
-              className="controlRight"
+              className="control-cont__right"
               onClick={() => {
                 sideScroll(animeDiscoverCont.current, 10, 450, 25);
               }}
@@ -82,8 +82,6 @@ const Discover = ({ filterAnime, discoverAnime, sideScroll }) => {
               <FontAwesomeIcon icon={faArrowRight} />
             </button>
           </>
-        ) : (
-          ""
         )}
       </div>
     </main>

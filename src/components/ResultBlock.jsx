@@ -7,37 +7,33 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 const ResultBlock = ({ animeResults, isLoading, isError, sideScroll }) => {
   const animeCont = useRef(null);
   return (
-    <main className="searchMain">
-      {isLoading ? (
+    <main className="search-content">
+      {isLoading && (
         <div className="loading">
           <div></div>
           <div></div>
           <div></div>
         </div>
-      ) : (
-        ""
       )}
-      {isError ? (
+      {isError && (
         <header className="error">
-          <p>There was no results for that query. Try another one!</p>
+          <p>There were no results for that query. Try another one!</p>
         </header>
-      ) : (
-        ""
       )}
 
-      {!isLoading && !isError ? (
-        <div className="controlCont">
-          <section className="animeCont" ref={animeCont}>
+      {!isLoading && !isError && (
+        <div className="control-cont">
+          <section className="search-content__cont" ref={animeCont}>
             {animeResults.map((anime) => (
               <Link key={anime.mal_id} to={`/anime/${anime.mal_id}`}>
                 <AnimeCard anime={anime} />
               </Link>
             ))}
 
-            {animeResults.length > 0 ? (
+            {animeResults.length > 0 && (
               <>
                 <button
-                  className="controlLeft"
+                  className="control-cont__left"
                   onClick={() => {
                     sideScroll(animeCont.current, 10, 450, -25);
                   }}
@@ -45,7 +41,7 @@ const ResultBlock = ({ animeResults, isLoading, isError, sideScroll }) => {
                   <FontAwesomeIcon icon={faArrowLeft} />
                 </button>
                 <button
-                  className="controlRight"
+                  className="control-cont__right"
                   onClick={() => {
                     sideScroll(animeCont.current, 10, 450, 25);
                   }}
@@ -53,13 +49,9 @@ const ResultBlock = ({ animeResults, isLoading, isError, sideScroll }) => {
                   <FontAwesomeIcon icon={faArrowRight} />
                 </button>
               </>
-            ) : (
-              ""
             )}
           </section>
         </div>
-      ) : (
-        ""
       )}
     </main>
   );

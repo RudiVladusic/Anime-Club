@@ -3,22 +3,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilm } from "@fortawesome/free-solid-svg-icons";
 const Hero = () => {
   return (
-    <div className="heroMain">
-      <div className="heroContainer">
-        <header className="heroHeader">
+    <section className="hero">
+      <div className="hero-overlay">
+        <header className="hero-overlay__header">
           <h2>
-            Psycho Pass - new season <span>(TV)</span>
+            Psycho Pass <span>(TV)</span>
           </h2>
+          <h3>New episodes - Fridays at 00:55 (JST)</h3>
         </header>
-        <p>
-          Using these "crime coefficients", a culprit can be apprehended before
-          they ever commit a crime. But is it a perfect system?
-        </p>
-        <Link className="heroLink" to="/anime/39491" role="button">
+        <div className="hero-overlay__description">
+          <p>
+            Using these "crime coefficients", a culprit can be apprehended
+            before they ever commit a crime. But is it a perfect system?
+          </p>
+        </div>
+        <Link className="hero-overlay__link" to="/anime/39491" role="button">
           Trailer <FontAwesomeIcon icon={faFilm} />
         </Link>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -24,7 +24,7 @@ const AnimeCard = ({ anime }) => {
         className={transparent ? `${defaultClass} active` : `${defaultClass}`}
       >
         <header className="cardHeader">
-          <p>{`${title}`}</p>
+          <p>{title}</p>
         </header>
         <button>Details</button>
         {start_date && <p>Start date : {start_date.slice(0, 10)}</p>}

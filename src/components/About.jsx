@@ -1,13 +1,11 @@
 const About = () => {
   return (
-    <main className="aboutMain">
-      <section className="aboutCont">
+    <main className="about-content">
+      <section className="about-content__cont">
         <header>
-          <h2>
-            <span>A</span>nime <span>C</span>lub
-          </h2>
+          <h2>Anime Club</h2>
         </header>
-        <div className="aboutContDescription">
+        <div className="about-content__description">
           <p>
             This is a project made for practice using React JS, HTML and CSS.
           </p>

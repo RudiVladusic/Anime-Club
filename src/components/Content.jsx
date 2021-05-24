@@ -11,13 +11,13 @@ const Content = ({ upcomingAnime, airingAnime, specials, sideScroll }) => {
 
   return (
     <>
-      <main>
-        <header className="mainHeader">
+      <main className="main-content">
+        <header className="main-content__header">
           <p>Trending</p>
         </header>
 
-        <div className="controlCont">
-          <div className="trendingAnimeCont" ref={trendingAnimeCont}>
+        <div className="control-cont">
+          <div className="main-content__trending" ref={trendingAnimeCont}>
             {airingAnime.map((anime) => {
               return (
                 <Link key={anime.mal_id} to={`/anime/${anime.mal_id}`}>
@@ -27,7 +27,7 @@ const Content = ({ upcomingAnime, airingAnime, specials, sideScroll }) => {
             })}
           </div>
           <button
-            className="controlLeft"
+            className="control-cont__left"
             onClick={() => {
               sideScroll(trendingAnimeCont.current, 10, 450, -25);
             }}
@@ -35,7 +35,7 @@ const Content = ({ upcomingAnime, airingAnime, specials, sideScroll }) => {
             <FontAwesomeIcon icon={faArrowLeft} />
           </button>
           <button
-            className="controlRight"
+            className="control-cont__right"
             onClick={() => {
               sideScroll(trendingAnimeCont.current, 10, 450, 25);
             }}
@@ -44,10 +44,10 @@ const Content = ({ upcomingAnime, airingAnime, specials, sideScroll }) => {
           </button>
         </div>
 
-        <header className="mainHeader">Upcoming </header>
+        <header className="main-content__header">Upcoming </header>
 
-        <div className="controlCont">
-          <div className="upcomingAnimeCont" ref={upcomingAnimeCont}>
+        <div className="control-cont">
+          <div className="main-content__upcoming" ref={upcomingAnimeCont}>
             {upcomingAnime.map((anime) => {
               return (
                 <Link key={anime.mal_id} to={`/anime/${anime.mal_id}`}>
@@ -58,7 +58,7 @@ const Content = ({ upcomingAnime, airingAnime, specials, sideScroll }) => {
           </div>
 
           <button
-            className="controlLeft"
+            className="control-cont__left"
             onClick={() => {
               sideScroll(upcomingAnimeCont.current, 10, 450, -25);
             }}
@@ -66,7 +66,7 @@ const Content = ({ upcomingAnime, airingAnime, specials, sideScroll }) => {
             <FontAwesomeIcon icon={faArrowLeft} />
           </button>
           <button
-            className="controlRight"
+            className="control-cont__right"
             onClick={() => {
               sideScroll(upcomingAnimeCont.current, 10, 450, 25);
             }}
@@ -74,9 +74,9 @@ const Content = ({ upcomingAnime, airingAnime, specials, sideScroll }) => {
             <FontAwesomeIcon icon={faArrowRight} />
           </button>
         </div>
-        <header className="mainHeader">Specials </header>
-        <div className="controlCont">
-          <div className="specialsCont" ref={specialsCont}>
+        <header className="main-content__header">Specials </header>
+        <div className="control-cont">
+          <div className="main-content__specials" ref={specialsCont}>
             {specials.map((special) => {
               return (
                 <Link key={special.mal_id} to={`/anime/${special.mal_id}`}>
@@ -87,7 +87,7 @@ const Content = ({ upcomingAnime, airingAnime, specials, sideScroll }) => {
           </div>
 
           <button
-            className="controlLeft"
+            className="control-cont__left"
             onClick={() => {
               sideScroll(specialsCont.current, 10, 450, -25);
             }}
@@ -95,7 +95,7 @@ const Content = ({ upcomingAnime, airingAnime, specials, sideScroll }) => {
             <FontAwesomeIcon icon={faArrowLeft} />
           </button>
           <button
-            className="controlRight"
+            className="control-cont__right"
             onClick={() => {
               sideScroll(specialsCont.current, 10, 450, 25);
             }}

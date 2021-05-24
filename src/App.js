@@ -117,7 +117,9 @@ function App() {
               sideScroll={sideScroll}
             />
           </Route>
-          <Route exact path="/anime/:id" component={AnimeDetail} />
+          <Route exact path="/anime/:id">
+            <AnimeDetail />
+          </Route>
           <Route exact path="/discover">
             <Discover
               filterAnime={filterAnime}
