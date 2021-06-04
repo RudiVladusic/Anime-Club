@@ -3,8 +3,15 @@ import { Link } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import Loading from "./Loading";
 
-const Discover = ({ filterAnime, discoverAnime, sideScroll }) => {
+const Discover = ({
+  filterAnime,
+  discoverAnime,
+  sideScroll,
+  isLoading,
+  isError,
+}) => {
   const animeDiscoverCont = useRef(null);
   const [selectValue, setSelectValue] = useState("select");
 
@@ -52,38 +59,44 @@ const Discover = ({ filterAnime, discoverAnime, sideScroll }) => {
         <option value={getRandomGenre(1, 40, 12)}>Random</option>
       </select>
 
-      <div className="control-cont">
-        <div className="discover-content__cont" ref={animeDiscoverCont}>
-          {discoverAnime.map((anime) => {
-            return (
-              <Link key={anime.mal_id} to={`/anime/${anime.mal_id}`}>
-                <AnimeCard anime={anime} />
-              </Link>
-            );
-          })}
-        </div>
+      {isLoading || (discoverAnime.length === 0 && <Loading />)}
 
-        {discoverAnime.length > 0 && (
-          <>
-            <button
-              className="control-cont__left"
-              onClick={() => {
-                sideScroll(animeDiscoverCont.current, 10, 450, -25);
-              }}
-            >
-              <FontAwesomeIcon icon={faArrowLeft} />
-            </button>
-            <button
-              className="control-cont__right"
-              onClick={() => {
-                sideScroll(animeDiscoverCont.current, 10, 450, 25);
-              }}
-            >
-              <FontAwesomeIcon icon={faArrowRight} />
-            </button>
-          </>
-        )}
-      </div>
+      {isError && (
+        <header className="error">
+          <p>There were no results for that query. Try another one!</p>
+        </header>
+      )}
+
+      {!isLoading && !isError && discoverAnime.length > 0 && (
+        <div className="control-cont">
+          <div className="discover-content__cont" ref={animeDiscoverCont}>
+            {discoverAnime.map((anime) => {
+              return (
+                <Link key={anime.mal_id} to={`/anime/${anime.mal_id}`}>
+                  <AnimeCard anime={anime} />
+                </Link>
+              );
+            })}
+          </div>
+
+          <button
+            className="control-cont__left"
+            onClick={() => {
+              sideScroll(animeDiscoverCont.current, 10, 450, -25);
+            }}
+          >
+            <FontAwesomeIcon icon={faArrowLeft} />
+          </button>
+          <button
+            className="control-cont__right"
+            onClick={() => {
+              sideScroll(animeDiscoverCont.current, 10, 450, 25);
+            }}
+          >
+            <FontAwesomeIcon icon={faArrowRight} />
+          </button>
+        </div>
+      )}
     </main>
   );
 };

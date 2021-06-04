@@ -3,25 +3,20 @@ import AnimeCard from "./AnimeCard";
 import { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import Loading from "./Loading";
 
 const ResultBlock = ({ animeResults, isLoading, isError, sideScroll }) => {
   const animeCont = useRef(null);
   return (
     <main className="search-content">
-      {isLoading && (
-        <div className="loading">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      )}
+      {isLoading && <Loading />}
       {isError && (
         <header className="error">
           <p>There were no results for that query. Try another one!</p>
         </header>
       )}
 
-      {!isLoading && !isError && (
+      {!isLoading && !isError && animeResults.length > 0 && (
         <div className="control-cont">
           <section className="search-content__cont" ref={animeCont}>
             {animeResults.map((anime) => (
@@ -30,26 +25,22 @@ const ResultBlock = ({ animeResults, isLoading, isError, sideScroll }) => {
               </Link>
             ))}
 
-            {animeResults.length > 0 && (
-              <>
-                <button
-                  className="control-cont__left"
-                  onClick={() => {
-                    sideScroll(animeCont.current, 10, 450, -25);
-                  }}
-                >
-                  <FontAwesomeIcon icon={faArrowLeft} />
-                </button>
-                <button
-                  className="control-cont__right"
-                  onClick={() => {
-                    sideScroll(animeCont.current, 10, 450, 25);
-                  }}
-                >
-                  <FontAwesomeIcon icon={faArrowRight} />
-                </button>
-              </>
-            )}
+            <button
+              className="control-cont__left"
+              onClick={() => {
+                sideScroll(animeCont.current, 10, 450, -25);
+              }}
+            >
+              <FontAwesomeIcon icon={faArrowLeft} />
+            </button>
+            <button
+              className="control-cont__right"
+              onClick={() => {
+                sideScroll(animeCont.current, 10, 450, 25);
+              }}
+            >
+              <FontAwesomeIcon icon={faArrowRight} />
+            </button>
           </section>
         </div>
       )}

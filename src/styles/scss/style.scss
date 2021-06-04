@@ -56,7 +56,7 @@ nav {
       color: $white;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 768px) {
       font-size: $mobileFontSizeHeader;
     }
   }
@@ -72,7 +72,7 @@ nav {
       }
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 768px) {
       display: none;
     }
   }
@@ -96,7 +96,7 @@ nav {
       transition: all 0.5s ease-in-out;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 768px) {
       display: flex;
     }
   }
@@ -235,7 +235,7 @@ nav {
     font-size: $desktopFontSizeMain;
     max-width: 50ch;
     text-shadow: 2.5px 2.5px 2.5px #000;
-    @media (max-width: 700px) {
+    @media (max-width: 768px) {
       font-size: $mobileFontSizeSmaller;
     }
   }
@@ -282,10 +282,11 @@ nav {
       background: transparent;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 768px) {
       font-size: $mobileFontSizeHeader;
       width: 40px;
       height: 40px;
+      display: none;
 
       &:hover {
         background: none;
@@ -311,7 +312,7 @@ nav {
     margin: 0 0em 0 0.25em;
     animation: border_animation 1s ease-in-out forwards;
   }
-  @media (max-width: 700px) {
+  @media (max-width: 768px) {
     font-size: $mobileFontSizeHeader;
   }
 }
@@ -416,7 +417,7 @@ select {
   margin: 0 0 1em 1em;
   padding: 0.25em 0;
 
-  @media (max-width: 700px) {
+  @media (max-width: 768px) {
     font-size: $mobileFontSizeSmaller;
   }
 }
@@ -428,6 +429,7 @@ select {
 .discover-content__cont {
   @include mainContentStyles();
   padding: 1em 3em;
+  scroll-snap-type: x proximity;
   article {
     width: 200px;
     height: 300px;
@@ -437,10 +439,9 @@ select {
     transition: all 0.25s ease-in-out;
     border-radius: 10px;
 
-    @media (max-width: 700px) {
-      max-width: calc(250px / 1.1618);
-      max-height: calc(300px / 1.1618);
-
+    @media (max-width: 768px) {
+      scroll-snap-align: center;
+      scroll-margin: 0 200px;
       .articleInformation {
         opacity: 1;
         left: 0;
@@ -564,12 +565,28 @@ select {
   place-items: center;
   padding: 1em;
   background: $main-bg-color;
-
+  min-height: calc(100vh - 30px);
   article {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     gap: 1em 1em;
+    width: 100%;
+    @media (min-width: 1200px) {
+      max-width: 80%;
+    }
+  }
+
+  .read-more,
+  .view-full-cast {
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    text-decoration: underline;
+    color: inherit;
+    text-decoration: underline dotted $accent;
+    text-underline-offset: 0.25em;
+    cursor: pointer;
   }
 
   .detail-content__information {
@@ -580,7 +597,7 @@ select {
     .detail-content__image {
       padding: 0.5em;
 
-      @media (max-width: 700px) {
+      @media (max-width: 768px) {
         width: 150px;
         height: 150px;
 
@@ -639,7 +656,7 @@ select {
           color: $accent;
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 768px) {
           font-size: $mobileFontSizeSmaller;
         }
       }
@@ -648,19 +665,8 @@ select {
         max-width: 60ch;
         font-size: $desktopFontSizeMain;
 
-        @media (max-width: 700px) {
+        @media (max-width: 768px) {
           font-size: $mobileFontSizeMain;
-        }
-
-        .read-more {
-          background: transparent;
-          font-family: inherit;
-          font-size: inherit;
-          text-decoration: underline;
-          color: inherit;
-          text-decoration: underline dotted $accent;
-          text-underline-offset: 0.25em;
-          cursor: pointer;
         }
       }
     }
@@ -671,8 +677,8 @@ select {
     font-size: $mobileFontSizeMain;
     padding: 0.5em;
     border-left: 1px solid rgba(225, 225, 225, 0.2);
-
-    @media (max-width: 700px) {
+    max-width: 60ch;
+    @media (max-width: 768px) {
       font-size: $mobileFontSizeSmaller;
     }
 
@@ -711,7 +717,7 @@ select {
         letter-spacing: 0.025em;
         font-weight: 600;
 
-        @media (max-width: 700px) {
+        @media (max-width: 768px) {
           font-size: $mobileFontSizeMain;
         }
       }
@@ -724,6 +730,33 @@ select {
       right: 0;
       width: 100%;
       height: 100%;
+    }
+  }
+
+  .detail-content__cast {
+    color: $white;
+    padding: 0.5em;
+    width: 100%;
+    display: flex;
+    place-items: center;
+    gap: 1em 1em;
+    flex-direction: column;
+    place-self: end center;
+    // box-shadow: 0px 0px 1em 0.5em #000;
+    box-shadow: 0px 0px 1em 0.25em $night-sky;
+    .detail-content__cast--actors {
+      width: 100%;
+      // background: #202020;
+      place-items: center;
+      box-shadow: 0 0.25em 1em -1em $accent;
+      text-align: center;
+
+      // :nth-child(2) {
+      // }
+
+      :nth-child(3) {
+        color: $accent;
+      }
     }
   }
 }
