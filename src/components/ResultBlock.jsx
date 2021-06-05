@@ -7,6 +7,7 @@ import Loading from "./Loading";
 
 const ResultBlock = ({ animeResults, isLoading, isError, sideScroll }) => {
   const animeCont = useRef(null);
+
   return (
     <main className="search-content">
       {isLoading && <Loading />}

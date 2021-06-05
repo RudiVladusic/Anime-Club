@@ -1,16 +1,17 @@
+import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Search from "./components/Search";
 import ResultBlock from "./components/ResultBlock";
-import { useState, useEffect } from "react";
 import Content from "./components/Content";
-import "./styles/css/style.css";
-import Nav from "./components/Nav";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AnimeDetail from "./components/AnimeDetail";
-import Footer from "./components/Footer";
-import About from "./components/About";
 import Discover from "./components/Discover";
-import Hero from "./components/Hero";
-import NotFound from "./components/NotFound";
+// import NotFound from "./components/NotFound";
+import Nav from "./components/presentational/Nav";
+import Footer from "./components/presentational/Footer";
+import About from "./components/presentational/About";
+import Hero from "./components/presentational/Hero";
+import "./styles/css/style.css";
+import ActorDetail from "./components/ActorDetail";
 // import LoadingAndErrorContext from "./contexts/LoadingAndErrorContext";
 
 function App() {
@@ -25,74 +26,63 @@ function App() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    searchAnime(search);
+    searchAnime(search).catch((err) => {
+      console.log(err);
+      setIsError(true);
+      setIsLoading(false);
+    });
   };
   const api = `https://api.jikan.moe/v3/top/anime/1/`;
 
-  const filterAnime = (query) => {
-    fetch(`https://api.jikan.moe/v3/genre/anime/${query}/1`)
-      .then(setIsLoading(true))
-      .then((res) => {
-        if (!res.ok) {
-          throw Error("Could not fetch");
-        }
-        return res.json();
-      })
-      .then((res) => setDiscoverAnime(res.anime.slice(0, 20)))
-      .then(setIsLoading(false))
-      .catch((err) => {
-        setIsError(true);
-        setIsLoading(false);
-        console.log(err);
-      });
+  const filterAnime = async (query) => {
+    setIsLoading(true);
+    const call = await fetch(`https://api.jikan.moe/v3/genre/anime/${query}/1`);
+    const result = await call.json();
+    if (!call.ok) {
+      throw Error(`Could not fetch`);
+    }
+    setDiscoverAnime(result.anime.slice(0, 20));
+    setIsLoading(false);
   };
 
-  const searchAnime = (query) => {
-    fetch(
+  const searchAnime = async (query) => {
+    setIsLoading(true);
+    setIsError(false);
+    const call = await fetch(
       `https://api.jikan.moe/v3/search/anime?q=${query}&page=1&genre_exclude=1&limit=20`
-    )
-      .then(setIsLoading(true))
-      .then((res) => {
-        if (!res.ok) {
-          throw Error("could not fetch");
-        }
-        return res.json();
-      })
-      .then((res) => {
-        setAnimeResults(res.results);
-        setIsLoading(false);
-        setIsError(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsError(true);
-        setIsLoading(false);
-      });
-  };
-
-  const getUpcomingAnime = async () => {
-    const call = await fetch(`${api}upcoming`);
+    );
+    if (!call.ok) {
+      throw Error(`Could not fetch`);
+    }
     const result = await call.json();
-    setUpcomingAnime(result.top.slice(0, 20));
-  };
 
-  const getTrendingAnime = async () => {
-    const call = await fetch(`${api}airing`);
-    const result = await call.json();
-    setAiringAnime(result.top.slice(0, 20));
-  };
-
-  const getSpecials = async () => {
-    const call = await fetch(`${api}special`);
-    const result = await call.json();
-    setTopSpecials(result.top.slice(0, 20));
+    setAnimeResults(result.results);
+    setIsLoading(false);
   };
 
   useEffect(() => {
+    const getUpcomingAnime = async () => {
+      const call = await fetch(`${api}upcoming`);
+      const result = await call.json();
+      setUpcomingAnime(result.top.slice(0, 20));
+    };
+
+    const getTrendingAnime = async () => {
+      const call = await fetch(`${api}airing`);
+      const result = await call.json();
+      setAiringAnime(result.top.slice(0, 20));
+    };
+
+    const getSpecials = async () => {
+      const call = await fetch(`${api}special`);
+      const result = await call.json();
+      setTopSpecials(result.top.slice(0, 20));
+    };
+
     getUpcomingAnime();
     getTrendingAnime();
     getSpecials();
-  }, []);
+  }, [api]);
 
   const sideScroll = (element, speed, distance, step) => {
     let scrollAmount = 0;
@@ -146,6 +136,9 @@ function App() {
 
           <Route exact path="/anime/:id">
             <AnimeDetail />
+          </Route>
+          <Route exact path="/anime/cast/:id">
+            <ActorDetail isLoading={isLoading} setIsLoading={setIsLoading} />
           </Route>
           <Route exact path="/about">
             <About />

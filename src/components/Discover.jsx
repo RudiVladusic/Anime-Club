@@ -37,7 +37,9 @@ const Discover = ({
         name="Genre"
         defaultValue={selectValue}
         onChange={(e) => {
-          filterAnime(e.target.value);
+          filterAnime(e.target.value).catch((err) => {
+            console.log(err);
+          });
         }}
       >
         <option
@@ -59,7 +61,7 @@ const Discover = ({
         <option value={getRandomGenre(1, 40, 12)}>Random</option>
       </select>
 
-      {isLoading || (discoverAnime.length === 0 && <Loading />)}
+      {isLoading && discoverAnime.length === 0 && <Loading />}
 
       {isError && (
         <header className="error">

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFrown } from "@fortawesome/free-solid-svg-icons";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Loading from "./Loading";
 
 const AnimeDetail = () => {
@@ -11,11 +11,11 @@ const AnimeDetail = () => {
     image: "",
     name: "",
     charName: "",
-    id: "",
+    actorId: "",
   });
-  // const [voiceActorImages, setVoiceActorImage] = useState([]);
   const [readMore, setReadMore] = useState(false);
   const fullCastList = useRef(null);
+  const api = `https://api.jikan.moe/v3/anime/`;
   const {
     title,
     image_url,
@@ -33,48 +33,40 @@ const AnimeDetail = () => {
   } = animeDetail;
 
   useEffect(() => {
-    const fetchItem = () => {
-      fetch(`https://api.jikan.moe/v3/anime/${id}`)
-        .then((res) => res.json())
-
-        .then((res) => {
-          console.log(res);
-          setAnimeDetail(res);
-        });
+    const fetchAnimeDetails = async () => {
+      const call = await fetch(`${api}${id}`);
+      const result = await call.json();
+      setAnimeDetail(result);
     };
 
-    const fetchRoles = () => {
-      fetch(`https://api.jikan.moe/v3/anime/${id}/characters_staff`)
-        .then((res) => res.json())
-
-        .then((res) => {
-          console.log(res);
-
-          let voiceActorNames = res.characters.slice(0, 20).map((voiceA) => {
-            console.log(voiceA.voice_actors);
-            let animeName = voiceA.name;
-            return voiceA.voice_actors
-              .filter((lang) => {
-                return lang.language === "Japanese";
-              })
-              .slice(0, 1)
-              .map((info) => {
-                return {
-                  image: info.image_url,
-                  name: info.name,
-                  charName: animeName,
-                  id: info.mal_id,
-                };
-              });
-          });
-
-          setVoiceActors(voiceActorNames);
-          console.log(voiceActors);
+    const fetchRoles = async () => {
+      const call = await fetch(`${api}${id}/characters_staff`);
+      const result = await call.json();
+      let voiceActorNames = await result.characters
+        .slice(0, 20)
+        .map((voiceA) => {
+          let animeName = voiceA.name;
+          return voiceA.voice_actors
+            .filter((lang) => {
+              return lang.language === "Japanese";
+            })
+            .slice(0, 1)
+            .map((info) => {
+              return {
+                image: info.image_url,
+                name: info.name,
+                charName: animeName,
+                actorId: info.mal_id,
+              };
+            });
         });
+
+      setVoiceActors(voiceActorNames);
+      console.log(voiceActorNames);
     };
-    fetchItem();
+    fetchAnimeDetails();
     fetchRoles();
-  }, [id]);
+  }, [id, api]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -158,29 +150,31 @@ const AnimeDetail = () => {
             {producers && (
               <>
                 <span>Producers: </span>
-                {producers.map((producer) => {
-                  return <p> {producer.name},</p>;
+                {producers.map((producer, index) => {
+                  return <p key={index}> {producer.name}</p>;
                 })}
               </>
             )}
 
             <>
               <span>Cast: </span>
-              <p>
-                {voiceActors.length > 0 &&
-                  voiceActors
-                    .slice(0, 5)
-                    .map((name) => name.map((x) => x.name))}
 
-                <button
-                  className="view-full-cast"
-                  onClick={() => {
-                    fullCastList.current.scrollIntoView();
-                  }}
-                >
-                  ...View full cast
-                </button>
-              </p>
+              {voiceActors.length > 0 &&
+                voiceActors.slice(0, 5).map((name) =>
+                  name.map((x, index) => {
+                    console.log(x.name);
+                    return <p key={index}>{x.name}</p>;
+                  })
+                )}
+
+              <button
+                className="view-full-cast"
+                onClick={() => {
+                  fullCastList.current.scrollIntoView();
+                }}
+              >
+                ...View full cast
+              </button>
             </>
           </aside>
 
@@ -212,7 +206,7 @@ const AnimeDetail = () => {
                   return a.concat(b);
                 })
                 .map((info, index) => {
-                  const { name, image, charName } = info;
+                  const { name, image, charName, actorId } = info;
                   return (
                     <article
                       key={index}
@@ -223,7 +217,7 @@ const AnimeDetail = () => {
                         alt=""
                         style={{ width: "40px", height: "40px" }}
                       />
-                      <p>{name}</p>
+                      <Link to={`/anime/cast/${actorId}`}>{name}</Link>
                       <p>As {charName}</p>
                     </article>
                   );

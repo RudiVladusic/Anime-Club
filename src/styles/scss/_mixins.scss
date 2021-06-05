@@ -10,6 +10,13 @@
   }
 }
 
+@mixin defaultFontSizeQuery {
+  font-size: $mobileFontSizeMain;
+  @media (min-width: 1200px) {
+    font-size: $desktopFontSizeMain;
+  }
+}
+
 @mixin defaultButton {
   border: none;
   text-transform: uppercase;

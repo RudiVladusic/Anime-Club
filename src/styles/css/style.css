@@ -647,9 +647,13 @@ form input {
   outline: none;
   color: #ececec;
   font-size: 1em;
-  border-bottom: 1px solid #ececec;
-  -webkit-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out;
+  border: none;
+  -webkit-transition: -webkit-box-shadow 0.25s ease-in-out;
+  transition: -webkit-box-shadow 0.25s ease-in-out;
+  transition: box-shadow 0.25s ease-in-out;
+  transition: box-shadow 0.25s ease-in-out, -webkit-box-shadow 0.25s ease-in-out;
+  -webkit-box-shadow: 0px 2px 2px -2px #ececec;
+          box-shadow: 0px 2px 2px -2px #ececec;
 }
 
 form input::-webkit-input-placeholder {
@@ -673,8 +677,8 @@ form input::placeholder {
 }
 
 form input:focus {
-  border: 1px solid #e3cdb3;
-  border-radius: 10px;
+  -webkit-box-shadow: 0px 3px 1px -1px #e3cdb3;
+          box-shadow: 0px 3px 1px -1px #e3cdb3;
 }
 
 .search-content {
@@ -1031,6 +1035,172 @@ select {
   color: #ececec;
 }
 
+.actor-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  place-items: center;
+  padding: 1em;
+  background: #060607;
+  min-height: calc(100vh - 30px);
+}
+
+.actor-details .actor-details--container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 2em 2em;
+}
+
+@media (min-width: 1200px) {
+  .actor-details .actor-details--container {
+    max-width: 80%;
+  }
+}
+
+.actor-details .actor-details__image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  gap: 1em;
+  padding: 0.5em;
+}
+
+.actor-details .actor-details__image img {
+  width: 200px;
+  height: 200px;
+}
+
+@media (max-width: 768px) {
+  .actor-details .actor-details__image img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+  }
+}
+
+.actor-details .actor-details__header {
+  max-width: 30ch;
+  color: #ececec;
+  padding: 0.5em;
+}
+
+.actor-details .actor-details__header :nth-child(1) {
+  border-bottom: 1px solid rgba(225, 225, 225, 0.2);
+}
+
+.actor-details .actor-details__header :nth-child(2) {
+  color: #e3cdb3;
+}
+
+.actor-details .actor-details__biography {
+  padding: 0.5em;
+  border-left: 1px solid rgba(225, 225, 225, 0.2);
+}
+
+.actor-details .actor-details__biography p {
+  max-width: 60ch;
+  color: #ececec;
+}
+
+.actor-details .actor-details__roles {
+  padding: 0.5em;
+}
+
+.actor-details .actor-details__roles header {
+  color: #ececec;
+  padding: 0.5em 0;
+}
+
+.actor-details .actor-details__roles--container {
+  display: -ms-grid;
+  display: grid;
+  gap: 2em;
+  -ms-grid-columns: (minmax(200px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  width: 100%;
+  place-items: center;
+}
+
+.actor-details .actor-details__roles--container a {
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  width: 200px;
+  height: 300px;
+}
+
+.actor-details .actor-details__roles--container a article {
+  width: 100%;
+  height: 100%;
+}
+
+.actor-details .actor-details__roles--container a .actor-details__role--information {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  content: "";
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  place-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding: 0.5em;
+  text-align: center;
+}
+
+.actor-details .actor-details__roles--container a .actor-details__role--information button {
+  border: none;
+  text-transform: uppercase;
+  color: #ececec;
+  letter-spacing: 0.05em;
+  padding: 0.5em;
+  outline: 5px double white;
+  background: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  -webkit-transition: outline-offset 0.25s ease-in-out;
+  transition: outline-offset 0.25s ease-in-out;
+  outline-offset: -4px;
+}
+
+.actor-details .actor-details__roles--container a .actor-details__role--information button:hover {
+  outline: thick double #f1e6d8;
+  outline-offset: 0;
+}
+
+.actor-details .actor-details__roles--container a:hover .actor-details__role--information {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
 .detail-content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1234,16 +1404,16 @@ select {
 
 .detail-content .detail-content-trailer .detail-content-trailer__video p {
   text-align: center;
-  font-size: 1.25em;
+  font-size: 1em;
   color: #ececec;
   text-transform: uppercase;
   letter-spacing: 0.025em;
   font-weight: 600;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 1200px) {
   .detail-content .detail-content-trailer .detail-content-trailer__video p {
-    font-size: 1em;
+    font-size: 1.25em;
   }
 }
 
@@ -1280,6 +1450,16 @@ select {
   -webkit-box-shadow: 0 0.25em 1em -1em #e3cdb3;
           box-shadow: 0 0.25em 1em -1em #e3cdb3;
   text-align: center;
+}
+
+.detail-content .detail-content__cast .detail-content__cast--actors p {
+  font-size: 1em;
+}
+
+@media (min-width: 1200px) {
+  .detail-content .detail-content__cast .detail-content__cast--actors p {
+    font-size: 1.25em;
+  }
 }
 
 .detail-content .detail-content__cast .detail-content__cast--actors :nth-child(3) {
