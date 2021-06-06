@@ -824,7 +824,7 @@ select {
     .detail-content__aside--producers {
       display: flex;
       flex-wrap: wrap;
-      justify-content: start;
+      justify-content: flex-start;
       gap: 0.25em;
     }
   }

@@ -16,7 +16,7 @@ const ActorDetail = ({ isLoading, setIsLoading }) => {
       setIsLoading(false);
     };
     fetchActorDetails();
-  }, [id]);
+  }, [id, api, setIsLoading]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -63,8 +63,11 @@ const ActorDetail = ({ isLoading, setIsLoading }) => {
                     .slice(0, 20)
                     .map((animeName, index) => {
                       return (
-                        <Link to={`/anime/${animeName.anime.mal_id}`}>
-                          <article className="actor-details__role" key={index}>
+                        <Link
+                          to={`/anime/${animeName.anime.mal_id}`}
+                          key={index}
+                        >
+                          <article className="actor-details__role">
                             <div className="actor-details__role--information">
                               <header>{animeName.anime.name}</header>
                               <button>Details</button>
