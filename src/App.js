@@ -5,14 +5,12 @@ import ResultBlock from "./components/ResultBlock";
 import Content from "./components/Content";
 import AnimeDetail from "./components/AnimeDetail";
 import Discover from "./components/Discover";
-// import NotFound from "./components/NotFound";
 import Nav from "./components/presentational/Nav";
 import Footer from "./components/presentational/Footer";
 import About from "./components/presentational/About";
 import Hero from "./components/presentational/Hero";
 import "./styles/css/style.css";
 import ActorDetail from "./components/ActorDetail";
-// import LoadingAndErrorContext from "./contexts/LoadingAndErrorContext";
 
 function App() {
   const [search, setSearch] = useState("");

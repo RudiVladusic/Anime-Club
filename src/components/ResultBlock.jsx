@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import AnimeCard from "./AnimeCard";
 import { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import AnimeCard from "./AnimeCard";
 import Loading from "./Loading";
 
 const ResultBlock = ({ animeResults, isLoading, isError, sideScroll }) => {

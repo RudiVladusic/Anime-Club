@@ -5,6 +5,11 @@ const Nav = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
 
+  const openMobileMenuHandler = () => {
+    setIsNavOpen(!isNavOpen);
+    setIsBurgerOpen(!isBurgerOpen);
+  };
+
   return (
     <>
       <nav>
@@ -21,10 +26,7 @@ const Nav = () => {
 
         <div
           className={isBurgerOpen ? `burger open` : `burger`}
-          onClick={() => {
-            setIsNavOpen(!isNavOpen);
-            setIsBurgerOpen(!isBurgerOpen);
-          }}
+          onClick={openMobileMenuHandler}
         >
           <div className="bar"></div>
           <div className="bar"></div>
@@ -33,31 +35,13 @@ const Nav = () => {
       </nav>
 
       <div className={isNavOpen ? `mobile-nav active` : `mobile-nav`}>
-        <Link
-          onClick={() => {
-            setIsNavOpen(!isNavOpen);
-            setIsBurgerOpen(!isBurgerOpen);
-          }}
-          to="/search"
-        >
+        <Link onClick={openMobileMenuHandler} to="/search">
           Search
         </Link>
-        <Link
-          onClick={() => {
-            setIsBurgerOpen(!isBurgerOpen);
-            setIsNavOpen(!isNavOpen);
-          }}
-          to="/about"
-        >
+        <Link onClick={openMobileMenuHandler} to="/about">
           About
         </Link>
-        <Link
-          onClick={() => {
-            setIsBurgerOpen(!isBurgerOpen);
-            setIsNavOpen(!isNavOpen);
-          }}
-          to="/discover"
-        >
+        <Link onClick={openMobileMenuHandler} to="/discover">
           Discover
         </Link>
       </div>

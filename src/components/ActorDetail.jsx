@@ -13,7 +13,6 @@ const ActorDetail = ({ isLoading, setIsLoading }) => {
       const call = await fetch(`${api}${id}`);
       const result = await call.json();
       setActorDetails([result]);
-      console.log(result);
       setIsLoading(false);
     };
     fetchActorDetails();
@@ -33,7 +32,11 @@ const ActorDetail = ({ isLoading, setIsLoading }) => {
           return (
             <article key={index} className="actor-details--container">
               <div className="actor-details__image">
-                <img src={image_url} alt="portrait of a person" />
+                <img
+                  src={image_url}
+                  loading="lazy"
+                  alt="portrait of a person"
+                />
                 <header className="actor-details__header">
                   <h2>{name && name}</h2>
                   <h2>{given_name && given_name}</h2>
@@ -48,7 +51,9 @@ const ActorDetail = ({ isLoading, setIsLoading }) => {
 
               <div className="actor-details__roles">
                 <header>
-                  <h2>{name} has also appeared in:</h2>
+                  <h2>
+                    <span>{name}</span> has also appeared in:
+                  </h2>
                 </header>
                 <div className="actor-details__roles--container">
                   {voice_acting_roles

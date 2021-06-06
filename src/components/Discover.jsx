@@ -1,24 +1,18 @@
-import AnimeCard from "./AnimeCard";
 import { Link } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import AnimeCard from "./AnimeCard";
 import Loading from "./Loading";
 
-const Discover = ({
-  filterAnime,
-  discoverAnime,
-  sideScroll,
-  isLoading,
-  isError,
-}) => {
+const Discover = ({ filterAnime, discoverAnime, sideScroll, isLoading }) => {
   const animeDiscoverCont = useRef(null);
   const [selectValue, setSelectValue] = useState("select");
 
   const getRandomGenre = (min, max, exclude) => {
     let calc = Math.floor(Math.random() * (max - min) + min);
     if (calc === exclude || calc === 33 || calc === 34) {
-      calc += 2;
+      calc = calc + 2;
     }
     return calc;
   };
@@ -63,13 +57,7 @@ const Discover = ({
 
       {isLoading && discoverAnime.length === 0 && <Loading />}
 
-      {isError && (
-        <header className="error">
-          <p>There were no results for that query. Try another one!</p>
-        </header>
-      )}
-
-      {!isLoading && !isError && discoverAnime.length > 0 && (
+      {!isLoading && discoverAnime.length > 0 && (
         <div className="control-cont">
           <div className="discover-content__cont" ref={animeDiscoverCont}>
             {discoverAnime.map((anime) => {

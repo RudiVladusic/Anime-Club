@@ -1,8 +1,8 @@
-import AnimeCard from "./AnimeCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import AnimeCard from "./AnimeCard";
 
 const Content = ({ upcomingAnime, airingAnime, specials, sideScroll }) => {
   const trendingAnimeCont = useRef(null);

@@ -11,7 +11,7 @@
 }
 
 @mixin defaultFontSizeQuery {
-  font-size: $mobileFontSizeMain;
+  font-size: $mobileFontSizeSmaller;
   @media (min-width: 1200px) {
     font-size: $desktopFontSizeMain;
   }

@@ -4,7 +4,7 @@ Website that features information on various anime tv shows and movies. The webs
 
 ## Tech used
 
-React JS, HTML/CSS
+React JS, HTML/CSS, Font-Awesome free icons library.
 
 ## Live
 

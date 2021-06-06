@@ -195,7 +195,7 @@ nav {
   justify-content: space-evenly;
   flex-direction: column;
   min-height: 300px;
-  animation: fade_in_article 1s ease-in-out;
+  animation: fade_in_article 0.5s ease-in-out;
   box-shadow: 2.5px 2.5px 15px #000;
   background: rgba(0, 0, 0, 0.65);
 
@@ -251,7 +251,8 @@ nav {
     color: $night-sky;
     transition: transform 0.25s ease-in-out;
     &:hover {
-      transform: scale(0.9);
+      background: rgba(225, 225, 225, 0.2);
+      color: $white;
     }
   }
 }
@@ -428,7 +429,7 @@ select {
 .discover-content__cont {
   @include mainContentStyles();
   padding: 1em 3em;
-  scroll-snap-type: x proximity;
+
   article {
     width: 200px;
     height: 300px;
@@ -439,8 +440,6 @@ select {
     border-radius: 10px;
 
     @media (max-width: 768px) {
-      scroll-snap-align: center;
-      scroll-margin: 0 200px;
       .articleInformation {
         opacity: 1;
         left: 0;
@@ -562,7 +561,7 @@ select {
   display: flex;
   justify-content: center;
   place-items: center;
-  padding: 1em;
+  padding: 0.5em;
   background: $main-bg-color;
   min-height: calc(100vh - 30px);
 
@@ -597,8 +596,6 @@ select {
   }
 
   .actor-details__header {
-    // display: flex;
-    // justify-content: space-between;
     max-width: 30ch;
     color: $white;
     padding: 0.5em;
@@ -626,30 +623,26 @@ select {
     header {
       color: $white;
       padding: 0.5em 0;
+
+      span {
+        color: $accent;
+      }
     }
   }
 
   .actor-details__roles--container {
     display: grid;
     gap: 2em;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     width: 100%;
     place-items: center;
     a {
       text-decoration: none;
-
-      //  button {
-      //   @include defaultButton();
-      // }
       position: relative;
       overflow: hidden;
       width: 200px;
       height: 300px;
-
-      // @media (max-width: 480px) {
-      //   width: 100%;
-      // }
-
+      animation: fade_in_article 0.5s ease-in-out;
       article {
         width: 100%;
         height: 100%;
@@ -659,7 +652,7 @@ select {
         position: absolute;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.75);
+        background: rgba(20, 20, 20, 0.75);
         content: "";
         transform: translateX(-100%);
         transition: all 0.25s ease;
@@ -672,6 +665,10 @@ select {
 
         button {
           @include defaultButton();
+        }
+
+        @media (max-width: 786px) {
+          transform: translateX(0);
         }
       }
 
@@ -688,9 +685,16 @@ select {
   display: flex;
   justify-content: center;
   place-items: center;
-  padding: 1em;
+  padding: 0.5em;
   background: $main-bg-color;
   min-height: calc(100vh - 30px);
+
+  a {
+    color: $accent;
+    text-decoration: 1px $accent dotted underline;
+    text-underline-offset: 0.25em;
+  }
+
   article {
     display: flex;
     flex-flow: row wrap;
@@ -802,25 +806,26 @@ select {
     font-size: $mobileFontSizeMain;
     padding: 0.5em;
     border-left: 1px solid rgba(225, 225, 225, 0.2);
-    max-width: 60ch;
+    max-width: 40ch;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
     @media (max-width: 768px) {
       font-size: $mobileFontSizeSmaller;
-    }
-
-    a {
-      color: $accent;
-      text-decoration: 1px $accent dotted underline;
-      text-underline-offset: 0.25em;
-    }
-
-    p {
-      max-width: 60ch;
-      padding-bottom: 0.5em;
     }
 
     span {
       font-weight: bold;
       color: $accent;
+    }
+
+    .detail-content__aside--studios,
+    .detail-content__aside--cast,
+    .detail-content__aside--producers {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+      gap: 0.25em;
     }
   }
 
@@ -868,15 +873,16 @@ select {
       width: 100%;
       place-items: center;
       box-shadow: 0 0.25em 1em -1em $accent;
-      text-align: center;
+
+      a,
       p {
         @include defaultFontSizeQuery();
+        width: 15ch;
+        text-align: right;
       }
-      // :nth-child(2) {
-      // }
 
       :nth-child(3) {
-        color: $accent;
+        color: $white;
       }
     }
   }

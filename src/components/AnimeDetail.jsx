@@ -62,7 +62,6 @@ const AnimeDetail = () => {
         });
 
       setVoiceActors(voiceActorNames);
-      console.log(voiceActorNames);
     };
     fetchAnimeDetails();
     fetchRoles();
@@ -134,47 +133,57 @@ const AnimeDetail = () => {
 
             {studios && (
               <>
-                <span>Studios: </span>
-
-                {studios.map((info, index) => {
-                  const { name, url } = info;
-                  return (
-                    <a href={url} key={index}>
-                      <p>{`${name} `}</p>
-                    </a>
-                  );
-                })}
+                <div className="detail-content__aside--studios">
+                  <span>Studios: </span>
+                  {studios.length !== 0 ? (
+                    studios.map((info, index) => {
+                      const { name, url } = info;
+                      return (
+                        <a href={url} key={index}>
+                          <p>{`${name} `}</p>
+                        </a>
+                      );
+                    })
+                  ) : (
+                    <p>None listed</p>
+                  )}
+                </div>
               </>
             )}
 
             {producers && (
               <>
-                <span>Producers: </span>
-                {producers.map((producer, index) => {
-                  return <p key={index}> {producer.name}</p>;
-                })}
+                <div className="detail-content__aside--producers">
+                  <span>Producers: </span>
+
+                  {producers.map((producer, index) => {
+                    return <p key={index}> {producer.name}</p>;
+                  })}
+                </div>
               </>
             )}
 
             <>
-              <span>Cast: </span>
-
-              {voiceActors.length > 0 &&
-                voiceActors.slice(0, 5).map((name) =>
-                  name.map((x, index) => {
-                    console.log(x.name);
-                    return <p key={index}>{x.name}</p>;
-                  })
+              <div className="detail-content__aside--cast">
+                <span>Cast: </span>
+                {voiceActors.length > 0 && voiceActors ? (
+                  voiceActors.slice(0, 5).map((name) =>
+                    name.map((x, index) => {
+                      return <p key={index}>{x.name}</p>;
+                    })
+                  )
+                ) : (
+                  <p>None listed</p>
                 )}
-
-              <button
-                className="view-full-cast"
-                onClick={() => {
-                  fullCastList.current.scrollIntoView();
-                }}
-              >
-                ...View full cast
-              </button>
+                <button
+                  className="view-full-cast"
+                  onClick={() => {
+                    fullCastList.current.scrollIntoView();
+                  }}
+                >
+                  ...View full cast
+                </button>
+              </div>
             </>
           </aside>
 
@@ -218,7 +227,7 @@ const AnimeDetail = () => {
                         style={{ width: "40px", height: "40px" }}
                       />
                       <Link to={`/anime/cast/${actorId}`}>{name}</Link>
-                      <p>As {charName}</p>
+                      <p>{charName}</p>
                     </article>
                   );
                 })}
