@@ -10,6 +10,11 @@ React JS, HTML/CSS, Font-Awesome free icons library.
 
 [Anime Club](https://aniime-club.netlify.app/)
 
+## Todo
+
+- Add context
+- Add "more like this" component
+
 ## Future plans
 
 I am planning to expand the website further with new features, as well as regular maintenance and refactoring of the code.
