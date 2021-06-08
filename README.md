@@ -14,6 +14,7 @@ React JS, HTML/CSS, Font-Awesome free icons library, [Jikan API](https://jikan.m
 
 - Add context
 - Add "more like this" component
+- Add Swiper JS
 
 ## Future plans
 
