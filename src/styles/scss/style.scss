@@ -36,10 +36,8 @@ img {
 }
 
 nav {
-  width: 100%;
   padding: 0.5em;
   display: flex;
-  flex-flow: row wrap;
   place-items: center;
   justify-content: space-between;
   text-transform: uppercase;
@@ -63,7 +61,6 @@ nav {
 
   .desktop-nav-links {
     a {
-      transition: all 0.15s ease-in-out;
       padding: 0 0.5em;
       text-decoration: none;
       color: $white;
@@ -107,7 +104,6 @@ nav {
     transform: translate(0, 6px) rotate(40deg);
   }
   :nth-child(2) {
-    transform: translateX(-100%);
     display: none;
   }
   :nth-child(3) {
@@ -132,21 +128,20 @@ nav {
     color: $white;
     text-decoration: none;
     text-transform: uppercase;
+    transition: transform 0.5s ease;
+    opacity: 0;
   }
 
   :nth-child(1) {
-    transform: translateX(-200vw);
-    opacity: 0;
+    transform: translateX(-100em);
   }
 
   :nth-child(2) {
-    transform: translateX(200vw);
-    opacity: 0;
+    transform: translateX(100em);
   }
 
   :nth-child(3) {
-    transform: translateY(200vh);
-    opacity: 0;
+    transform: translateY(100em);
   }
 }
 
@@ -156,21 +151,18 @@ nav {
   transform: translateY(0);
 
   :nth-child(1) {
-    transition: all 0.5s ease;
     opacity: 1;
     transition-delay: 0.15s;
     transform: translateX(0);
   }
 
   :nth-child(2) {
-    transition: all 0.5s ease;
     opacity: 1;
     transition-delay: 0.25s;
     transform: translateX(0);
   }
 
   :nth-child(3) {
-    transition: all 0.5s ease;
     opacity: 1;
     transition-delay: 0.35s;
     transform: translateY(0);
@@ -194,14 +186,13 @@ nav {
   gap: 2em;
   justify-content: space-evenly;
   flex-direction: column;
-  min-height: 300px;
+  min-height: 17em;
   animation: fade_in_article 0.5s ease-in-out;
   box-shadow: 2.5px 2.5px 15px #000;
   background: rgba(0, 0, 0, 0.65);
 
   span {
     font-family: "roboto", sans-serif;
-    font-size: $mobileFontSizeMain;
     color: $white;
   }
 
@@ -213,13 +204,11 @@ nav {
       font-size: $desktopFontSizeHeader;
       font-weight: 400;
       text-transform: uppercase;
-      color: $white;
       color: $accent;
       font-family: "Vollkorn", serif;
       text-shadow: 3px 3px 5px #000;
     }
     h3 {
-      max-width: 30ch;
       place-self: flex-end;
       color: $white;
       font-size: $mobileFontSizeSmaller;
@@ -243,8 +232,6 @@ nav {
   .hero-overlay__link {
     place-self: flex-end;
     text-decoration: none;
-    outline: none;
-    border-radius: 10px;
     padding: 0.5em;
     text-transform: uppercase;
     background: $accent;
@@ -279,10 +266,6 @@ nav {
 
   .control-cont__left,
   .control-cont__right {
-    &:hover {
-      background: transparent;
-    }
-
     @media (max-width: 768px) {
       font-size: $mobileFontSizeHeader;
       width: 40px;
@@ -302,16 +285,14 @@ nav {
   text-transform: uppercase;
   font-size: $desktopFontSizeHeader;
   display: flex;
-  flex-direction: row;
   place-items: center;
-  justify-content: space-between;
   font-family: "Vollkorn", serif;
 
   &::after {
     @include borders();
     background: $accent;
     margin: 0 0em 0 0.25em;
-    animation: border_animation 1s ease-in-out forwards;
+    animation: border_animation 1s ease-in forwards;
   }
   @media (max-width: 768px) {
     font-size: $mobileFontSizeHeader;
@@ -323,9 +304,7 @@ form {
   outline: none;
   max-width: 420px;
   display: flex;
-  flex-direction: row;
   justify-content: space-evenly;
-  place-items: center;
   margin: 0 auto;
   padding: 1em;
   font-size: $desktopFontSizeMain;
@@ -342,17 +321,14 @@ form {
   input {
     padding: 0.5em;
     width: 80%;
-    max-width: 420px;
     background: transparent;
     outline: none;
     color: $white;
     font-size: $mobileFontSizeMain;
-    border: none;
     transition: box-shadow 0.25s ease-in-out;
     box-shadow: 0px 2px 2px -2px $white;
 
     &::placeholder {
-      opacity: 0.9;
       color: $white;
     }
 
@@ -383,7 +359,7 @@ form {
   display: flex;
   place-items: center;
   justify-content: center;
-  margin: 1em 0;
+  margin-top: 10em;
 
   :nth-child(1) {
     @include loadingStyle();
@@ -410,8 +386,6 @@ form {
 
 select {
   background: $white;
-  outline: none;
-  border: none;
   color: $night-sky;
   font-size: $desktopFontSizeMain;
   margin: 0 0 1em 1em;
@@ -472,7 +446,6 @@ select {
     width: 100%;
     height: 100%;
     background: rgba(20, 20, 20, 0.75);
-    opacity: 0;
     text-align: center;
     transition: all 0.25s ease-in-out;
     border-radius: 10px;
@@ -495,12 +468,10 @@ select {
     }
 
     :nth-child(3) {
-      padding: 0 0.5em;
       font-weight: 600;
     }
   }
   .active {
-    opacity: 1;
     left: 0;
 
     :nth-child(3) {
@@ -542,16 +513,16 @@ select {
         color: $accent;
         text-transform: uppercase;
         text-align: center;
-        padding: 0.5em;
       }
     }
 
     .about-content__description {
       padding: 0.5em;
-      text-align: center;
+
       p {
         max-width: 60ch;
         color: $white;
+        text-align: center;
       }
     }
   }
@@ -566,7 +537,6 @@ select {
   min-height: calc(100vh - 30px);
 
   .actor-details--container {
-    width: 100%;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -584,10 +554,8 @@ select {
     img {
       width: 200px;
       height: 200px;
-    }
 
-    @media (max-width: 768px) {
-      img {
+      @media (max-width: 768px) {
         border-radius: 50%;
         width: 150px;
         height: 150px;
@@ -623,7 +591,7 @@ select {
     header {
       color: $white;
       padding: 0.5em 0;
-
+      text-align: center;
       span {
         color: $accent;
       }
@@ -633,8 +601,7 @@ select {
   .actor-details__roles--container {
     display: grid;
     gap: 2em;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     place-items: center;
     a {
       text-decoration: none;
@@ -653,9 +620,8 @@ select {
         width: 100%;
         height: 100%;
         background: rgba(20, 20, 20, 0.75);
-        content: "";
         transform: translateX(-100%);
-        transition: all 0.25s ease;
+        transition: transform 0.25s ease;
         display: flex;
         place-items: center;
         flex-direction: column;
@@ -699,7 +665,7 @@ select {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    gap: 1em 1em;
+    gap: 1em;
     width: 100%;
     @media (min-width: 1200px) {
       max-width: 80%;
@@ -711,7 +677,6 @@ select {
     background: transparent;
     font-family: inherit;
     font-size: inherit;
-    text-decoration: underline;
     color: inherit;
     text-decoration: underline dotted $accent;
     text-underline-offset: 0.25em;
@@ -742,7 +707,6 @@ select {
       gap: 1em;
       padding: 0.5em;
       color: $white;
-      min-height: 300px;
 
       header {
         display: flex;
@@ -752,7 +716,6 @@ select {
         .detail-content__title {
           text-transform: uppercase;
           font-size: $mobileFontSizeHeader;
-          letter-spacing: 0.1em;
           font-weight: 600;
           max-width: 60ch;
           color: $accent;
@@ -868,9 +831,8 @@ select {
     gap: 1em 1em;
     flex-direction: column;
     place-self: end center;
-    box-shadow: 0px 0px 1em 0.25em $night-sky;
+    box-shadow: 0px 0px 1em 0.15em $night-sky;
     .detail-content__cast--actors {
-      width: 100%;
       place-items: center;
       box-shadow: 0 0.25em 1em -1em $accent;
 
@@ -894,16 +856,12 @@ footer {
   color: $white;
   text-align: center;
   display: flex;
-  place-items: center;
   justify-content: center;
   padding: 0.5em;
   background: $black;
   font-size: $desktopFontSizeMain;
 
   header {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
     a {
       text-decoration: none;
       color: $white;
