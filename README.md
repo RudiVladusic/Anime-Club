@@ -1,10 +1,10 @@
 # Anime Club
 
-Website that features information on various anime tv shows and movies. The website utilizes [Jikan API](https://jikan.moe/) for the data.
+
 
 ## Tech used
 
-React JS, HTML/CSS, Font-Awesome free icons library.
+React JS, HTML/CSS, Font-Awesome free icons library, [Jikan API](https://jikan.moe/). 
 
 ## Live
 
