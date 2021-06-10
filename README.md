@@ -1,10 +1,8 @@
 # Anime Club
 
-
-
 ## Tech used
 
-React JS, HTML/CSS, Font-Awesome free icons library, [Jikan API](https://jikan.moe/). 
+React JS, HTML/CSS, Font-Awesome free icons library, [Jikan API](https://jikan.moe/).
 
 ## Live
 
@@ -15,6 +13,7 @@ React JS, HTML/CSS, Font-Awesome free icons library, [Jikan API](https://jikan.m
 - Add context
 - Add "more like this" component
 - Add Swiper JS
+- Reorganize folder structure
 
 ## Future plans
 
