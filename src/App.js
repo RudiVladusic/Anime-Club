@@ -1,4 +1,9 @@
 import { useState, useEffect } from "react";
+import {
+  getUpcomingAnime,
+  getTrendingAnime,
+  getSpecials,
+} from "./APIcalls/landingContentCall";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Search from "./components/Search";
 import ResultBlock from "./components/ResultBlock";
@@ -59,27 +64,13 @@ function App() {
   };
 
   useEffect(() => {
-    const getUpcomingAnime = async () => {
-      const call = await fetch(`${api}upcoming`);
-      const result = await call.json();
-      setUpcomingAnime(result.top.slice(0, 20));
-    };
-
-    const getTrendingAnime = async () => {
-      const call = await fetch(`${api}airing`);
-      const result = await call.json();
-      setAiringAnime(result.top.slice(0, 20));
-    };
-
-    const getSpecials = async () => {
-      const call = await fetch(`${api}special`);
-      const result = await call.json();
-      setTopSpecials(result.top.slice(0, 20));
-    };
-
-    getUpcomingAnime();
-    getTrendingAnime();
-    getSpecials();
+    getUpcomingAnime().then((result) =>
+      setUpcomingAnime(result.top.slice(0, 20))
+    );
+    getTrendingAnime().then((result) =>
+      setAiringAnime(result.top.slice(0, 20))
+    );
+    getSpecials().then((result) => setTopSpecials(result.top.slice(0, 20)));
   }, [api]);
 
   const sideScroll = (element, speed, distance, step) => {
