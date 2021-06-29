@@ -21,30 +21,24 @@
 }
 
 @-webkit-keyframes loading_animation {
-  0%,
-  100% {
-    -webkit-transform: translateY(-20px);
-            transform: translateY(-20px);
-    background: #ececec;
+  0% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
-  50% {
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px);
-    background: #e3cdb3;
+  100% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
   }
 }
 
 @keyframes loading_animation {
-  0%,
-  100% {
-    -webkit-transform: translateY(-20px);
-            transform: translateY(-20px);
-    background: #ececec;
+  0% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
-  50% {
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px);
-    background: #e3cdb3;
+  100% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
   }
 }
 
@@ -663,50 +657,15 @@ form input:focus {
 }
 
 .loading {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  place-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-top: 10em;
-}
-
-.loading :nth-child(1) {
-  background: white;
-  width: 20px;
-  height: 20px;
+  width: 100px;
+  height: 100px;
+  border: 0.25em solid #e3cdb3;
+  border-right: 0.25em solid #111f28;
+  margin: 10em auto 0 auto;
   border-radius: 50%;
-  -webkit-animation: loading_animation 0.75s ease-in-out alternate infinite;
-          animation: loading_animation 0.75s ease-in-out alternate infinite;
-  margin: 0.25em;
-  -webkit-animation-delay: 0.15s;
-          animation-delay: 0.15s;
-}
-
-.loading :nth-child(2) {
-  background: white;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  -webkit-animation: loading_animation 0.75s ease-in-out alternate infinite;
-          animation: loading_animation 0.75s ease-in-out alternate infinite;
-  margin: 0.25em;
-  -webkit-animation-delay: 0.2s;
-          animation-delay: 0.2s;
-}
-
-.loading :nth-child(3) {
-  background: white;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  -webkit-animation: loading_animation 0.75s ease-in-out alternate infinite;
-          animation: loading_animation 0.75s ease-in-out alternate infinite;
-  margin: 0.25em;
-  -webkit-animation-delay: 0.25s;
-          animation-delay: 0.25s;
+  background: transparent;
+  -webkit-animation: loading_animation 1.5s linear infinite;
+          animation: loading_animation 1.5s linear infinite;
 }
 
 .discover-content {

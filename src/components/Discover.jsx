@@ -6,20 +6,12 @@ import AnimeCard from "./AnimeCard";
 import Loading from "./Loading";
 import SideScrollContext from "../contexts/SideScrollContext";
 import LoadingAndErrorContext from "../contexts/LoadingAndErrorContext";
-const Discover = ({ filterAnime, discoverAnime }) => {
-  const { isLoading, isError, setIsLoading } = useContext(
-    LoadingAndErrorContext
-  );
+import { getRandomGenre } from "../functions/getRandomGenre";
+const Discover = ({ filterAnimeCall, discoverAnime, setDiscoverAnime }) => {
+  const { isLoading, setIsLoading } = useContext(LoadingAndErrorContext);
   const animeDiscoverCont = useRef(null);
   const [selectValue, setSelectValue] = useState("select");
   const { sideScroll } = useContext(SideScrollContext);
-  const getRandomGenre = (min, max, exclude) => {
-    let calc = Math.floor(Math.random() * (max - min) + min);
-    if (calc === exclude || calc === 33 || calc === 34) {
-      calc = calc + 2;
-    }
-    return calc;
-  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -35,9 +27,12 @@ const Discover = ({ filterAnime, discoverAnime }) => {
         name="Genre"
         defaultValue={selectValue}
         onChange={(e) => {
-          setIsLoading(true);
-          filterAnime(e.target.value)
-            .then(() => setIsLoading(false))
+          filterAnimeCall(e.target.value)
+            .then(setIsLoading(true))
+            .then((data) => {
+              setDiscoverAnime(data.anime.slice(0, 20));
+              setIsLoading(false);
+            })
             .catch((err) => {
               console.log(err);
             });
@@ -62,9 +57,9 @@ const Discover = ({ filterAnime, discoverAnime }) => {
         <option value={getRandomGenre(1, 40, 12)}>Random</option>
       </select>
 
-      {isLoading && discoverAnime.length === 0 && <Loading />}
-
-      {!isLoading && discoverAnime.length > 0 && (
+      {isLoading ? (
+        <Loading />
+      ) : discoverAnime.length === 0 ? null : (
         <div className="control-cont">
           <div className="discover-content__cont" ref={animeDiscoverCont}>
             {discoverAnime.map((anime) => {

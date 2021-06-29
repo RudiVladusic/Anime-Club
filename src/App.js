@@ -1,9 +1,12 @@
-import { useState, useEffect } from "react";
-import { getLandingContent } from "./APIcalls/landingContentCall";
+import { useState } from "react";
+import { useGetLandingContent } from "./APIcalls/useLandingContentCall";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { searchAnimeCall } from "./APIcalls/searchAnimeCall";
+import { filterAnimeCall } from "./APIcalls/filterAnimeCall";
 import LandingDataContext from "./contexts/LandingDataContext";
 import SideScrollContext from "./contexts/SideScrollContext";
 import LoadingAndErrorContext from "./contexts/LoadingAndErrorContext";
+import { sideScroll } from "./functions/sideScroll";
 import "./styles/css/style.css";
 import Search from "./components/Search";
 import ResultBlock from "./components/ResultBlock";
@@ -15,17 +18,16 @@ import Footer from "./components/presentational/Footer";
 import About from "./components/presentational/About";
 import Hero from "./components/presentational/Hero";
 import ActorDetail from "./components/ActorDetail";
-import { searchAnimeCall } from "./APIcalls/searchAnimeCall";
 
 function App() {
   const [search, setSearch] = useState(String);
   const [animeResults, setAnimeResults] = useState(Array);
-  const [upcomingAnime, setUpcomingAnime] = useState(Array);
-  const [airingAnime, setAiringAnime] = useState(Array);
   const [isLoading, setIsLoading] = useState(Boolean);
   const [isError, setIsError] = useState(Boolean);
   const [discoverAnime, setDiscoverAnime] = useState(Array);
-  const [specials, setTopSpecials] = useState(Array);
+  const endpoint = `https://api.jikan.moe/v3/top/anime/1/`;
+  const { upcomingAnime, airingAnime, specials } =
+    useGetLandingContent(endpoint);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -41,41 +43,6 @@ function App() {
         setIsError(true);
         setIsLoading(false);
       });
-  };
-  const endpoint = `https://api.jikan.moe/v3/top/anime/1/`;
-
-  const filterAnime = async (query) => {
-    const call = await fetch(`https://api.jikan.moe/v3/genre/anime/${query}/1`);
-    const result = await call.json();
-    if (!call.ok) {
-      throw Error(`Could not fetch`);
-    }
-    setDiscoverAnime(result.anime.slice(0, 20));
-  };
-
-  useEffect(() => {
-    getLandingContent(`${endpoint}upcoming`)
-      .then((result) => setUpcomingAnime(result.top.slice(0, 20)))
-      .catch((err) => console.log(err));
-
-    getLandingContent(`${endpoint}airing`)
-      .then((result) => setAiringAnime(result.top.slice(0, 20)))
-      .catch((err) => console.log(err));
-
-    getLandingContent(`${endpoint}special`)
-      .then((result) => setTopSpecials(result.top.slice(0, 20)))
-      .catch((err) => console.log(err));
-  }, [endpoint]);
-
-  const sideScroll = (element, speed, distance, step) => {
-    let scrollAmount = 0;
-    const slideTimer = setInterval(() => {
-      element.scrollLeft += step;
-      scrollAmount += Math.abs(step);
-      if (scrollAmount >= distance) {
-        clearInterval(slideTimer);
-      }
-    }, speed);
   };
 
   return (
@@ -113,8 +80,9 @@ function App() {
                 value={{ isLoading, isError, setIsLoading }}
               >
                 <Discover
-                  filterAnime={filterAnime}
+                  filterAnimeCall={filterAnimeCall}
                   discoverAnime={discoverAnime}
+                  setDiscoverAnime={setDiscoverAnime}
                 />
               </LoadingAndErrorContext.Provider>
             </SideScrollContext.Provider>

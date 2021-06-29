@@ -356,24 +356,14 @@ form {
 }
 
 .loading {
-  display: flex;
-  place-items: center;
-  justify-content: center;
-  margin-top: 10em;
-
-  :nth-child(1) {
-    @include loadingStyle();
-    animation-delay: 0.15s;
-  }
-
-  :nth-child(2) {
-    @include loadingStyle();
-    animation-delay: 0.2s;
-  }
-  :nth-child(3) {
-    @include loadingStyle();
-    animation-delay: 0.25s;
-  }
+  width: 100px;
+  height: 100px;
+  border: 0.25em solid $accent;
+  border-right: 0.25em solid $night-sky;
+  margin: 10em auto 0 auto;
+  border-radius: 50%;
+  background: transparent;
+  animation: loading_animation 1.5s linear infinite;
 }
 
 .discover-content {
