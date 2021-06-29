@@ -13,6 +13,7 @@ import Hero from "./components/presentational/Hero";
 import "./styles/css/style.css";
 import ActorDetail from "./components/ActorDetail";
 import LandingDataContext from "./contexts/LandingDataContext";
+import SideScrollContext from "./contexts/SideScrollContext";
 function App() {
   const [search, setSearch] = useState(String);
   const [animeResults, setAnimeResults] = useState(Array);
@@ -90,11 +91,13 @@ function App() {
 
           <Route exact path="/">
             <Hero />
-            <LandingDataContext.Provider
-              value={{ upcomingAnime, airingAnime, specials }}
-            >
-              <Content sideScroll={sideScroll} />
-            </LandingDataContext.Provider>
+            <SideScrollContext.Provider value={{ sideScroll }}>
+              <LandingDataContext.Provider
+                value={{ upcomingAnime, airingAnime, specials }}
+              >
+                <Content />
+              </LandingDataContext.Provider>
+            </SideScrollContext.Provider>
           </Route>
           <Route exact path="/search">
             <Search
@@ -102,22 +105,24 @@ function App() {
               setSearch={setSearch}
               search={search}
             />
-            <ResultBlock
-              animeResults={animeResults}
-              isLoading={isLoading}
-              isError={isError}
-              sideScroll={sideScroll}
-            />
+            <SideScrollContext.Provider value={{ sideScroll }}>
+              <ResultBlock
+                animeResults={animeResults}
+                isLoading={isLoading}
+                isError={isError}
+              />
+            </SideScrollContext.Provider>
           </Route>
 
           <Route exact path="/discover">
-            <Discover
-              filterAnime={filterAnime}
-              discoverAnime={discoverAnime}
-              sideScroll={sideScroll}
-              isLoading={isLoading}
-              isError={isError}
-            />
+            <SideScrollContext.Provider value={{ sideScroll }}>
+              <Discover
+                filterAnime={filterAnime}
+                discoverAnime={discoverAnime}
+                isLoading={isLoading}
+                isError={isError}
+              />
+            </SideScrollContext.Provider>
           </Route>
 
           <Route exact path="/anime/:id">

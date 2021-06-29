@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import AnimeCard from "./AnimeCard";
 import Loading from "./Loading";
+import SideScrollContext from "../contexts/SideScrollContext";
 
-const Discover = ({ filterAnime, discoverAnime, sideScroll, isLoading }) => {
+const Discover = ({ filterAnime, discoverAnime, isLoading }) => {
   const animeDiscoverCont = useRef(null);
   const [selectValue, setSelectValue] = useState("select");
-
+  const { sideScroll } = useContext(SideScrollContext);
   const getRandomGenre = (min, max, exclude) => {
     let calc = Math.floor(Math.random() * (max - min) + min);
     if (calc === exclude || calc === 33 || calc === 34) {

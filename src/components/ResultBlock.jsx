@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import AnimeCard from "./AnimeCard";
 import Loading from "./Loading";
+import SideScrollContext from "../contexts/SideScrollContext";
 
-const ResultBlock = ({ animeResults, isLoading, isError, sideScroll }) => {
+const ResultBlock = ({ animeResults, isLoading, isError }) => {
   const animeCont = useRef(null);
-
+  const { sideScroll } = useContext(SideScrollContext);
   return (
     <main className="search-content">
       {isLoading && <Loading />}

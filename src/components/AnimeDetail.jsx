@@ -6,14 +6,14 @@ import Loading from "./Loading";
 
 const AnimeDetail = () => {
   const { id } = useParams();
-  const [animeDetail, setAnimeDetail] = useState([]);
+  const [animeDetail, setAnimeDetail] = useState(Array);
   const [voiceActors, setVoiceActors] = useState({
     image: "",
     name: "",
     charName: "",
     actorId: "",
   });
-  const [readMore, setReadMore] = useState(false);
+  const [readMore, setReadMore] = useState(Boolean);
   const fullCastList = useRef(null);
   const api = `https://api.jikan.moe/v3/anime/`;
   const {
@@ -42,26 +42,38 @@ const AnimeDetail = () => {
     const fetchRoles = async () => {
       const call = await fetch(`${api}${id}/characters_staff`);
       const result = await call.json();
-      let voiceActorNames = await result.characters
+      // if (!call.ok) {
+      //   setIsError(true);
+      //   return;
+      // }
+      const actorsAreListedCheck = result.characters
         .slice(0, 20)
-        .map((voiceA) => {
-          let animeName = voiceA.name;
-          return voiceA.voice_actors
-            .filter((lang) => {
-              return lang.language === "Japanese";
-            })
-            .slice(0, 1)
-            .map((info) => {
-              return {
-                image: info.image_url,
-                name: info.name,
-                charName: animeName,
-                actorId: info.mal_id,
-              };
-            });
-        });
+        .map((voiceActor) => voiceActor.voice_actors)
+        .every((len) => len.length > 0);
+      if (actorsAreListedCheck) {
+        let voiceActorNames = await result.characters
+          .slice(0, 20)
+          .map((character) => {
+            let characterName = character.name;
+            return character.voice_actors
+              .filter((lang) => {
+                return lang.language === "Japanese";
+              })
+              .slice(0, 1)
+              .map((info) => {
+                return {
+                  image: info.image_url,
+                  name: info.name,
+                  charName: characterName,
+                  actorId: info.mal_id,
+                };
+              });
+          });
 
-      setVoiceActors(voiceActorNames);
+        setVoiceActors(voiceActorNames);
+      }
+
+      return;
     };
     fetchAnimeDetails();
     fetchRoles();
@@ -155,12 +167,14 @@ const AnimeDetail = () => {
 
             <p>
               <span>Cast: </span>
-              {voiceActors.length > 0 && voiceActors
+
+              {voiceActors.length > 0 &&
+              voiceActors.filter((len) => len.length > 0)
                 ? voiceActors
                     .slice(0, 5)
-                    .map((name) =>
-                      name.map((x) => {
-                        return x.name;
+                    .map((names) =>
+                      names.map((name) => {
+                        return name.name.replace(",", "");
                       })
                     )
                     .join(", ")
@@ -198,7 +212,8 @@ const AnimeDetail = () => {
               <h2>Cast</h2>
             </header>
 
-            {(voiceActors.length > 0 &&
+            {voiceActors.length > 0 &&
+            voiceActors.filter((len) => len.length > 0) ? (
               voiceActors
                 .reduce((a, b) => {
                   return a.concat(b);
@@ -219,7 +234,10 @@ const AnimeDetail = () => {
                       <p>{charName}</p>
                     </article>
                   );
-                })) || <p>None listed</p>}
+                })
+            ) : (
+              <p>None listed</p>
+            )}
           </div>
         </article>
       )}

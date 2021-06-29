@@ -4,14 +4,15 @@ import { useContext, useRef } from "react";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import AnimeCard from "./AnimeCard";
 import LandingDataContext from "../contexts/LandingDataContext";
+import SideScrollContext from "../contexts/SideScrollContext";
 
-const Content = ({ sideScroll }) => {
+const Content = () => {
   const trendingAnimeCont = useRef(null);
   const upcomingAnimeCont = useRef(null);
   const specialsCont = useRef(null);
   const { upcomingAnime, airingAnime, specials } =
     useContext(LandingDataContext);
-
+  const { sideScroll } = useContext(SideScrollContext);
   return (
     <main className="main-content">
       <header className="main-content__header">
