@@ -109,20 +109,20 @@ const AnimeDetail = () => {
           <aside className="detail-content__aside">
             <p>
               <span>Score: </span>
-              {score ? score : `Not scored`}
+              {score || `Not scored`}
             </p>
             <p>
               <span>Scored by: </span>
-              {scored_by ? `${scored_by} members` : `0 members`}
+              {scored_by || `0 members`}
             </p>
 
             <p>
               <span>Rating: </span>
-              {rating}
+              {rating || `Not listed`}
             </p>
             <p>
               <span>Status: </span>
-              {status}
+              {status || `Not listed`}
             </p>
             <p>
               <span>Opening theme: </span>
@@ -131,60 +131,49 @@ const AnimeDetail = () => {
                 : `None listed`}
             </p>
 
-            {studios && (
-              <>
-                <div className="detail-content__aside--studios">
-                  <span>Studios: </span>
-                  {studios.length !== 0 ? (
-                    studios.map((info, index) => {
-                      const { name, url } = info;
-                      return (
-                        <a href={url} key={index}>
-                          <p>{`${name} `}</p>
-                        </a>
-                      );
-                    })
-                  ) : (
-                    <p>None listed</p>
-                  )}
-                </div>
-              </>
-            )}
+            <p>
+              <span>Studios: </span>
+              {studios.length !== 0
+                ? studios.map((info, index) => {
+                    const { name, url } = info;
+                    return (
+                      <a href={url} key={index}>
+                        {`${name} `}
+                      </a>
+                    );
+                  })
+                : `None listed`}
+            </p>
 
-            {producers && (
-              <>
-                <div className="detail-content__aside--producers">
-                  <span>Producers: </span>
+            <p>
+              <span>Producers: </span>
 
-                  {producers.map((producer, index) => {
-                    return <p key={index}> {producer.name}</p>;
-                  })}
-                </div>
-              </>
-            )}
+              {(producers.length > 0 &&
+                producers.map((producer) => producer.name).join(", ")) ||
+                `None listed`}
+            </p>
 
-            <>
-              <div className="detail-content__aside--cast">
-                <span>Cast: </span>
-                {voiceActors.length > 0 && voiceActors ? (
-                  voiceActors.slice(0, 5).map((name) =>
-                    name.map((x, index) => {
-                      return <p key={index}>{x.name}</p>;
-                    })
-                  )
-                ) : (
-                  <p>None listed</p>
-                )}
-                <button
-                  className="view-full-cast"
-                  onClick={() => {
-                    fullCastList.current.scrollIntoView();
-                  }}
-                >
-                  ...View full cast
-                </button>
-              </div>
-            </>
+            <p>
+              <span>Cast: </span>
+              {voiceActors.length > 0 && voiceActors
+                ? voiceActors
+                    .slice(0, 5)
+                    .map((name) =>
+                      name.map((x) => {
+                        return x.name;
+                      })
+                    )
+                    .join(", ")
+                : `None listed`}
+              <button
+                className="view-full-cast"
+                onClick={() => {
+                  fullCastList.current.scrollIntoView();
+                }}
+              >
+                ...View full cast
+              </button>
+            </p>
           </aside>
 
           <div className="detail-content-trailer">
@@ -209,7 +198,7 @@ const AnimeDetail = () => {
               <h2>Cast</h2>
             </header>
 
-            {voiceActors.length > 0 &&
+            {(voiceActors.length > 0 &&
               voiceActors
                 .reduce((a, b) => {
                   return a.concat(b);
@@ -223,14 +212,14 @@ const AnimeDetail = () => {
                     >
                       <img
                         src={image}
-                        alt=""
+                        alt=" person"
                         style={{ width: "40px", height: "40px" }}
                       />
                       <Link to={`/anime/cast/${actorId}`}>{name}</Link>
                       <p>{charName}</p>
                     </article>
                   );
-                })}
+                })) || <p>None listed</p>}
           </div>
         </article>
       )}

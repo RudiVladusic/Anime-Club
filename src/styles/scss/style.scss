@@ -781,15 +781,6 @@ select {
       font-weight: bold;
       color: $accent;
     }
-
-    .detail-content__aside--studios,
-    .detail-content__aside--cast,
-    .detail-content__aside--producers {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      gap: 0.25em;
-    }
   }
 
   .detail-content-trailer {

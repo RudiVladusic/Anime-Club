@@ -1,9 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  getUpcomingAnime,
-  getTrendingAnime,
-  getSpecials,
-} from "./APIcalls/landingContentCall";
+import { getLandingContent } from "./APIcalls/landingContentCall";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Search from "./components/Search";
 import ResultBlock from "./components/ResultBlock";
@@ -16,16 +12,16 @@ import About from "./components/presentational/About";
 import Hero from "./components/presentational/Hero";
 import "./styles/css/style.css";
 import ActorDetail from "./components/ActorDetail";
-
+import LandingDataContext from "./contexts/LandingDataContext";
 function App() {
-  const [search, setSearch] = useState("");
-  const [animeResults, setAnimeResults] = useState([]);
-  const [upcomingAnime, setUpcomingAnime] = useState([]);
-  const [airingAnime, setAiringAnime] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [discoverAnime, setDiscoverAnime] = useState([]);
-  const [specials, setTopSpecials] = useState([]);
+  const [search, setSearch] = useState(String);
+  const [animeResults, setAnimeResults] = useState(Array);
+  const [upcomingAnime, setUpcomingAnime] = useState(Array);
+  const [airingAnime, setAiringAnime] = useState(Array);
+  const [isLoading, setIsLoading] = useState(Boolean);
+  const [isError, setIsError] = useState(Boolean);
+  const [discoverAnime, setDiscoverAnime] = useState(Array);
+  const [specials, setTopSpecials] = useState(Array);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -35,7 +31,7 @@ function App() {
       setIsLoading(false);
     });
   };
-  const api = `https://api.jikan.moe/v3/top/anime/1/`;
+  const endpoint = `https://api.jikan.moe/v3/top/anime/1/`;
 
   const filterAnime = async (query) => {
     setIsLoading(true);
@@ -64,14 +60,16 @@ function App() {
   };
 
   useEffect(() => {
-    getUpcomingAnime().then((result) =>
+    getLandingContent(`${endpoint}upcoming`).then((result) =>
       setUpcomingAnime(result.top.slice(0, 20))
     );
-    getTrendingAnime().then((result) =>
+    getLandingContent(`${endpoint}airing`).then((result) =>
       setAiringAnime(result.top.slice(0, 20))
     );
-    getSpecials().then((result) => setTopSpecials(result.top.slice(0, 20)));
-  }, [api]);
+    getLandingContent(`${endpoint}special`).then((result) =>
+      setTopSpecials(result.top.slice(0, 20))
+    );
+  }, [endpoint]);
 
   const sideScroll = (element, speed, distance, step) => {
     let scrollAmount = 0;
@@ -92,12 +90,11 @@ function App() {
 
           <Route exact path="/">
             <Hero />
-            <Content
-              upcomingAnime={upcomingAnime}
-              airingAnime={airingAnime}
-              specials={specials}
-              sideScroll={sideScroll}
-            />
+            <LandingDataContext.Provider
+              value={{ upcomingAnime, airingAnime, specials }}
+            >
+              <Content sideScroll={sideScroll} />
+            </LandingDataContext.Provider>
           </Route>
           <Route exact path="/search">
             <Search

@@ -1,13 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import AnimeCard from "./AnimeCard";
+import LandingDataContext from "../contexts/LandingDataContext";
 
-const Content = ({ upcomingAnime, airingAnime, specials, sideScroll }) => {
+const Content = ({ sideScroll }) => {
   const trendingAnimeCont = useRef(null);
   const upcomingAnimeCont = useRef(null);
   const specialsCont = useRef(null);
+  const { upcomingAnime, airingAnime, specials } =
+    useContext(LandingDataContext);
 
   return (
     <main className="main-content">
