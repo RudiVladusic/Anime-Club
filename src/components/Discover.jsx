@@ -5,8 +5,11 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import AnimeCard from "./AnimeCard";
 import Loading from "./Loading";
 import SideScrollContext from "../contexts/SideScrollContext";
-
-const Discover = ({ filterAnime, discoverAnime, isLoading }) => {
+import LoadingAndErrorContext from "../contexts/LoadingAndErrorContext";
+const Discover = ({ filterAnime, discoverAnime }) => {
+  const { isLoading, isError, setIsLoading } = useContext(
+    LoadingAndErrorContext
+  );
   const animeDiscoverCont = useRef(null);
   const [selectValue, setSelectValue] = useState("select");
   const { sideScroll } = useContext(SideScrollContext);
@@ -32,9 +35,12 @@ const Discover = ({ filterAnime, discoverAnime, isLoading }) => {
         name="Genre"
         defaultValue={selectValue}
         onChange={(e) => {
-          filterAnime(e.target.value).catch((err) => {
-            console.log(err);
-          });
+          setIsLoading(true);
+          filterAnime(e.target.value)
+            .then(() => setIsLoading(false))
+            .catch((err) => {
+              console.log(err);
+            });
         }}
       >
         <option

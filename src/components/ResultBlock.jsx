@@ -5,10 +5,11 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import AnimeCard from "./AnimeCard";
 import Loading from "./Loading";
 import SideScrollContext from "../contexts/SideScrollContext";
-
-const ResultBlock = ({ animeResults, isLoading, isError }) => {
+import LoadingAndErrorContext from "../contexts/LoadingAndErrorContext";
+const ResultBlock = ({ animeResults }) => {
   const animeCont = useRef(null);
   const { sideScroll } = useContext(SideScrollContext);
+  const { isLoading, isError } = useContext(LoadingAndErrorContext);
   return (
     <main className="search-content">
       {isLoading && <Loading />}

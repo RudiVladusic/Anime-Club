@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { getLandingContent } from "./APIcalls/landingContentCall";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import LandingDataContext from "./contexts/LandingDataContext";
+import SideScrollContext from "./contexts/SideScrollContext";
+import LoadingAndErrorContext from "./contexts/LoadingAndErrorContext";
+import "./styles/css/style.css";
 import Search from "./components/Search";
 import ResultBlock from "./components/ResultBlock";
 import Content from "./components/Content";
@@ -10,10 +14,9 @@ import Nav from "./components/presentational/Nav";
 import Footer from "./components/presentational/Footer";
 import About from "./components/presentational/About";
 import Hero from "./components/presentational/Hero";
-import "./styles/css/style.css";
 import ActorDetail from "./components/ActorDetail";
-import LandingDataContext from "./contexts/LandingDataContext";
-import SideScrollContext from "./contexts/SideScrollContext";
+import { searchAnimeCall } from "./APIcalls/searchAnimeCall";
+
 function App() {
   const [search, setSearch] = useState(String);
   const [animeResults, setAnimeResults] = useState(Array);
@@ -26,50 +29,42 @@ function App() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    searchAnime(search).catch((err) => {
-      console.log(err);
-      setIsError(true);
-      setIsLoading(false);
-    });
+    setIsLoading(true);
+    searchAnimeCall(search)
+      .then((data) => {
+        setAnimeResults(data.results);
+        setIsError(false);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsError(true);
+        setIsLoading(false);
+      });
   };
   const endpoint = `https://api.jikan.moe/v3/top/anime/1/`;
 
   const filterAnime = async (query) => {
-    setIsLoading(true);
     const call = await fetch(`https://api.jikan.moe/v3/genre/anime/${query}/1`);
     const result = await call.json();
     if (!call.ok) {
       throw Error(`Could not fetch`);
     }
     setDiscoverAnime(result.anime.slice(0, 20));
-    setIsLoading(false);
-  };
-
-  const searchAnime = async (query) => {
-    setIsLoading(true);
-    setIsError(false);
-    const call = await fetch(
-      `https://api.jikan.moe/v3/search/anime?q=${query}&page=1&genre_exclude=1&limit=20`
-    );
-    if (!call.ok) {
-      throw Error(`Could not fetch`);
-    }
-    const result = await call.json();
-
-    setAnimeResults(result.results);
-    setIsLoading(false);
   };
 
   useEffect(() => {
-    getLandingContent(`${endpoint}upcoming`).then((result) =>
-      setUpcomingAnime(result.top.slice(0, 20))
-    );
-    getLandingContent(`${endpoint}airing`).then((result) =>
-      setAiringAnime(result.top.slice(0, 20))
-    );
-    getLandingContent(`${endpoint}special`).then((result) =>
-      setTopSpecials(result.top.slice(0, 20))
-    );
+    getLandingContent(`${endpoint}upcoming`)
+      .then((result) => setUpcomingAnime(result.top.slice(0, 20)))
+      .catch((err) => console.log(err));
+
+    getLandingContent(`${endpoint}airing`)
+      .then((result) => setAiringAnime(result.top.slice(0, 20)))
+      .catch((err) => console.log(err));
+
+    getLandingContent(`${endpoint}special`)
+      .then((result) => setTopSpecials(result.top.slice(0, 20)))
+      .catch((err) => console.log(err));
   }, [endpoint]);
 
   const sideScroll = (element, speed, distance, step) => {
@@ -105,23 +100,23 @@ function App() {
               setSearch={setSearch}
               search={search}
             />
-            <SideScrollContext.Provider value={{ sideScroll }}>
-              <ResultBlock
-                animeResults={animeResults}
-                isLoading={isLoading}
-                isError={isError}
-              />
-            </SideScrollContext.Provider>
+            <LoadingAndErrorContext.Provider value={{ isLoading, isError }}>
+              <SideScrollContext.Provider value={{ sideScroll }}>
+                <ResultBlock animeResults={animeResults} />
+              </SideScrollContext.Provider>
+            </LoadingAndErrorContext.Provider>
           </Route>
 
           <Route exact path="/discover">
             <SideScrollContext.Provider value={{ sideScroll }}>
-              <Discover
-                filterAnime={filterAnime}
-                discoverAnime={discoverAnime}
-                isLoading={isLoading}
-                isError={isError}
-              />
+              <LoadingAndErrorContext.Provider
+                value={{ isLoading, isError, setIsLoading }}
+              >
+                <Discover
+                  filterAnime={filterAnime}
+                  discoverAnime={discoverAnime}
+                />
+              </LoadingAndErrorContext.Provider>
             </SideScrollContext.Provider>
           </Route>
 
