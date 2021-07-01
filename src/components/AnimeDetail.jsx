@@ -42,10 +42,10 @@ const AnimeDetail = () => {
     const fetchRoles = async () => {
       const call = await fetch(`${api}${id}/characters_staff`);
       const result = await call.json();
-      // if (!call.ok) {
-      //   setIsError(true);
-      //   return;
-      // }
+      if (!call.ok) {
+        const message = `Something went wrong while fetching data`;
+        throw new Error(message);
+      }
       const actorsAreListedCheck = result.characters
         .slice(0, 20)
         .map((voiceActor) => voiceActor.voice_actors)

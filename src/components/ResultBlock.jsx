@@ -6,10 +6,12 @@ import AnimeCard from "./AnimeCard";
 import Loading from "./Loading";
 import SideScrollContext from "../contexts/SideScrollContext";
 import LoadingAndErrorContext from "../contexts/LoadingAndErrorContext";
-const ResultBlock = ({ animeResults }) => {
+import SearchDataContext from "../contexts/SearchDataContext";
+const ResultBlock = () => {
   const animeCont = useRef(null);
   const { sideScroll } = useContext(SideScrollContext);
   const { isLoading, isError } = useContext(LoadingAndErrorContext);
+  const { animeResults } = useContext(SearchDataContext);
   return (
     <main className="search-content">
       {isLoading && <Loading />}

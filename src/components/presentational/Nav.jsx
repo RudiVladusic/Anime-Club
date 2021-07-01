@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Nav = () => {
-  const [isNavOpen, setIsNavOpen] = useState(false);
-  const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(Boolean);
+  const [isBurgerOpen, setIsBurgerOpen] = useState(Boolean);
 
   const openMobileMenuHandler = () => {
     setIsNavOpen(!isNavOpen);
