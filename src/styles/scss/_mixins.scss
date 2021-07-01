@@ -23,13 +23,13 @@
   color: $white;
   letter-spacing: 0.05em;
   padding: 0.5em;
-  outline: 5px double lighten($white, 10%);
+  outline: 0.35em double lighten($white, 10%);
   background: transparent;
   font-size: inherit;
   font-family: inherit;
   cursor: pointer;
+  outline-offset: -0.25em;
   transition: outline-offset 0.25s ease-in-out;
-  outline-offset: -4px;
 
   &:hover {
     outline: thick double lighten($accent, 10%);
@@ -40,7 +40,7 @@
 @mixin borders {
   content: "";
   background: $accent;
-  height: 1px;
+  height: 0.05em;
   display: block;
 }
 
@@ -49,8 +49,8 @@
   top: 50%;
   background: rgba(20, 20, 20, 0.8);
   color: $white;
-  width: 50px;
-  height: 50px;
+  width: 1.8em;
+  height: 1.8em;
   border-radius: 50%;
   transform: translate(0, -50%);
   background: $night-sky;

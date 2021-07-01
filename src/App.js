@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useGetLandingContent } from "./APIcalls/useLandingContentCall";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { searchAnimeCall } from "./APIcalls/searchAnimeCall";
-import { filterAnimeCall } from "./APIcalls/filterAnimeCall";
 import LandingDataContext from "./contexts/LandingDataContext";
 import SideScrollContext from "./contexts/SideScrollContext";
 import LoadingAndErrorContext from "./contexts/LoadingAndErrorContext";
@@ -24,7 +23,7 @@ function App() {
   const [animeResults, setAnimeResults] = useState(Array);
   const [isLoading, setIsLoading] = useState(Boolean);
   const [isError, setIsError] = useState(Boolean);
-  const [discoverAnime, setDiscoverAnime] = useState(Array);
+
   const endpoint = `https://api.jikan.moe/v3/top/anime/1/`;
   const { upcomingAnime, airingAnime, specials } =
     useGetLandingContent(endpoint);
@@ -79,11 +78,7 @@ function App() {
               <LoadingAndErrorContext.Provider
                 value={{ isLoading, isError, setIsLoading }}
               >
-                <Discover
-                  filterAnimeCall={filterAnimeCall}
-                  discoverAnime={discoverAnime}
-                  setDiscoverAnime={setDiscoverAnime}
-                />
+                <Discover />
               </LoadingAndErrorContext.Provider>
             </SideScrollContext.Provider>
           </Route>

@@ -2,12 +2,14 @@ import { Link } from "react-router-dom";
 import { useRef, useState, useEffect, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { filterAnimeCall } from "../APIcalls/filterAnimeCall";
 import AnimeCard from "./AnimeCard";
 import Loading from "./Loading";
 import SideScrollContext from "../contexts/SideScrollContext";
 import LoadingAndErrorContext from "../contexts/LoadingAndErrorContext";
 import { getRandomGenre } from "../functions/getRandomGenre";
-const Discover = ({ filterAnimeCall, discoverAnime, setDiscoverAnime }) => {
+const Discover = () => {
+  const [discoverAnime, setDiscoverAnime] = useState(Array);
   const { isLoading, setIsLoading } = useContext(LoadingAndErrorContext);
   const animeDiscoverCont = useRef(null);
   const [selectValue, setSelectValue] = useState("select");
