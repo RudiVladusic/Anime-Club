@@ -1337,6 +1337,8 @@ select {
   place-items: center;
   -webkit-box-shadow: 0 0.25em 1em -1em #e3cdb3;
           box-shadow: 0 0.25em 1em -1em #e3cdb3;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
 }
 
 .detail-content .detail-content__cast .detail-content__cast--actors a,

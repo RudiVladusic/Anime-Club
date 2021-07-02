@@ -801,7 +801,7 @@ select {
     .detail-content__cast--actors {
       place-items: center;
       box-shadow: 0 0.25em 1em -1em $accent;
-
+      flex-wrap: nowrap;
       a,
       p {
         @include defaultFontSizeQuery();
