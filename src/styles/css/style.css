@@ -950,6 +950,7 @@ select {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 2em 2em;
+  width: 100%;
 }
 
 @media (min-width: 1200px) {
@@ -968,6 +969,7 @@ select {
           flex-flow: row wrap;
   gap: 1em;
   padding: 1em;
+  max-width: 60ch;
 }
 
 .actor-details .actor-details__image img {
@@ -1000,10 +1002,14 @@ select {
 .actor-details .actor-details__biography {
   padding: 0.5em;
   border-left: 0.05em solid rgba(225, 225, 225, 0.2);
+  word-break: break-all;
+  white-space: normal;
+  width: 100%;
 }
 
 .actor-details .actor-details__biography p {
-  max-width: 60ch;
+  max-width: 60ch !important;
+  width: 100%;
   color: #ececec;
 }
 
