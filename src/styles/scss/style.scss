@@ -2,13 +2,15 @@
 @import "keyframes";
 @import "variables";
 
-@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Vollkorn&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway&family=Roboto&display=swap");
 
 * {
   border: 0;
   margin: 0;
   box-sizing: border-box;
 }
+
+// font-family: 'Raleway', sans-serif;
 
 html {
   line-height: 1.6;
@@ -17,21 +19,117 @@ html {
   scroll-behavior: smooth;
   scrollbar-color: $accent $main-bg-color;
   scrollbar-width: thin;
+  min-height: 100%;
 }
 
 body {
   min-height: 100%;
-  position: relative;
-  max-width: 1920px;
-  margin: 0 auto;
 }
 
 img {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
-  border-radius: 10px;
+  // border-radius: 10px;
   display: block;
+}
+
+.swiper-container {
+  width: 95vw;
+  height: 25em;
+
+  @media (max-width: 768px) {
+    height: 15em;
+  }
+}
+
+.swiper-wrapper {
+  // padding: 1em 0;
+  // padding: 0.5em;
+  .swiper-slide {
+    width: 100%;
+    height: 100%;
+
+    img {
+      // height: 100%;
+      object-fit: fill;
+      width: 100%;
+      height: 25em;
+
+      @media (max-width: 768px) {
+        height: 15em;
+      }
+    }
+
+    article {
+      width: 100%;
+      animation: fade_in_article 0.5s ease-in-out;
+      transition: all 0.25s ease-in-out;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .articleInformation {
+      display: flex;
+      flex-direction: column;
+      place-items: center;
+      justify-content: space-evenly;
+      text-align: center;
+      transition: all 0.25s ease-in-out;
+      color: $white;
+      position: absolute;
+      transform: translateY(200%);
+      width: 90%;
+      height: 70%;
+      inset: 0;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.65);
+      box-shadow: 0.5em 0.5em 0.75em rgba(0, 0, 0, 0.85);
+
+      border-radius: 0.75em;
+
+      :nth-child(1) {
+        font-size: $mobileFontSizeHeader;
+        text-transform: none;
+        padding: 0 0.25em;
+        font-family: "Raleway", sans-serif;
+
+        @media (max-width: 768px) {
+          font-size: $mobileFontSizeMain;
+        }
+      }
+
+      :nth-child(2) {
+        @include defaultButton();
+        @media (max-width: 768px) {
+          font-size: $mobileFontSizeSmaller;
+        }
+      }
+
+      :nth-child(3) {
+        // font-weight: 600;
+        @media (max-width: 768px) {
+          font-size: $mobileFontSizeSmaller;
+        }
+      }
+
+      @media (max-width: 768px) {
+        transform: translateY(40%);
+      }
+    }
+    .active {
+      transform: translateY(40%);
+    }
+  }
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  &::after {
+    color: #400a58;
+    z-index: 2;
+    transform: scale(1.2);
+  }
 }
 
 nav {
@@ -45,7 +143,7 @@ nav {
 
   .nav-header {
     font-size: $desktopFontSizeHeader;
-    font-family: "Vollkorn", serif;
+    font-family: "Raleway", sans-serif;
 
     a {
       padding: 0 0.4em;
@@ -75,7 +173,7 @@ nav {
 
   .burger {
     display: none;
-    z-index: 2;
+    z-index: 10;
     position: fixed;
     right: 0.8em;
     padding: 0.5em;
@@ -117,7 +215,7 @@ nav {
   flex-flow: column wrap;
   justify-content: space-evenly;
   place-items: center;
-  z-index: 1;
+  z-index: 9;
   position: fixed;
   top: 0;
   background: rgba(0, 0, 0, 0.95);
@@ -169,14 +267,23 @@ nav {
 }
 
 .hero {
-  background: url("../../images/hero.jpg") no-repeat center center / cover;
-  min-height: calc(100vh - 10em);
+  height: calc(100vh - 10em);
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   place-items: flex-start;
   padding: 0.5em;
+  position: relative !important;
+  overflow: hidden;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../../images/hero.jpg") no-repeat center center / cover;
+  will-change: transform;
+  mix-blend-mode: lighten;
+
+  @media (max-width: 768px) {
+    height: 25em;
+  }
 }
 
 .hero-overlay {
@@ -204,7 +311,7 @@ nav {
       font-weight: 400;
       text-transform: uppercase;
       color: $accent;
-      font-family: "Vollkorn", serif;
+      font-family: "Raleway", sans-serif;
       text-shadow: 0.25em 0.25em 0.3em #000;
     }
     h3 {
@@ -248,6 +355,7 @@ nav {
   flex-direction: column;
   gap: 2em 2em;
   padding: 2em 0;
+  // background: $main-bg-color;
 }
 
 .control-cont {
@@ -278,7 +386,7 @@ nav {
   font-size: $desktopFontSizeHeader;
   display: flex;
   place-items: center;
-  font-family: "Vollkorn", serif;
+  font-family: "Raleway", sans-serif;
 
   &::after {
     @include borders();
@@ -336,7 +444,7 @@ form {
   flex-direction: column;
   place-content: center start;
   gap: 1em 1em;
-  min-height: calc(100vh - 2em);
+  min-height: calc(100vh - 5em);
 }
 
 .error {
@@ -376,102 +484,6 @@ select {
 
   @media (max-width: 768px) {
     font-size: $mobileFontSizeSmaller;
-  }
-}
-
-.main-content__trending,
-.main-content__upcoming,
-.main-content__specials,
-.search-content__cont,
-.discover-content__cont {
-  @include mainContentStyles();
-  padding: 1em 3em;
-
-  article {
-    width: 12.5em;
-    height: 18.7em;
-    position: relative;
-    animation: fade_in_article 0.5s ease-in-out;
-    overflow: hidden;
-    transition: all 0.25s ease-in-out;
-    border-radius: 10px;
-
-    @media (max-width: 768px) {
-      .articleInformation {
-        opacity: 1;
-        left: 0;
-
-        :nth-child(1) {
-          font-size: $mobileFontSizeMain;
-          animation: none;
-        }
-
-        :nth-child(2) {
-          animation: none;
-        }
-
-        :nth-child(3) {
-          font-size: $mobileFontSizeSmaller;
-          animation: none;
-        }
-      }
-    }
-  }
-
-  .articleInformation {
-    display: flex;
-    flex-direction: column;
-    place-items: center;
-    justify-content: space-around;
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: rgba(20, 20, 20, 0.75);
-    text-align: center;
-    transition: all 0.25s ease-in-out;
-    border-radius: 10px;
-    color: $white;
-
-    :nth-child(1) {
-      font-size: $mobileFontSizeHeader;
-      text-transform: none;
-      padding: 0 0.25em;
-      font-family: "Vollkorn", serif;
-
-      ::after {
-        @include borders();
-        background: $accent;
-      }
-    }
-
-    :nth-child(2) {
-      @include defaultButton();
-    }
-
-    :nth-child(3) {
-      font-weight: 600;
-    }
-  }
-  .active {
-    left: 0;
-
-    :nth-child(3) {
-      animation: article_information_date 0.5s ease-in-out;
-    }
-
-    :nth-child(2) {
-      animation: button_animation 0.5s ease-in-out;
-    }
-
-    :nth-child(1) {
-      animation: article_information_text 0.5s ease-in-out;
-
-      &::after {
-        animation: border_animation 1s ease-in-out forwards;
-      }
-    }
   }
 }
 
@@ -708,7 +720,7 @@ select {
           font-weight: 600;
           max-width: 60ch;
           color: $accent;
-          font-family: "Vollkorn", serif;
+          font-family: "Raleway", sans-serif;
           border-bottom: 0.05em solid rgba(225, 225, 225, 0.2);
 
           span {
@@ -827,9 +839,13 @@ footer {
   width: 100%;
   color: $white;
   text-align: center;
+  display: flex;
+  place-items: center;
+  justify-content: center;
   padding: 0.5em;
   background: $black;
   font-size: $desktopFontSizeMain;
+  height: 5em;
 
   header {
     a {

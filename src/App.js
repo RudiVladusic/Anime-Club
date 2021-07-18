@@ -3,9 +3,7 @@ import { useGetLandingContent } from "./APIcalls/useLandingContentCall";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SearchDataContext from "./contexts/SearchDataContext";
 import LandingDataContext from "./contexts/LandingDataContext";
-import SideScrollContext from "./contexts/SideScrollContext";
 import LoadingAndErrorContext from "./contexts/LoadingAndErrorContext";
-import { sideScroll } from "./functions/sideScroll";
 import "./styles/css/style.css";
 import Search from "./components/Search";
 import ResultBlock from "./components/ResultBlock";
@@ -35,13 +33,12 @@ function App() {
 
           <Route exact path="/">
             <Hero />
-            <SideScrollContext.Provider value={{ sideScroll }}>
-              <LandingDataContext.Provider
-                value={{ upcomingAnime, airingAnime, specials }}
-              >
-                <Content />
-              </LandingDataContext.Provider>
-            </SideScrollContext.Provider>
+
+            <LandingDataContext.Provider
+              value={{ upcomingAnime, airingAnime, specials }}
+            >
+              <Content />
+            </LandingDataContext.Provider>
           </Route>
 
           <SearchDataContext.Provider
@@ -52,22 +49,16 @@ function App() {
             >
               <Route exact path="/search">
                 <Search />
-
-                <SideScrollContext.Provider value={{ sideScroll }}>
-                  <ResultBlock />
-                </SideScrollContext.Provider>
               </Route>
             </LoadingAndErrorContext.Provider>
           </SearchDataContext.Provider>
 
           <Route exact path="/discover">
-            <SideScrollContext.Provider value={{ sideScroll }}>
-              <LoadingAndErrorContext.Provider
-                value={{ isLoading, isError, setIsLoading }}
-              >
-                <Discover />
-              </LoadingAndErrorContext.Provider>
-            </SideScrollContext.Provider>
+            <LoadingAndErrorContext.Provider
+              value={{ isLoading, isError, setIsLoading }}
+            >
+              <Discover />
+            </LoadingAndErrorContext.Provider>
           </Route>
 
           <Route exact path="/anime/:id">

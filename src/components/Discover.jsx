@@ -1,19 +1,20 @@
-import { Link } from "react-router-dom";
-import { useRef, useState, useEffect, useContext } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { useState, useEffect, useContext } from "react";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { filterAnimeCall } from "../APIcalls/filterAnimeCall";
 import AnimeCard from "./AnimeCard";
 import Loading from "./Loading";
-import SideScrollContext from "../contexts/SideScrollContext";
 import LoadingAndErrorContext from "../contexts/LoadingAndErrorContext";
 import { getRandomGenre } from "../functions/getRandomGenre";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation } from "swiper";
+import "swiper/swiper-bundle.css";
+
 const Discover = () => {
+  SwiperCore.use([Navigation]);
   const [discoverAnime, setDiscoverAnime] = useState(Array);
   const { isLoading, setIsLoading } = useContext(LoadingAndErrorContext);
-  const animeDiscoverCont = useRef(null);
+
   const [selectValue, setSelectValue] = useState("select");
-  const { sideScroll } = useContext(SideScrollContext);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -62,33 +63,54 @@ const Discover = () => {
       {isLoading ? (
         <Loading />
       ) : discoverAnime.length === 0 ? null : (
-        <div className="control-cont">
-          <div className="discover-content__cont" ref={animeDiscoverCont}>
+        <div className="discover-content__cont">
+          <Swiper
+            spaceBetween={25}
+            tag="section"
+            wrapperTag="div"
+            id="discover"
+            navigation
+            centeredSlides="true"
+            centeredSlidesBounds="true"
+            grabCursor="true"
+            breakpoints={{
+              0: {
+                slidesPerView: 2,
+              },
+
+              500: {
+                slidesPerView: 2,
+              },
+
+              768: {
+                slidesPerView: 3,
+              },
+
+              820: {
+                slidesPerView: 4,
+              },
+
+              1000: {
+                slidesPerView: 5,
+              },
+
+              1200: {
+                slidesPerView: 6,
+              },
+
+              1400: {
+                slidesPerView: 7,
+              },
+            }}
+          >
             {discoverAnime.map((anime) => {
               return (
-                <Link key={anime.mal_id} to={`/anime/${anime.mal_id}`}>
+                <SwiperSlide key={anime.mal_id}>
                   <AnimeCard anime={anime} />
-                </Link>
+                </SwiperSlide>
               );
             })}
-          </div>
-
-          <button
-            className="control-cont__left"
-            onClick={() => {
-              sideScroll(animeDiscoverCont.current, 10, 450, -25);
-            }}
-          >
-            <FontAwesomeIcon icon={faArrowLeft} />
-          </button>
-          <button
-            className="control-cont__right"
-            onClick={() => {
-              sideScroll(animeDiscoverCont.current, 10, 450, 25);
-            }}
-          >
-            <FontAwesomeIcon icon={faArrowRight} />
-          </button>
+          </Swiper>
         </div>
       )}
     </main>

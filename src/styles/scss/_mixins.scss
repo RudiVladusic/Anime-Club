@@ -1,15 +1,3 @@
-@mixin mainContentStyles {
-  display: grid;
-  gap: 2.5em 2.5em;
-  grid-template-columns: repeat(20, 200px);
-  scrollbar-width: none;
-  overflow-x: scroll;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
 @mixin defaultFontSizeQuery {
   font-size: $mobileFontSizeSmaller;
   @media (min-width: 1200px) {

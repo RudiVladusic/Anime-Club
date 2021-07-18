@@ -4,6 +4,7 @@ import { useEffect, useContext } from "react";
 import { searchAnimeCall } from "../APIcalls/searchAnimeCall";
 import SearchDataContext from "../contexts/SearchDataContext";
 import LoadingAndErrorContext from "../contexts/LoadingAndErrorContext";
+import ResultBlock from "./ResultBlock";
 const Search = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -15,6 +16,7 @@ const Search = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     setIsLoading(true);
+    setIsError(false);
     searchAnimeCall(search)
       .then((data) => {
         setAnimeResults(data.results);
@@ -29,18 +31,21 @@ const Search = () => {
   };
 
   return (
-    <form onSubmit={handleSearch}>
-      <input
-        type="search"
-        onChange={(e) => setSearch(e.target.value)}
-        value={search}
-        placeholder={`Search for anime...`}
-      />
+    <main className="search-content">
+      <form onSubmit={handleSearch}>
+        <input
+          type="search"
+          onChange={(e) => setSearch(e.target.value)}
+          value={search}
+          placeholder={`Search for anime...`}
+        />
 
-      <button>
-        <FontAwesomeIcon icon={faSearch} />
-      </button>
-    </form>
+        <button>
+          <FontAwesomeIcon icon={faSearch} />
+        </button>
+      </form>
+      <ResultBlock />
+    </main>
   );
 };
 

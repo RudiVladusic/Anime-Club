@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom";
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import AnimeCard from "./AnimeCard";
 import Loading from "./Loading";
-import SideScrollContext from "../contexts/SideScrollContext";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation } from "swiper";
+
 import LoadingAndErrorContext from "../contexts/LoadingAndErrorContext";
 import SearchDataContext from "../contexts/SearchDataContext";
 const ResultBlock = () => {
-  const animeCont = useRef(null);
-  const { sideScroll } = useContext(SideScrollContext);
+  SwiperCore.use([Navigation]);
   const { isLoading, isError } = useContext(LoadingAndErrorContext);
   const { animeResults } = useContext(SearchDataContext);
   return (
-    <main className="search-content">
+    <>
       {isLoading && <Loading />}
       {isError && (
         <header className="error">
@@ -22,34 +22,55 @@ const ResultBlock = () => {
       )}
 
       {!isLoading && !isError && animeResults.length > 0 && (
-        <div className="control-cont">
-          <section className="search-content__cont" ref={animeCont}>
-            {animeResults.map((anime) => (
-              <Link key={anime.mal_id} to={`/anime/${anime.mal_id}`}>
-                <AnimeCard anime={anime} />
-              </Link>
-            ))}
+        <section className="search-content__cont">
+          <Swiper
+            spaceBetween={25}
+            tag="section"
+            wrapperTag="div"
+            id="search"
+            navigation
+            centeredSlides="true"
+            centeredSlidesBounds="true"
+            grabCursor="true"
+            breakpoints={{
+              0: {
+                slidesPerView: 2,
+              },
 
-            <button
-              className="control-cont__left"
-              onClick={() => {
-                sideScroll(animeCont.current, 10, 450, -25);
-              }}
-            >
-              <FontAwesomeIcon icon={faArrowLeft} />
-            </button>
-            <button
-              className="control-cont__right"
-              onClick={() => {
-                sideScroll(animeCont.current, 10, 450, 25);
-              }}
-            >
-              <FontAwesomeIcon icon={faArrowRight} />
-            </button>
-          </section>
-        </div>
+              500: {
+                slidesPerView: 2,
+              },
+
+              768: {
+                slidesPerView: 3,
+              },
+
+              820: {
+                slidesPerView: 4,
+              },
+
+              1000: {
+                slidesPerView: 5,
+              },
+
+              1200: {
+                slidesPerView: 6,
+              },
+
+              1400: {
+                slidesPerView: 7,
+              },
+            }}
+          >
+            {animeResults.map((anime) => (
+              <SwiperSlide tag="div" key={anime.mal_id}>
+                <AnimeCard anime={anime} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </section>
       )}
-    </main>
+    </>
   );
 };
 
