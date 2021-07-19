@@ -153,13 +153,10 @@ html {
   scrollbar-color: #e3cdb3 #060607;
   scrollbar-width: thin;
   height: 100%;
-  overflow: hidden;
 }
 
 body {
   height: 100%;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
 }
 
 img {

@@ -1,5 +1,4 @@
 import { useContext } from "react";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AnimeCard from "./AnimeCard";
 import Loading from "./Loading";
 import { Swiper, SwiperSlide } from "swiper/react";

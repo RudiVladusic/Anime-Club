@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from "react";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { filterAnimeCall } from "../APIcalls/filterAnimeCall";
 import AnimeCard from "./AnimeCard";
 import Loading from "./Loading";

@@ -18,13 +18,10 @@ html {
   scrollbar-color: $accent $main-bg-color;
   scrollbar-width: thin;
   height: 100%;
-  overflow: hidden;
 }
 
 body {
   height: 100%;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
 }
 
 img {

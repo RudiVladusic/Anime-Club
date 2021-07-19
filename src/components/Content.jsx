@@ -1,5 +1,3 @@
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { useContext } from "react";
 import AnimeCard from "./AnimeCard";
 import LandingDataContext from "../contexts/LandingDataContext";
