@@ -20,10 +20,7 @@ export const useGetLandingContent = (endpoint) => {
 
   useEffect(() => {
     landingContentCall(`${endpoint}upcoming`)
-      .then((result) => {
-        setUpcomingAnime(result.top);
-        console.log(result.top);
-      })
+      .then((result) => setUpcomingAnime(result.top))
       .catch((err) => console.log(err));
 
     landingContentCall(`${endpoint}airing`)

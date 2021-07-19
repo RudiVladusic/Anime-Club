@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AnimeCard from "./AnimeCard";
 import Loading from "./Loading";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -35,26 +34,32 @@ const ResultBlock = () => {
             breakpoints={{
               0: {
                 slidesPerView: 2,
+                freeMode: true,
+                centeredSlides: false,
               },
 
               500: {
                 slidesPerView: 2,
+                freeMode: true,
+                centeredSlides: false,
               },
 
               768: {
                 slidesPerView: 3,
+                freeMode: true,
+                centeredSlides: false,
               },
 
               820: {
-                slidesPerView: 4,
+                slidesPerView: 3,
               },
 
               1000: {
-                slidesPerView: 5,
+                slidesPerView: 4,
               },
 
               1200: {
-                slidesPerView: 6,
+                slidesPerView: 5,
               },
 
               1400: {

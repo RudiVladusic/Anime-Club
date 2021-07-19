@@ -10,8 +10,6 @@
   box-sizing: border-box;
 }
 
-// font-family: 'Raleway', sans-serif;
-
 html {
   line-height: 1.6;
   font-family: "Roboto", sans-serif;
@@ -30,7 +28,6 @@ img {
   width: 100%;
   height: auto;
   object-fit: cover;
-  // border-radius: 10px;
   display: block;
 }
 
@@ -44,14 +41,12 @@ img {
 }
 
 .swiper-wrapper {
-  // padding: 1em 0;
-  // padding: 0.5em;
+  animation: fade_in_article 0.75s ease-in-out;
   .swiper-slide {
     width: 100%;
     height: 100%;
 
     img {
-      // height: 100%;
       object-fit: fill;
       width: 100%;
       height: 25em;
@@ -63,7 +58,6 @@ img {
 
     article {
       width: 100%;
-      animation: fade_in_article 0.5s ease-in-out;
       transition: all 0.25s ease-in-out;
       overflow: hidden;
       border-radius: 10px;
@@ -85,10 +79,9 @@ img {
       margin: 0 auto;
       background: rgba(0, 0, 0, 0.65);
       box-shadow: 0.5em 0.5em 0.75em rgba(0, 0, 0, 0.85);
-
       border-radius: 0.75em;
 
-      :nth-child(1) {
+      .cardHeader {
         font-size: $mobileFontSizeHeader;
         text-transform: none;
         padding: 0 0.25em;
@@ -99,15 +92,14 @@ img {
         }
       }
 
-      :nth-child(2) {
+      .cardDetails {
         @include defaultButton();
         @media (max-width: 768px) {
           font-size: $mobileFontSizeSmaller;
         }
       }
 
-      :nth-child(3) {
-        // font-weight: 600;
+      .cardStartDate {
         @media (max-width: 768px) {
           font-size: $mobileFontSizeSmaller;
         }
@@ -209,8 +201,8 @@ nav {
 }
 
 .mobile-nav {
-  width: 100%;
-  transform: translateY(-100%);
+  width: 0;
+  transform: translateX(-100vw);
   height: 100%;
   flex-flow: column wrap;
   justify-content: space-evenly;
@@ -219,7 +211,7 @@ nav {
   position: fixed;
   top: 0;
   background: rgba(0, 0, 0, 0.95);
-  transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in;
 
   a {
     color: $white;
@@ -231,21 +223,24 @@ nav {
 
   :nth-child(1) {
     transform: translateX(-100em);
+    opacity: 0;
   }
 
   :nth-child(2) {
-    transform: translateX(100em);
+    transform: translateX(-100em);
+    opacity: 0;
   }
 
   :nth-child(3) {
-    transform: translateY(100em);
+    transform: translateX(-100em);
+    opacity: 0;
   }
 }
 
 .active {
   display: flex;
-  width: 100%;
-  transform: translateY(0);
+  width: 50%;
+  transform: translateX(0);
 
   :nth-child(1) {
     opacity: 1;
@@ -262,11 +257,12 @@ nav {
   :nth-child(3) {
     opacity: 1;
     transition-delay: 0.35s;
-    transform: translateY(0);
+    transform: translateX(0);
   }
 }
 
 .hero {
+  animation: fade_in_article 0.5s ease-in-out;
   height: calc(100vh - 10em);
   width: 100%;
   display: flex;
@@ -276,11 +272,8 @@ nav {
   padding: 0.5em;
   position: relative !important;
   overflow: hidden;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
     url("../../images/hero.jpg") no-repeat center center / cover;
-  will-change: transform;
-  mix-blend-mode: lighten;
-
   @media (max-width: 768px) {
     height: 25em;
   }
@@ -355,28 +348,6 @@ nav {
   flex-direction: column;
   gap: 2em 2em;
   padding: 2em 0;
-  // background: $main-bg-color;
-}
-
-.control-cont {
-  position: relative;
-
-  .control-cont__left {
-    @include controlButtons();
-    left: 0.25em;
-  }
-
-  .control-cont__right {
-    @include controlButtons();
-    right: 0.25em;
-  }
-
-  .control-cont__left,
-  .control-cont__right {
-    @media (max-width: 768px) {
-      display: none;
-    }
-  }
 }
 
 .main-content__header {
@@ -387,12 +358,13 @@ nav {
   display: flex;
   place-items: center;
   font-family: "Raleway", sans-serif;
+  width: 100%;
 
+  &::before,
   &::after {
     @include borders();
     background: $accent;
-    margin: 0 0em 0 0.25em;
-    animation: border_animation 1s ease-in forwards;
+    margin: 0 0.25em;
   }
   @media (max-width: 768px) {
     font-size: $mobileFontSizeHeader;
@@ -402,13 +374,13 @@ nav {
 form {
   border: none;
   outline: none;
-  max-width: 20em;
+  width: 80%;
+  max-width: 30em;
   display: flex;
   justify-content: space-evenly;
   margin: 0 auto;
   padding: 1em;
   font-size: $desktopFontSizeMain;
-  animation: fade_in_article 0.5s ease-in-out;
 
   button {
     padding: 0.5em;
@@ -433,18 +405,26 @@ form {
     }
 
     &:focus {
-      box-shadow: 0.15em 0.15em 0.15em -0.06em lighten($accent, 5%),
-        -0.09em -0.09em 0.15em -0.06em lighten($accent, 5%);
+      box-shadow: 0.15em 0.15em 0.15em -0.06em lighten($white, 5%),
+        -0.09em -0.09em 0.15em -0.06em lighten($white, 5%);
     }
   }
 }
 
 .search-content {
+  min-height: calc(100vh - 5em);
+  animation: fade_in_article 0.5s ease-in-out;
+  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+    url("../../images/search.jpg") no-repeat center center/cover;
+
   display: flex;
   flex-direction: column;
-  place-content: center start;
-  gap: 1em 1em;
-  min-height: calc(100vh - 5em);
+  place-items: center;
+  justify-content: flex-start;
+  gap: 2em;
+  header {
+    padding: 1em 0.75em;
+  }
 }
 
 .error {
@@ -461,7 +441,7 @@ form {
   height: 6.2em;
   border: 0.25em solid $accent;
   border-right: 0.25em solid $night-sky;
-  margin: 10em auto 0 auto;
+  align-self: center;
   border-radius: 50%;
   background: transparent;
   animation: loading_animation 1.5s linear infinite;
@@ -470,6 +450,13 @@ form {
 .discover-content {
   height: calc(100vh - 2em);
   animation: fade_in_article 0.5s ease-in-out;
+  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+    url("../../images/discover.png") no-repeat center center/cover;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  justify-content: flex-start;
+  gap: 2em;
   header {
     padding: 1em 0.75em;
   }
@@ -477,11 +464,13 @@ form {
 
 select {
   background: $white;
-  color: $night-sky;
+  border: none;
+  outline: none;
+  color: $black;
   font-size: $desktopFontSizeMain;
-  margin: 0 0 1em 1em;
+  margin: 0 auto;
   padding: 0.25em 0;
-
+  width: 80%;
   @media (max-width: 768px) {
     font-size: $mobileFontSizeSmaller;
   }
@@ -523,6 +512,7 @@ select {
 }
 
 .actor-details {
+  animation: fade_in_article 0.5s ease-in-out;
   display: flex;
   justify-content: center;
   place-items: center;
@@ -536,20 +526,20 @@ select {
     flex-direction: column;
     gap: 2em 2em;
     width: 100%;
-    @media (min-width: 1200px) {
-      width: 80%;
-    }
   }
 
   .actor-details__image {
     display: flex;
     flex-flow: row wrap;
+    justify-content: center;
+    place-items: center;
     gap: 1em;
-    padding: 1em;
-    max-width: 60ch;
+    padding: 0.75em;
+    width: 100%;
     img {
       width: 12.5em;
       height: 18.7em;
+      border-radius: 10px;
 
       @media (max-width: 768px) {
         border-radius: 50%;
@@ -570,16 +560,16 @@ select {
 
     :nth-child(2) {
       color: $accent;
+      text-align: center;
     }
   }
 
   .actor-details__biography {
     padding: 0.5em;
     border-left: 0.05em solid rgba(225, 225, 225, 0.2);
-    // overflow: hidden;
     word-break: break-all;
     white-space: normal;
-    width: 100%;
+
     p {
       max-width: 60ch !important;
       width: 100%;
@@ -595,54 +585,6 @@ select {
       text-align: center;
       span {
         color: $accent;
-      }
-    }
-  }
-
-  .actor-details__roles--container {
-    display: grid;
-    gap: 2em;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    place-items: center;
-    a {
-      text-decoration: none;
-      position: relative;
-      overflow: hidden;
-      width: 12.5em;
-      height: 18.7em;
-      animation: fade_in_article 0.5s ease-in-out;
-      article {
-        width: 100%;
-        height: 100%;
-      }
-
-      .actor-details__role--information {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: rgba(20, 20, 20, 0.75);
-        transform: translateX(-100%);
-        transition: transform 0.25s ease;
-        display: flex;
-        place-items: center;
-        flex-direction: column;
-        justify-content: space-evenly;
-        padding: 0.5em;
-        text-align: center;
-
-        button {
-          @include defaultButton();
-        }
-
-        @media (max-width: 786px) {
-          transform: translateX(0);
-        }
-      }
-
-      &:hover {
-        .actor-details__role--information {
-          transform: translateX(0);
-        }
       }
     }
   }
@@ -691,13 +633,14 @@ select {
 
     .detail-content__image {
       padding: 0.5em;
-
       @media (max-width: 768px) {
-        width: 9.35em;
-        height: 9.35em;
+        width: 9em;
+        height: 9em;
 
         img {
           border-radius: 50%;
+          width: 100%;
+          height: 100%;
         }
       }
     }
@@ -816,10 +759,10 @@ select {
     gap: 1em 1em;
     flex-direction: column;
     place-self: end center;
-    box-shadow: 0px 0px 1em 0.15em $night-sky;
+    box-shadow: 0.5em 0.5em 0.75em rgba(0, 0, 0, 0.85);
     .detail-content__cast--actors {
       place-items: center;
-      box-shadow: 0 0.25em 1em -1em $accent;
+      border-bottom: 0.05em solid rgba(225, 225, 225, 0.2);
       flex-wrap: nowrap;
       a,
       p {
@@ -845,7 +788,7 @@ footer {
   padding: 0.5em;
   background: $black;
   font-size: $desktopFontSizeMain;
-  height: 5em;
+  height: min-content;
 
   header {
     a {

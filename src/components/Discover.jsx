@@ -33,7 +33,7 @@ const Discover = () => {
           filterAnimeCall(e.target.value)
             .then(setIsLoading(true))
             .then((data) => {
-              setDiscoverAnime(data.anime.slice(0, 20));
+              setDiscoverAnime(data.anime);
               setIsLoading(false);
             })
             .catch((err) => {
@@ -76,26 +76,32 @@ const Discover = () => {
             breakpoints={{
               0: {
                 slidesPerView: 2,
+                freeMode: true,
+                centeredSlides: false,
               },
 
               500: {
                 slidesPerView: 2,
+                freeMode: true,
+                centeredSlides: false,
               },
 
               768: {
                 slidesPerView: 3,
+                freeMode: true,
+                centeredSlides: false,
               },
 
               820: {
-                slidesPerView: 4,
+                slidesPerView: 3,
               },
 
               1000: {
-                slidesPerView: 5,
+                slidesPerView: 4,
               },
 
               1200: {
-                slidesPerView: 6,
+                slidesPerView: 5,
               },
 
               1400: {

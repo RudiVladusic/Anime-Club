@@ -32,6 +32,7 @@ const Search = () => {
 
   return (
     <main className="search-content">
+      <header className="main-content__header">Search</header>
       <form onSubmit={handleSearch}>
         <input
           type="search"

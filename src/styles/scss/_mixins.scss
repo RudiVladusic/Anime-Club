@@ -30,32 +30,5 @@
   background: $accent;
   height: 0.05em;
   display: block;
-}
-
-@mixin controlButtons {
-  position: absolute;
-  top: 50%;
-  background: rgba(20, 20, 20, 0.8);
-  color: $white;
-  width: 1.8em;
-  height: 1.8em;
-  border-radius: 50%;
-  transform: translate(0, -50%);
-  background: $night-sky;
-  border: none;
-  outline: none;
-  font-family: inherit;
-  font-size: 1.75em;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all 0.25s ease-in-out;
-}
-
-@mixin loadingStyle {
-  background: white;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  animation: loading_animation 0.75s ease-in-out alternate infinite;
-  margin: 0.25em;
+  width: 100%;
 }

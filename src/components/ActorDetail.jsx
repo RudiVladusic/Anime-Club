@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loading from "./Loading";
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation } from "swiper";
+import AnimeCard from "./AnimeCard";
 const ActorDetail = ({ isLoading, setIsLoading }) => {
   const { id } = useParams();
   const [actorDetails, setActorDetails] = useState([]);
   const api = `https://api.jikan.moe/v3/person/`;
 
+  SwiperCore.use([Navigation]);
   useEffect(() => {
     const fetchActorDetails = async () => {
       setIsLoading(true);
@@ -55,29 +58,64 @@ const ActorDetail = ({ isLoading, setIsLoading }) => {
                     <span>{name}</span> has also appeared in:
                   </h2>
                 </header>
-                <div className="actor-details__roles--container">
+                <Swiper
+                  spaceBetween={25}
+                  tag="section"
+                  wrapperTag="div"
+                  id="search"
+                  navigation
+                  centeredSlides="true"
+                  centeredSlidesBounds="true"
+                  grabCursor="true"
+                  breakpoints={{
+                    0: {
+                      slidesPerView: 2,
+                      freeMode: true,
+                      centeredSlides: false,
+                    },
+
+                    500: {
+                      slidesPerView: 2,
+                      freeMode: true,
+                      centeredSlides: false,
+                    },
+
+                    768: {
+                      slidesPerView: 3,
+                      freeMode: true,
+                      centeredSlides: false,
+                    },
+
+                    820: {
+                      slidesPerView: 3,
+                    },
+
+                    1000: {
+                      slidesPerView: 4,
+                    },
+
+                    1200: {
+                      slidesPerView: 5,
+                    },
+
+                    1400: {
+                      slidesPerView: 7,
+                    },
+                  }}
+                >
                   {voice_acting_roles
                     .filter((role) => {
                       return role.role === "Main";
                     })
-                    .slice(0, 20)
+
                     .map((animeName, index) => {
                       return (
-                        <Link
-                          to={`/anime/${animeName.anime.mal_id}`}
-                          key={index}
-                        >
-                          <article className="actor-details__role">
-                            <div className="actor-details__role--information">
-                              <header>{animeName.anime.name}</header>
-                              <button>Details</button>
-                            </div>
-                            <img src={animeName.anime.image_url} alt="" />
-                          </article>
-                        </Link>
+                        <SwiperSlide key={index}>
+                          <AnimeCard anime={animeName.anime} />
+                        </SwiperSlide>
                       );
                     })}
-                </div>
+                </Swiper>
               </div>
             </article>
           );

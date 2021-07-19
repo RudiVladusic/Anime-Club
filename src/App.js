@@ -6,7 +6,6 @@ import LandingDataContext from "./contexts/LandingDataContext";
 import LoadingAndErrorContext from "./contexts/LoadingAndErrorContext";
 import "./styles/css/style.css";
 import Search from "./components/Search";
-import ResultBlock from "./components/ResultBlock";
 import Content from "./components/Content";
 import AnimeDetail from "./components/AnimeDetail";
 import Discover from "./components/Discover";

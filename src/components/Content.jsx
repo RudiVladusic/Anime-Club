@@ -18,153 +18,183 @@ const Content = () => {
         <p>Trending</p>
       </header>
 
-      <Swiper
-        spaceBetween={25}
-        tag="section"
-        wrapperTag="div"
-        id="trending"
-        navigation
-        centeredSlides="true"
-        centeredSlidesBounds="true"
-        grabCursor="true"
-        breakpoints={{
-          0: {
-            slidesPerView: 2,
-          },
+      {airingAnime.length > 0 ? (
+        <Swiper
+          spaceBetween={25}
+          tag="section"
+          wrapperTag="div"
+          id="trending"
+          navigation
+          centeredSlides="true"
+          centeredSlidesBounds="true"
+          grabCursor="true"
+          breakpoints={{
+            0: {
+              slidesPerView: 2,
+              freeMode: true,
+              centeredSlides: false,
+            },
 
-          500: {
-            slidesPerView: 2,
-          },
+            500: {
+              slidesPerView: 2,
+              freeMode: true,
+              centeredSlides: false,
+            },
 
-          768: {
-            slidesPerView: 3,
-          },
+            768: {
+              slidesPerView: 3,
+              freeMode: true,
+              centeredSlides: false,
+            },
 
-          820: {
-            slidesPerView: 3,
-          },
+            820: {
+              slidesPerView: 3,
+            },
 
-          1000: {
-            slidesPerView: 4,
-          },
+            1000: {
+              slidesPerView: 4,
+            },
 
-          1200: {
-            slidesPerView: 5,
-          },
+            1200: {
+              slidesPerView: 5,
+            },
 
-          1400: {
-            slidesPerView: 7,
-          },
-        }}
-      >
-        {airingAnime.map((airing) => {
-          return (
-            <SwiperSlide tag="div" key={airing.mal_id}>
-              <AnimeCard anime={airing} />
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+            1400: {
+              slidesPerView: 7,
+            },
+          }}
+        >
+          {airingAnime.map((airing) => {
+            return (
+              <SwiperSlide tag="div" key={airing.mal_id}>
+                <AnimeCard anime={airing} />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      ) : (
+        <Loading />
+      )}
 
       <header className="main-content__header">Upcoming </header>
 
-      <Swiper
-        spaceBetween={25}
-        tag="section"
-        wrapperTag="div"
-        id="upcoming"
-        navigation
-        centeredSlides="true"
-        centeredSlidesBounds="true"
-        grabCursor="true"
-        breakpoints={{
-          0: {
-            slidesPerView: 2,
-          },
+      {upcomingAnime.length > 0 ? (
+        <Swiper
+          spaceBetween={25}
+          tag="section"
+          wrapperTag="div"
+          id="upcoming"
+          navigation
+          centeredSlides="true"
+          centeredSlidesBounds="true"
+          grabCursor="true"
+          breakpoints={{
+            0: {
+              slidesPerView: 2,
+              freeMode: true,
+              centeredSlides: false,
+            },
 
-          500: {
-            slidesPerView: 2,
-          },
+            500: {
+              slidesPerView: 2,
+              freeMode: true,
+              centeredSlides: false,
+            },
 
-          768: {
-            slidesPerView: 3,
-          },
+            768: {
+              slidesPerView: 3,
+              freeMode: true,
+              centeredSlides: false,
+            },
 
-          820: {
-            slidesPerView: 3,
-          },
+            820: {
+              slidesPerView: 3,
+            },
 
-          1000: {
-            slidesPerView: 4,
-          },
+            1000: {
+              slidesPerView: 4,
+            },
 
-          1200: {
-            slidesPerView: 5,
-          },
+            1200: {
+              slidesPerView: 5,
+            },
 
-          1400: {
-            slidesPerView: 7,
-          },
-        }}
-      >
-        {upcomingAnime.map((upcoming) => {
-          return (
-            <SwiperSlide key={upcoming.mal_id} tag="div">
-              <AnimeCard anime={upcoming} />
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+            1400: {
+              slidesPerView: 7,
+            },
+          }}
+        >
+          {upcomingAnime.map((upcoming) => {
+            return (
+              <SwiperSlide key={upcoming.mal_id} tag="div">
+                <AnimeCard anime={upcoming} />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      ) : (
+        <Loading />
+      )}
 
       <header className="main-content__header">Specials </header>
 
-      <Swiper
-        spaceBetween={25}
-        tag="section"
-        wrapperTag="div"
-        id="specials"
-        navigation
-        centeredSlides="true"
-        centeredSlidesBounds="true"
-        grabCursor="true"
-        breakpoints={{
-          0: {
-            slidesPerView: 2,
-          },
+      {specials.length > 0 ? (
+        <Swiper
+          spaceBetween={25}
+          tag="section"
+          wrapperTag="div"
+          id="specials"
+          navigation
+          centeredSlides="true"
+          centeredSlidesBounds="true"
+          grabCursor="true"
+          breakpoints={{
+            0: {
+              slidesPerView: 2,
+              freeMode: true,
+              centeredSlides: false,
+            },
 
-          500: {
-            slidesPerView: 2,
-          },
+            500: {
+              slidesPerView: 2,
+              freeMode: true,
+              centeredSlides: false,
+            },
 
-          768: {
-            slidesPerView: 3,
-          },
+            768: {
+              slidesPerView: 3,
+              freeMode: true,
+              centeredSlides: false,
+            },
 
-          820: {
-            slidesPerView: 3,
-          },
+            820: {
+              slidesPerView: 3,
+            },
 
-          1000: {
-            slidesPerView: 4,
-          },
+            1000: {
+              slidesPerView: 4,
+            },
 
-          1200: {
-            slidesPerView: 5,
-          },
+            1200: {
+              slidesPerView: 5,
+            },
 
-          1400: {
-            slidesPerView: 7,
-          },
-        }}
-      >
-        {specials.map((specials) => {
-          return (
-            <SwiperSlide key={specials.mal_id} tag="div">
-              <AnimeCard anime={specials} />
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+            1400: {
+              slidesPerView: 7,
+            },
+          }}
+        >
+          {specials.map((specials) => {
+            return (
+              <SwiperSlide key={specials.mal_id} tag="div">
+                <AnimeCard anime={specials} />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      ) : (
+        <Loading />
+      )}
     </main>
   );
 };

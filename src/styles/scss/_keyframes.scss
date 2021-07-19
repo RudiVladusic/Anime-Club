@@ -43,16 +43,6 @@
   }
 }
 
-@keyframes border_animation {
-  0% {
-    width: 0;
-  }
-
-  to {
-    width: 100%;
-  }
-}
-
 @keyframes article_information_date {
   from {
     transform: translateY(100%);

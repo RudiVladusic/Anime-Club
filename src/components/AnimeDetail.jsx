@@ -231,7 +231,7 @@ const AnimeDetail = () => {
                         style={{ width: "40px", height: "40px" }}
                       />
                       <Link to={`/anime/cast/${actorId}`}>{name}</Link>
-                      <p>{charName}</p>
+                      <p>{`As ${charName}`}</p>
                     </article>
                   );
                 })
