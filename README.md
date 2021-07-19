@@ -12,7 +12,8 @@ React JS, HTML/CSS, Font-Awesome free icons library, [Jikan API](https://jikan.m
 
 - Add 404 page
 - Add "more like this" component
-- Add Swiper JS
+- Add Swiper JS // done
+- Add bookmark feature
 
 ## Future plans
 
