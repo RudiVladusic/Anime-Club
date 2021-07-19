@@ -62,7 +62,7 @@ const ActorDetail = ({ isLoading, setIsLoading }) => {
                   spaceBetween={25}
                   tag="section"
                   wrapperTag="div"
-                  id="search"
+                  id="actorRoles"
                   navigation
                   centeredSlides="true"
                   centeredSlidesBounds="true"
@@ -70,21 +70,13 @@ const ActorDetail = ({ isLoading, setIsLoading }) => {
                   breakpoints={{
                     0: {
                       slidesPerView: 2,
-                      freeMode: true,
-                      centeredSlides: false,
                     },
 
                     500: {
                       slidesPerView: 2,
-                      freeMode: true,
-                      centeredSlides: false,
                     },
 
-                    768: {
-                      slidesPerView: 3,
-                      freeMode: true,
-                      centeredSlides: false,
-                    },
+                    768: {},
 
                     820: {
                       slidesPerView: 3,

@@ -31,20 +31,14 @@ const Content = () => {
           breakpoints={{
             0: {
               slidesPerView: 2,
-              freeMode: true,
-              centeredSlides: false,
             },
 
             500: {
               slidesPerView: 2,
-              freeMode: true,
-              centeredSlides: false,
             },
 
             768: {
               slidesPerView: 3,
-              freeMode: true,
-              centeredSlides: false,
             },
 
             820: {
@@ -91,20 +85,14 @@ const Content = () => {
           breakpoints={{
             0: {
               slidesPerView: 2,
-              freeMode: true,
-              centeredSlides: false,
             },
 
             500: {
               slidesPerView: 2,
-              freeMode: true,
-              centeredSlides: false,
             },
 
             768: {
               slidesPerView: 3,
-              freeMode: true,
-              centeredSlides: false,
             },
 
             820: {
@@ -151,20 +139,14 @@ const Content = () => {
           breakpoints={{
             0: {
               slidesPerView: 2,
-              freeMode: true,
-              centeredSlides: false,
             },
 
             500: {
               slidesPerView: 2,
-              freeMode: true,
-              centeredSlides: false,
             },
 
             768: {
               slidesPerView: 3,
-              freeMode: true,
-              centeredSlides: false,
             },
 
             820: {
