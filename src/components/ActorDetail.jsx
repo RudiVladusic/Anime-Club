@@ -58,56 +58,55 @@ const ActorDetail = ({ isLoading, setIsLoading }) => {
                     <span>{name}</span> has also appeared in:
                   </h2>
                 </header>
-                <Swiper
-                  spaceBetween={25}
-                  tag="section"
-                  wrapperTag="div"
-                  id="actorRoles"
-                  navigation
-                  centeredSlides="true"
-                  centeredSlidesBounds="true"
-                  grabCursor="true"
-                  breakpoints={{
-                    0: {
-                      slidesPerView: 2,
-                    },
+                {voice_acting_roles !== 0 ? (
+                  <Swiper
+                    spaceBetween={25}
+                    tag="section"
+                    wrapperTag="div"
+                    id="actorRoles"
+                    navigation
+                    grabCursor="true"
+                    breakpoints={{
+                      0: {
+                        slidesPerView: 2,
+                      },
 
-                    500: {
-                      slidesPerView: 2,
-                    },
+                      500: {
+                        slidesPerView: 3,
+                      },
 
-                    768: {},
+                      768: {
+                        slidesPerView: 3,
+                      },
 
-                    820: {
-                      slidesPerView: 3,
-                    },
+                      820: {
+                        slidesPerView: 3,
+                      },
 
-                    1000: {
-                      slidesPerView: 4,
-                    },
+                      1000: {
+                        slidesPerView: 4,
+                      },
 
-                    1200: {
-                      slidesPerView: 5,
-                    },
+                      1200: {
+                        slidesPerView: 5,
+                      },
 
-                    1400: {
-                      slidesPerView: 7,
-                    },
-                  }}
-                >
-                  {voice_acting_roles
-                    .filter((role) => {
-                      return role.role === "Main";
-                    })
-
-                    .map((animeName, index) => {
+                      1400: {
+                        slidesPerView: 7,
+                      },
+                    }}
+                  >
+                    {voice_acting_roles.slice(0, 50).map((animeName, index) => {
                       return (
                         <SwiperSlide key={index}>
                           <AnimeCard anime={animeName.anime} />
                         </SwiperSlide>
                       );
                     })}
-                </Swiper>
+                  </Swiper>
+                ) : (
+                  <h2>No roles</h2>
+                )}
               </div>
             </article>
           );

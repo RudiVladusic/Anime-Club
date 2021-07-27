@@ -69,8 +69,6 @@ const Discover = () => {
             wrapperTag="div"
             id="discover"
             navigation
-            centeredSlides="true"
-            centeredSlidesBounds="true"
             grabCursor="true"
             breakpoints={{
               0: {

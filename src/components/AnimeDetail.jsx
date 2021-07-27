@@ -47,28 +47,26 @@ const AnimeDetail = () => {
         throw new Error(message);
       }
       const actorsAreListedCheck = result.characters
-        .slice(0, 20)
+
         .map((voiceActor) => voiceActor.voice_actors)
-        .every((len) => len.length > 0);
+        .some((len) => len.length > 0);
       if (actorsAreListedCheck) {
-        let voiceActorNames = await result.characters
-          .slice(0, 20)
-          .map((character) => {
-            let characterName = character.name;
-            return character.voice_actors
-              .filter((lang) => {
-                return lang.language === "Japanese";
-              })
-              .slice(0, 1)
-              .map((info) => {
-                return {
-                  image: info.image_url,
-                  name: info.name,
-                  charName: characterName,
-                  actorId: info.mal_id,
-                };
-              });
-          });
+        let voiceActorNames = await result.characters.map((character) => {
+          let characterName = character.name;
+          return character.voice_actors
+            .filter((lang) => {
+              return lang.language === "Japanese";
+            })
+            .slice(0, 1)
+            .map((info) => {
+              return {
+                image: info.image_url,
+                name: info.name,
+                charName: characterName,
+                actorId: info.mal_id,
+              };
+            });
+        });
 
         setVoiceActors(voiceActorNames);
       }
@@ -182,7 +180,10 @@ const AnimeDetail = () => {
               <button
                 className="view-full-cast"
                 onClick={() => {
-                  fullCastList.current.scrollIntoView();
+                  fullCastList.current.scrollIntoView({
+                    block: "nearest",
+                    inline: "nearest",
+                  });
                 }}
               >
                 ...View full cast
@@ -212,12 +213,12 @@ const AnimeDetail = () => {
               <h2>Cast</h2>
             </header>
 
-            {voiceActors.length > 0 &&
-            voiceActors.filter((len) => len.length > 0) ? (
+            {voiceActors.length > 0 ? (
               voiceActors
                 .reduce((a, b) => {
                   return a.concat(b);
                 })
+                .slice(0, 50)
                 .map((info, index) => {
                   const { name, image, charName, actorId } = info;
                   return (

@@ -23,8 +23,6 @@ const Content = () => {
           wrapperTag="div"
           id="trending"
           navigation
-          centeredSlides="true"
-          centeredSlidesBounds="true"
           grabCursor="true"
           breakpoints={{
             0: {
@@ -32,7 +30,7 @@ const Content = () => {
             },
 
             500: {
-              slidesPerView: 2,
+              slidesPerView: 3,
             },
 
             768: {
@@ -77,8 +75,6 @@ const Content = () => {
           wrapperTag="div"
           id="upcoming"
           navigation
-          centeredSlides="true"
-          centeredSlidesBounds="true"
           grabCursor="true"
           breakpoints={{
             0: {
@@ -86,7 +82,7 @@ const Content = () => {
             },
 
             500: {
-              slidesPerView: 2,
+              slidesPerView: 3,
             },
 
             768: {
@@ -131,8 +127,6 @@ const Content = () => {
           wrapperTag="div"
           id="specials"
           navigation
-          centeredSlides="true"
-          centeredSlidesBounds="true"
           grabCursor="true"
           breakpoints={{
             0: {
@@ -140,7 +134,7 @@ const Content = () => {
             },
 
             500: {
-              slidesPerView: 2,
+              slidesPerView: 3,
             },
 
             768: {
@@ -175,6 +169,11 @@ const Content = () => {
       ) : (
         <Loading />
       )}
+      <section className="coming-soon">
+        <header>
+          <h2>Features for manga coming soon!</h2>
+        </header>
+      </section>
     </main>
   );
 };

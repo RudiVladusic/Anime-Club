@@ -27,8 +27,6 @@ const ResultBlock = () => {
             wrapperTag="div"
             id="search"
             navigation
-            centeredSlides="true"
-            centeredSlidesBounds="true"
             grabCursor="true"
             breakpoints={{
               0: {
