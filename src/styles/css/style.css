@@ -75,16 +75,6 @@ img {
   overflow: hidden;
 }
 
-.position-fixed {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: #010101;
-  z-index: 999;
-  -webkit-animation: fade_in_article 1s ease-in-out forwards;
-          animation: fade_in_article 1s ease-in-out forwards;
-}
-
 .swiper-container {
   width: 95vw;
 }
@@ -194,6 +184,11 @@ img {
 
 nav {
   background: #010101;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #010101;
+  z-index: 999;
 }
 
 nav .nav-wrapper {
@@ -373,7 +368,7 @@ nav .burger .bar {
 .hero {
   -webkit-animation: fade_in_article 0.5s ease-in-out;
           animation: fade_in_article 0.5s ease-in-out;
-  min-height: calc(100vh - 5em);
+  min-height: calc(100vh + 5em);
   width: 100%;
   overflow: hidden;
   position: relative;
@@ -383,7 +378,7 @@ nav .burger .bar {
 
 .hero-overlay-wrapper {
   position: absolute;
-  top: 10%;
+  top: 15%;
   left: 0;
   right: 0;
   width: 95vw;
@@ -499,7 +494,7 @@ nav .burger .bar {
       grid-template-rows: auto;
   place-items: center;
   gap: 2em 2em;
-  padding: 2em 0;
+  padding: 3em 0;
   background: #010101;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
@@ -609,6 +604,7 @@ form input::placeholder {
       -ms-flex-pack: start;
           justify-content: flex-start;
   gap: 2em;
+  padding: 3em 0;
 }
 
 .search-content header,
@@ -702,7 +698,7 @@ select option {
   display: -ms-grid;
   display: grid;
   place-items: start center;
-  padding: 0.5em;
+  padding: 3em 0.5em;
   background: #060607;
   min-height: calc(100vh + 5em);
 }
@@ -865,7 +861,7 @@ select option {
   display: -ms-grid;
   display: grid;
   place-items: start center;
-  padding: 0.5em;
+  padding: 3em 0.5em;
   background: #060607;
   min-height: calc(100vh + 5em);
 }

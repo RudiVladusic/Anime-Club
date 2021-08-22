@@ -1,24 +1,9 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const Nav = () => {
   const [isNavOpen, setIsNavOpen] = useState(Boolean);
   const [isBurgerOpen, setIsBurgerOpen] = useState(Boolean);
-  const [distance, setDistance] = useState(Number);
-
-  const handleScroll = () => {
-    const position = window.pageYOffset;
-
-    setDistance(position);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   const openMobileMenuHandler = () => {
     setIsNavOpen(!isNavOpen);
@@ -29,7 +14,7 @@ const Nav = () => {
 
   return (
     <>
-      <nav className={distance > 100 ? `position-fixed` : ``}>
+      <nav>
         <div className="nav-wrapper">
           <div className="nav-header">
             <Link to="/">Anime Club</Link>
