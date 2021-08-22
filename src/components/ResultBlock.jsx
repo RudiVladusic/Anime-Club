@@ -22,7 +22,7 @@ const ResultBlock = () => {
       {!isLoading && !isError && animeResults.length > 0 && (
         <section className="search-content__cont">
           <Swiper
-            spaceBetween={25}
+            spaceBetween={20}
             tag="section"
             wrapperTag="div"
             id="search"

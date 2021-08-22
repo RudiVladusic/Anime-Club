@@ -1,33 +1,36 @@
-@mixin defaultFontSizeQuery {
-  font-size: $mobileFontSizeSmaller;
-  @media (min-width: 1200px) {
-    font-size: $desktopFontSizeMain;
-  }
-}
-
 @mixin defaultButton {
   border: none;
   text-transform: uppercase;
   color: $white;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   padding: 0.5em;
-  outline: 0.35em double lighten($white, 10%);
+  border-radius: 1em;
+  border: 0.15em solid $white;
   background: transparent;
   font-size: inherit;
   font-family: inherit;
   cursor: pointer;
-  outline-offset: -0.25em;
-  transition: outline-offset 0.25s ease-in-out;
+  position: relative;
+  transition: all 0.25s ease-in-out;
 
   &:hover {
-    outline: thick double lighten($accent, 10%);
-    outline-offset: 0;
+    border: 0.15em solid $black;
+    color: $black;
+    background: $white;
+  }
+}
+
+@mixin font-weight {
+  font-weight: 400;
+
+  @media (max-width: 768px) {
+    font-weight: 300;
   }
 }
 
 @mixin borders {
   content: "";
-  background: $accent;
+  background: #cbb3e3;
   height: 0.05em;
   display: block;
   width: 100%;

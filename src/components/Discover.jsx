@@ -64,7 +64,7 @@ const Discover = () => {
       ) : discoverAnime.length === 0 ? null : (
         <div className="discover-content__cont">
           <Swiper
-            spaceBetween={25}
+            spaceBetween={20}
             tag="section"
             wrapperTag="div"
             id="discover"
@@ -76,7 +76,7 @@ const Discover = () => {
               },
 
               500: {
-                slidesPerView: 2,
+                slidesPerView: 3,
               },
 
               768: {

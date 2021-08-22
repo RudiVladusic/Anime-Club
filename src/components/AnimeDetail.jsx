@@ -31,11 +31,15 @@ const AnimeDetail = () => {
     producers,
     type,
   } = animeDetail;
+  const message = `Something went wrong while fetching data`;
 
   useEffect(() => {
     const fetchAnimeDetails = async () => {
       const call = await fetch(`${api}${id}`);
       const result = await call.json();
+      if (!call.ok) {
+        throw new Error(message);
+      }
       setAnimeDetail(result);
     };
 
@@ -43,7 +47,6 @@ const AnimeDetail = () => {
       const call = await fetch(`${api}${id}/characters_staff`);
       const result = await call.json();
       if (!call.ok) {
-        const message = `Something went wrong while fetching data`;
         throw new Error(message);
       }
       const actorsAreListedCheck = result.characters
@@ -51,8 +54,8 @@ const AnimeDetail = () => {
         .map((voiceActor) => voiceActor.voice_actors)
         .some((len) => len.length > 0);
       if (actorsAreListedCheck) {
-        let voiceActorNames = await result.characters.map((character) => {
-          let characterName = character.name;
+        const voiceActorNames = await result.characters.map((character) => {
+          const characterName = character.name;
           return character.voice_actors
             .filter((lang) => {
               return lang.language === "Japanese";
@@ -73,9 +76,9 @@ const AnimeDetail = () => {
 
       return;
     };
-    fetchAnimeDetails();
-    fetchRoles();
-  }, [id, api]);
+    fetchAnimeDetails().catch((error) => console.log(error));
+    fetchRoles().catch((error) => console.log(error));
+  }, [id, api, message]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -143,7 +146,7 @@ const AnimeDetail = () => {
 
             <p>
               <span>Studios: </span>
-              {studios.length !== 0
+              {studios.length !== 0 && studios
                 ? studios.map((info, index) => {
                     const { name, url } = info;
                     return (
@@ -192,27 +195,23 @@ const AnimeDetail = () => {
           </aside>
 
           <div className="detail-content-trailer">
-            <div className="detail-content-trailer__video">
-              {trailer_url ? (
+            {trailer_url ? (
+              <div className="detail-content-trailer__video">
                 <iframe
                   title="trailer"
                   src={trailer_url}
                   frameBorder="0"
                   allowFullScreen
                 ></iframe>
-              ) : (
-                <p>
-                  No trailer available <FontAwesomeIcon icon={faFrown} />
-                </p>
-              )}
-            </div>
+              </div>
+            ) : (
+              <p>
+                No trailer available <FontAwesomeIcon icon={faFrown} />
+              </p>
+            )}
           </div>
 
           <div className="detail-content__cast" ref={fullCastList}>
-            <header>
-              <h2>Cast</h2>
-            </header>
-
             {voiceActors.length > 0 ? (
               voiceActors
                 .reduce((a, b) => {
@@ -222,10 +221,7 @@ const AnimeDetail = () => {
                 .map((info, index) => {
                   const { name, image, charName, actorId } = info;
                   return (
-                    <article
-                      key={index}
-                      className="detail-content__cast--actors"
-                    >
+                    <div key={index} className="detail-content__cast--actors">
                       <img
                         src={image}
                         alt=" person"
@@ -233,11 +229,14 @@ const AnimeDetail = () => {
                       />
                       <Link to={`/anime/cast/${actorId}`}>{name}</Link>
                       <p>{`As ${charName}`}</p>
-                    </article>
+                    </div>
                   );
                 })
             ) : (
-              <p>None listed</p>
+              <p>
+                {`The cast for ${title} is not listed`}{" "}
+                <FontAwesomeIcon icon={faFrown} />
+              </p>
             )}
           </div>
         </article>

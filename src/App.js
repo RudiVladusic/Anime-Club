@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useGetLandingContent } from "./APIcalls/useLandingContentCall";
+import { useMangaCall } from "./APIcalls/useMangaCall";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SearchDataContext from "./contexts/SearchDataContext";
 import LandingDataContext from "./contexts/LandingDataContext";
@@ -8,6 +9,7 @@ import "./styles/css/style.css";
 import Search from "./components/Search";
 import Content from "./components/Content";
 import AnimeDetail from "./components/AnimeDetail";
+import MangaDetail from "./components/MangaDetail";
 import Discover from "./components/Discover";
 import Nav from "./components/presentational/Nav";
 import Footer from "./components/presentational/Footer";
@@ -21,9 +23,10 @@ function App() {
   const [search, setSearch] = useState(String);
   const [animeResults, setAnimeResults] = useState(Array);
   const endpoint = `https://api.jikan.moe/v3/top/anime/1/`;
+  const mangaEndpoint = `https://api.jikan.moe/v3/top/manga/1`;
   const { upcomingAnime, airingAnime, specials } =
     useGetLandingContent(endpoint);
-
+  const { manga } = useMangaCall(mangaEndpoint);
   return (
     <Router>
       <Switch>
@@ -34,7 +37,7 @@ function App() {
             <Hero />
 
             <LandingDataContext.Provider
-              value={{ upcomingAnime, airingAnime, specials }}
+              value={{ upcomingAnime, airingAnime, specials, manga }}
             >
               <Content />
             </LandingDataContext.Provider>
@@ -62,6 +65,9 @@ function App() {
 
           <Route exact path="/anime/:id">
             <AnimeDetail />
+          </Route>
+          <Route exact path="/manga/:id">
+            <MangaDetail />
           </Route>
           <Route exact path="/anime/cast/:id">
             <ActorDetail isLoading={isLoading} setIsLoading={setIsLoading} />

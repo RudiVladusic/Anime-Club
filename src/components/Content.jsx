@@ -5,20 +5,20 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/swiper-bundle.css";
 import Loading from "./Loading";
+import MangaCard from "./MangaCard";
 
 const Content = () => {
   SwiperCore.use([Navigation]);
-  const { upcomingAnime, airingAnime, specials } =
+  const { upcomingAnime, airingAnime, specials, manga } =
     useContext(LandingDataContext);
+
   return (
     <main className="main-content">
-      <header className="main-content__header">
-        <p>Trending</p>
-      </header>
+      <header className="main-content__header">Trending</header>
 
       {airingAnime.length > 0 ? (
         <Swiper
-          spaceBetween={25}
+          spaceBetween={20}
           tag="section"
           wrapperTag="div"
           id="trending"
@@ -66,11 +66,11 @@ const Content = () => {
         <Loading />
       )}
 
-      <header className="main-content__header">Upcoming </header>
+      <header className="main-content__header">Upcoming</header>
 
       {upcomingAnime.length > 0 ? (
         <Swiper
-          spaceBetween={25}
+          spaceBetween={20}
           tag="section"
           wrapperTag="div"
           id="upcoming"
@@ -118,11 +118,11 @@ const Content = () => {
         <Loading />
       )}
 
-      <header className="main-content__header">Specials </header>
+      <header className="main-content__header">Specials</header>
 
       {specials.length > 0 ? (
         <Swiper
-          spaceBetween={25}
+          spaceBetween={20}
           tag="section"
           wrapperTag="div"
           id="specials"
@@ -169,11 +169,57 @@ const Content = () => {
       ) : (
         <Loading />
       )}
-      <section className="coming-soon">
-        <header>
-          <h2>Features for manga coming soon!</h2>
-        </header>
-      </section>
+
+      <header className="main-content__header">Manga</header>
+      {manga.length > 0 ? (
+        <Swiper
+          spaceBetween={20}
+          tag="section"
+          wrapperTag="div"
+          id="manga"
+          navigation
+          grabCursor="true"
+          breakpoints={{
+            0: {
+              slidesPerView: 2,
+            },
+
+            500: {
+              slidesPerView: 3,
+            },
+
+            768: {
+              slidesPerView: 3,
+            },
+
+            820: {
+              slidesPerView: 3,
+            },
+
+            1000: {
+              slidesPerView: 4,
+            },
+
+            1200: {
+              slidesPerView: 5,
+            },
+
+            1400: {
+              slidesPerView: 7,
+            },
+          }}
+        >
+          {manga.map((manga) => {
+            return (
+              <SwiperSlide key={manga.mal_id} tag="div">
+                <MangaCard manga={manga} />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      ) : (
+        <Loading />
+      )}
     </main>
   );
 };

@@ -7,11 +7,9 @@ const Nav = () => {
   const [distance, setDistance] = useState(Number);
 
   const handleScroll = () => {
-    let position = window.pageYOffset;
-    let width = window.innerWidth;
-    if (width > 1000) {
-      setDistance(position);
-    }
+    const position = window.pageYOffset;
+
+    setDistance(position);
   };
 
   useEffect(() => {
@@ -31,29 +29,33 @@ const Nav = () => {
 
   return (
     <>
-      <nav className={distance > 300 ? `position-fixed` : ``}>
-        <div className="nav-header">
-          <Link to="/">Anime Club</Link>
-        </div>
-        <div className="desktop-nav-links">
-          <Link to="/search">Search</Link>
+      <nav className={distance > 100 ? `position-fixed` : ``}>
+        <div className="nav-wrapper">
+          <div className="nav-header">
+            <Link to="/">Anime Club</Link>
+          </div>
+          <div className="desktop-nav-links">
+            <Link to="/search">Search</Link>
 
-          <Link to="/about">About</Link>
+            <Link to="/about">About</Link>
 
-          <Link to="/discover">Discover</Link>
-        </div>
+            <Link to="/discover">Discover</Link>
+          </div>
 
-        <div
-          className={isBurgerOpen ? `burger open` : `burger`}
-          onClick={openMobileMenuHandler}
-        >
-          <div className="bar"></div>
-          <div className="bar"></div>
-          <div className="bar"></div>
+          <div
+            className={isBurgerOpen ? `burger open` : `burger`}
+            onClick={openMobileMenuHandler}
+          >
+            <div className="bar"></div>
+            <div className="bar"></div>
+            <div className="bar"></div>
+          </div>
         </div>
       </nav>
 
-      <div className={isNavOpen ? `mobile-nav active` : `mobile-nav`}>
+      <div
+        className={isNavOpen ? `mobile-nav mobile-nav-active` : `mobile-nav`}
+      >
         <Link onClick={openMobileMenuHandler} to="/search">
           Search
         </Link>

@@ -29,17 +29,30 @@ const ActorDetail = ({ isLoading, setIsLoading }) => {
       {!isLoading ? (
         actorDetails &&
         actorDetails.map((details, index) => {
-          const { name, given_name, about, image_url, voice_acting_roles } =
-            details;
+          const {
+            name,
+            given_name,
+            about,
+            image_url,
+            voice_acting_roles,
+            website_url,
+          } = details;
 
           return (
             <article key={index} className="actor-details--container">
-              <div className="actor-details__image">
+              <div className="actor-details__info">
                 <img
                   src={image_url}
                   loading="lazy"
                   alt="portrait of a person"
                 />
+                <h3 className="actor-details__website">
+                  {website_url ? (
+                    <a href={website_url}>{`${name}'s website`}</a>
+                  ) : (
+                    <p>{`${name} does not have a website listed`}</p>
+                  )}
+                </h3>
                 <header className="actor-details__header">
                   <h2>{name && name}</h2>
                   <h2>{given_name && given_name}</h2>
@@ -58,12 +71,13 @@ const ActorDetail = ({ isLoading, setIsLoading }) => {
                     <span>{name}</span> has also appeared in:
                   </h2>
                 </header>
+
                 {voice_acting_roles !== 0 ? (
                   <Swiper
-                    spaceBetween={25}
+                    spaceBetween={20}
                     tag="section"
                     wrapperTag="div"
-                    id="actorRoles"
+                    id="roles"
                     navigation
                     grabCursor="true"
                     breakpoints={{
