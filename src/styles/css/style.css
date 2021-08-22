@@ -494,7 +494,7 @@ nav .burger .bar {
       grid-template-rows: auto;
   place-items: center;
   gap: 2em 2em;
-  padding: 3em 0;
+  padding: 5em 0;
   background: #010101;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
@@ -604,7 +604,7 @@ form input::placeholder {
       -ms-flex-pack: start;
           justify-content: flex-start;
   gap: 2em;
-  padding: 3em 0;
+  padding: 5em 0;
 }
 
 .search-content header,
@@ -698,7 +698,7 @@ select option {
   display: -ms-grid;
   display: grid;
   place-items: start center;
-  padding: 3em 0.5em;
+  padding: 5em 0.5em;
   background: #060607;
   min-height: calc(100vh + 5em);
 }
@@ -861,7 +861,7 @@ select option {
   display: -ms-grid;
   display: grid;
   place-items: start center;
-  padding: 3em 0.5em;
+  padding: 5em 0.5em;
   background: #060607;
   min-height: calc(100vh + 5em);
 }
