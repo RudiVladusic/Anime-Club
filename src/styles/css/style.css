@@ -372,8 +372,8 @@ nav .burger .bar {
   width: 100%;
   overflow: hidden;
   position: relative;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.65)), to(rgba(0, 0, 0, 0.65))), url("../../images/hero-alt.png") no-repeat center center/cover;
-  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url("../../images/hero-alt.png") no-repeat center center/cover;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.65)), to(rgba(0, 0, 0, 0.65))), url("../../images/hero-alt.webp") no-repeat center center/cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url("../../images/hero-alt.webp") no-repeat center center/cover;
 }
 
 .hero-overlay-wrapper {
@@ -578,13 +578,13 @@ form input::placeholder {
 }
 
 .search-content {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.25)), to(rgba(0, 0, 0, 0.25))), url("../../images/search.jpg") no-repeat bottom left/cover;
-  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url("../../images/search.jpg") no-repeat bottom left/cover;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.25)), to(rgba(0, 0, 0, 0.25))), url("../../images/search.webp") no-repeat bottom left/cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url("../../images/search.webp") no-repeat bottom left/cover;
 }
 
 .discover-content {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.25)), to(rgba(0, 0, 0, 0.25))), url("../../images/discover.png") no-repeat top right/cover;
-  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url("../../images/discover.png") no-repeat top right/cover;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.25)), to(rgba(0, 0, 0, 0.25))), url("../../images/discover.webp") no-repeat top right/cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url("../../images/discover.webp") no-repeat top right/cover;
 }
 
 .search-content,
@@ -661,8 +661,8 @@ select option {
   min-height: calc(100vh + 5em);
   -webkit-animation: fade_in_article 0.5s ease-in-out;
           animation: fade_in_article 0.5s ease-in-out;
-  background: -webkit-gradient(linear, left top, right top, color-stop(20%, black), to(rgba(0, 0, 0, 0.25))), url("../../images/about.jpg") no-repeat center center/cover;
-  background: linear-gradient(90deg, black 20%, rgba(0, 0, 0, 0.25) 100%), url("../../images/about.jpg") no-repeat center center/cover;
+  background: -webkit-gradient(linear, left top, right top, color-stop(20%, black), to(rgba(0, 0, 0, 0.25))), url("../../images/about.webp") no-repeat center center/cover;
+  background: linear-gradient(90deg, black 20%, rgba(0, 0, 0, 0.25) 100%), url("../../images/about.webp") no-repeat center center/cover;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

@@ -269,7 +269,7 @@ nav {
   overflow: hidden;
   position: relative;
   background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
-    url("../../images/hero-alt.png") no-repeat center center/ cover;
+    url("../../images/hero-alt.webp") no-repeat center center/ cover;
 }
 
 .hero-overlay-wrapper {
@@ -413,12 +413,12 @@ form {
 
 .search-content {
   background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
-    url("../../images/search.jpg") no-repeat bottom left/cover;
+    url("../../images/search.webp") no-repeat bottom left/cover;
 }
 
 .discover-content {
   background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
-    url("../../images/discover.png") no-repeat top right/cover;
+    url("../../images/discover.webp") no-repeat top right/cover;
 }
 
 .search-content,
@@ -486,7 +486,7 @@ select {
       rgba(0, 0, 0, 1) 20%,
       rgba(0, 0, 0, 0.25) 100%
     ),
-    url("../../images/about.jpg") no-repeat center center / cover;
+    url("../../images/about.webp") no-repeat center center / cover;
   display: flex;
   place-items: center;
   justify-content: center;
