@@ -1,0 +1,95 @@
+.actor-detail {
+  .actor-details__info {
+    display: grid;
+    grid-template-areas:
+      "image website name"
+      "bio bio bio";
+    gap: 2em 2em;
+    place-items: center;
+
+    @media (max-width: 768px) {
+      img {
+        grid-area: image;
+      }
+
+      .actor-details__header {
+        grid-area: name;
+      }
+
+      .actor-details__website {
+        grid-area: website;
+      }
+
+      .actor-details__biography {
+        grid-area: bio;
+      }
+
+      grid-template-areas:
+        "image image"
+        "name name"
+        "website website"
+        "bio bio";
+    }
+    img {
+      grid-area: image;
+      filter: drop-shadow(0 0 0.15em $white);
+      @media (max-width: 768px) {
+        border-radius: 50%;
+        width: 9em;
+        height: 9em;
+      }
+    }
+  }
+
+  .actor-details__header {
+    max-width: 30ch;
+    color: $white;
+    padding: 0.5em;
+    grid-area: name;
+    font-size: $defaultFontSizeQuery;
+
+    :nth-child(2) {
+      color: $--sunglow;
+      text-align: center;
+    }
+  }
+
+  .actor-details__website {
+    padding: 0.5em;
+    grid-area: website;
+    color: $--sunglow;
+    text-align: center;
+    font-size: $smallerHeaderSizeQuery;
+
+    a {
+      color: $--sunglow;
+      text-decoration: 0.05em $--sunglow dotted underline;
+      text-underline-offset: 0.25em;
+    }
+  }
+
+  .actor-details__biography {
+    padding: 0.5em;
+    word-break: break-all;
+    white-space: normal;
+    grid-area: bio;
+
+    p {
+      max-width: 45ch;
+      font-size: $defaultFontSizeQuery;
+      color: $white;
+    }
+  }
+
+  .actor-details__roles {
+    header {
+      color: $white;
+      // padding: 0.5em 0;
+      text-align: center;
+      font-size: $defaultFontSizeQuery;
+      span {
+        color: $--sunglow;
+      }
+    }
+  }
+}

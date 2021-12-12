@@ -1,39 +1,32 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useContext } from "react";
-import { searchAnimeCall } from "../APIcalls/searchAnimeCall";
+import { useContext } from "react";
 import SearchDataContext from "../contexts/SearchDataContext";
-import LoadingAndErrorContext from "../contexts/LoadingAndErrorContext";
-import ResultBlock from "./ResultBlock";
-const Search = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+import { useHistory } from "react-router";
+import React from "react";
+const Search = React.memo(
+  ({
+    isSearchOpen,
+    isNavOpen,
+    setIsNavOpen,
+    setIsBurgerOpen,
+    setIsSearchOpen,
+  }) => {
+    let history = useHistory();
 
-  const { search, setSearch, setAnimeResults } = useContext(SearchDataContext);
-  const { setIsError, setIsLoading } = useContext(LoadingAndErrorContext);
+    const { search, setSearch, handleSearch } = useContext(SearchDataContext);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setIsError(false);
-    searchAnimeCall(search)
-      .then((data) => {
-        setAnimeResults(data.results);
-        setIsError(false);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsError(true);
-        setIsLoading(false);
-      });
-  };
-
-  return (
-    <main className="search-content">
-      <header className="main-content__header">Search</header>
-      <form onSubmit={handleSearch}>
+    return (
+      <form
+        className={isSearchOpen ? `search-form searching` : `search-form`}
+        onSubmit={(e) => {
+          handleSearch(e);
+          history.push("/search");
+          if (isNavOpen) {
+            setIsNavOpen(false);
+            setIsBurgerOpen(false);
+            setIsSearchOpen(false);
+          }
+        }}
+      >
         <input
           type="search"
           onChange={(e) => setSearch(e.target.value)}
@@ -41,13 +34,10 @@ const Search = () => {
           placeholder={`Search for anime...`}
         />
 
-        <button>
-          <FontAwesomeIcon icon={faSearch} />
-        </button>
+        <button>go</button>
       </form>
-      <ResultBlock />
-    </main>
-  );
-};
+    );
+  }
+);
 
 export default Search;

@@ -1,0 +1,78 @@
+.main-content {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  position: relative;
+
+  .main-content-wrapper {
+    width: $--base-content-width;
+    padding: 5em 0;
+  }
+}
+
+.front-page {
+  &::before {
+    content: "";
+    position: absolute;
+    top: -2em;
+    background: url("/src/images/wave2.svg");
+    width: 100%;
+    height: 2em;
+  }
+}
+
+.search,
+.discover,
+.actor-detail,
+.about {
+  padding: 5em 0;
+  place-items: start center;
+  min-height: calc(100vh + 5em);
+  animation: fade_in_article 0.25s ease-in-out forwards;
+}
+
+.search {
+  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+    url("../../images/search.webp") no-repeat center center/cover;
+}
+
+.discover {
+  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+    url("../../images/discover.webp") no-repeat top right/cover;
+}
+
+.about {
+  animation: fade_in_article 0.5s ease-in-out;
+  background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 1) 20%,
+      rgba(0, 0, 0, 0.25) 100%
+    ),
+    url("../../images/about.webp") no-repeat center center / cover;
+
+  header {
+    font-size: $smallerHeaderSizeQuery;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    place-items: center;
+    h2 {
+      color: $--sunglow;
+      text-transform: uppercase;
+    }
+
+    p {
+      color: $white;
+    }
+  }
+}
+
+.search-wrapper,
+.discover-wrapper,
+.actor-detail-wrapper,
+.about-wrapper {
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  gap: 2em;
+}

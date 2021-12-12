@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFrown } from "@fortawesome/free-solid-svg-icons";
 import { useParams, Link } from "react-router-dom";
 import Loading from "./Loading";
+import ErrorModal from "../components/presentational/ErrorModal";
 
 const AnimeDetail = () => {
   const { id } = useParams();
@@ -85,11 +84,11 @@ const AnimeDetail = () => {
   }, []);
 
   return (
-    <main className="detail-content">
+    <main className="main-content anime-detail">
       {animeDetail.length === 0 ? (
         <Loading />
       ) : (
-        <article>
+        <article className="main-content-wrapper anime-detail-wrapper">
           <div className="detail-content__information">
             <div className="detail-content__image">
               <img src={image_url} alt="anime_image" />
@@ -97,10 +96,10 @@ const AnimeDetail = () => {
             <div className="detail-content__description">
               <header>
                 <p className="detail-content__title">
-                  {title} <span>({type})</span>
+                  {title} ({type})
                 </p>
-                <p className="detail-content__genre">
-                  <span>Genre: </span>
+                <p>
+                  Genre:{" "}
                   {genres && genres.map((genre) => genre.name).join(", ")}
                 </p>
               </header>
@@ -120,32 +119,20 @@ const AnimeDetail = () => {
           </div>
 
           <aside className="detail-content__aside">
-            <p>
-              <span>Score: </span>
-              {score || `Not scored`}
-            </p>
-            <p>
-              <span>Scored by: </span>
-              {scored_by || `0 members`}
-            </p>
+            <p>Score: {score || `Not scored`}</p>
+            <p>Scored by: {scored_by || `0 members`}</p>
 
+            <p>Rating: {rating || `Not listed`}</p>
+            <p>Status: {status || `Not listed`}</p>
             <p>
-              <span>Rating: </span>
-              {rating || `Not listed`}
-            </p>
-            <p>
-              <span>Status: </span>
-              {status || `Not listed`}
-            </p>
-            <p>
-              <span>Opening theme: </span>
+              Opening theme:{" "}
               {opening_themes && opening_themes.length > 0
                 ? opening_themes.slice(0, 3).join(", ")
                 : `None listed`}
             </p>
 
             <p>
-              <span>Studios: </span>
+              Studios:{" "}
               {studios.length !== 0 && studios
                 ? studios.map((info, index) => {
                     const { name, url } = info;
@@ -159,16 +146,14 @@ const AnimeDetail = () => {
             </p>
 
             <p>
-              <span>Producers: </span>
-
+              Producers:{" "}
               {(producers.length > 0 &&
                 producers.map((producer) => producer.name).join(", ")) ||
                 `None listed`}
             </p>
 
             <p>
-              <span>Cast: </span>
-
+              Cast:{" "}
               {voiceActors.length > 0 &&
               voiceActors.filter((len) => len.length > 0)
                 ? voiceActors
@@ -205,9 +190,7 @@ const AnimeDetail = () => {
                 ></iframe>
               </div>
             ) : (
-              <p>
-                No trailer available <FontAwesomeIcon icon={faFrown} />
-              </p>
+              <ErrorModal message={`No trailer available, sorry 😥`} />
             )}
           </div>
 
@@ -233,10 +216,9 @@ const AnimeDetail = () => {
                   );
                 })
             ) : (
-              <p>
-                {`The cast for ${title} is not listed`}{" "}
-                <FontAwesomeIcon icon={faFrown} />
-              </p>
+              <ErrorModal
+                message={`The cast of ${title} is not listed, sorry 😥`}
+              />
             )}
           </div>
         </article>

@@ -1,27 +1,55 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Search from "../Search";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Nav = () => {
   const [isNavOpen, setIsNavOpen] = useState(Boolean);
   const [isBurgerOpen, setIsBurgerOpen] = useState(Boolean);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const openMobileMenuHandler = () => {
     setIsNavOpen(!isNavOpen);
     setIsBurgerOpen(!isBurgerOpen);
-
-    document.body.classList.toggle("overflow-hidden");
   };
+
+  useEffect(() => {
+    if (isNavOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  }, [isNavOpen]);
 
   return (
     <>
       <nav>
         <div className="nav-wrapper">
-          <div className="nav-header">
-            <Link to="/">Anime Club</Link>
-          </div>
-          <div className="desktop-nav-links">
-            <Link to="/search">Search</Link>
+          <Link to="/">
+            <div className="nav-header"></div>
+          </Link>
 
+          <div className="nav-search-stack">
+            <Search
+              isSearchOpen={isSearchOpen}
+              isNavOpen={isNavOpen}
+              isBurgerOpen={isBurgerOpen}
+              setIsBurgerOpen={setIsBurgerOpen}
+              setIsNavOpen={setIsNavOpen}
+              setIsSearchOpen={setIsSearchOpen}
+            />
+            <FontAwesomeIcon
+              onClick={() => {
+                setIsSearchOpen(!isSearchOpen);
+              }}
+              className="form-trigger-icon"
+              icon={faSearch}
+              size="2x"
+            />
+          </div>
+
+          <div className="desktop-nav-links">
             <Link to="/about">About</Link>
 
             <Link to="/discover">Discover</Link>
@@ -41,9 +69,9 @@ const Nav = () => {
       <div
         className={isNavOpen ? `mobile-nav mobile-nav-active` : `mobile-nav`}
       >
-        <Link onClick={openMobileMenuHandler} to="/search">
+        {/* <Link onClick={openMobileMenuHandler} to="/search">
           Search
-        </Link>
+        </Link> */}
         <Link onClick={openMobileMenuHandler} to="/about">
           About
         </Link>

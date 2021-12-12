@@ -1,0 +1,14 @@
+.select-genre {
+  background: $white;
+  color: $black;
+  font-size: $defaultFontSizeQuery;
+  padding: 0.5em;
+  width: clamp(30vw, 15em, 80vw);
+  border-radius: 2em;
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+
+  option {
+    color: $black;
+  }
+}

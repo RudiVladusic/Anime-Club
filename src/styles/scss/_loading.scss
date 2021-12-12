@@ -1,0 +1,11 @@
+.loading {
+  width: 6.2em;
+  height: 6.2em;
+  border: 0.25em solid $--sunglow;
+  border-right: 0.25em solid transparent;
+  align-self: center;
+  border-radius: 50%;
+  background: transparent;
+  animation: loading_animation 1.5s linear infinite;
+  position: relative;
+}

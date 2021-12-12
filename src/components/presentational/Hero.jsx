@@ -16,8 +16,7 @@ const Hero = () => {
               Using these "crime coefficients", a culprit can be apprehended
               before they ever commit a crime. But is it a perfect system? For
               Inspectors Kei Mikhail Ignatov and Arata Shindou, that remains to
-              be seen, as their career with the Public Safety Bureau's Crime
-              Investigation Department has only just begun.
+              be seen.
             </p>
           </div>
           <Link className="hero-overlay__link" to="/anime/39491" role="button">

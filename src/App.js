@@ -3,10 +3,7 @@ import { useGetLandingContent } from "./APIcalls/useLandingContentCall";
 import { useMangaCall } from "./APIcalls/useMangaCall";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SearchDataContext from "./contexts/SearchDataContext";
-import LandingDataContext from "./contexts/LandingDataContext";
-import LoadingAndErrorContext from "./contexts/LoadingAndErrorContext";
 import "./styles/css/style.css";
-import Search from "./components/Search";
 import Content from "./components/Content";
 import AnimeDetail from "./components/AnimeDetail";
 import MangaDetail from "./components/MangaDetail";
@@ -16,51 +13,70 @@ import Footer from "./components/presentational/Footer";
 import About from "./components/presentational/About";
 import Hero from "./components/presentational/Hero";
 import ActorDetail from "./components/ActorDetail";
+import ResultBlock from "./components/ResultBlock";
+import { searchAnimeCall } from "./APIcalls/searchAnimeCall";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(Boolean);
-  const [isError, setIsError] = useState(Boolean);
-  const [search, setSearch] = useState(String);
-  const [animeResults, setAnimeResults] = useState(Array);
   const endpoint = `https://api.jikan.moe/v3/top/anime/1/`;
   const mangaEndpoint = `https://api.jikan.moe/v3/top/manga/1`;
   const { upcomingAnime, airingAnime, specials } =
     useGetLandingContent(endpoint);
   const { manga } = useMangaCall(mangaEndpoint);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [search, setSearch] = useState("");
+  const [animeResults, setAnimeResults] = useState([]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setIsError(false);
+    searchAnimeCall(search)
+      .then((data) => {
+        setAnimeResults(data.results);
+        setIsError(false);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsError(true);
+        setIsLoading(false);
+      });
+  };
   return (
     <Router>
       <Switch>
         <>
-          <Nav />
+          <SearchDataContext.Provider
+            value={{
+              search,
+              setSearch,
+              animeResults,
+              setAnimeResults,
+              handleSearch,
+              isLoading,
+              isError,
+            }}
+          >
+            <Nav />
+            <Route exact path="/search">
+              <ResultBlock />
+            </Route>
+          </SearchDataContext.Provider>
 
           <Route exact path="/">
             <Hero />
 
-            <LandingDataContext.Provider
-              value={{ upcomingAnime, airingAnime, specials, manga }}
-            >
-              <Content />
-            </LandingDataContext.Provider>
+            <Content
+              upcomingAnime={upcomingAnime}
+              airingAnime={airingAnime}
+              specials={specials}
+              manga={manga}
+            />
           </Route>
 
-          <SearchDataContext.Provider
-            value={{ search, setSearch, animeResults, setAnimeResults }}
-          >
-            <LoadingAndErrorContext.Provider
-              value={{ isLoading, isError, setIsLoading, setIsError }}
-            >
-              <Route exact path="/search">
-                <Search />
-              </Route>
-            </LoadingAndErrorContext.Provider>
-          </SearchDataContext.Provider>
-
           <Route exact path="/discover">
-            <LoadingAndErrorContext.Provider
-              value={{ isLoading, isError, setIsLoading }}
-            >
-              <Discover />
-            </LoadingAndErrorContext.Provider>
+            <Discover />
           </Route>
 
           <Route exact path="/anime/:id">
@@ -70,11 +86,12 @@ function App() {
             <MangaDetail />
           </Route>
           <Route exact path="/anime/cast/:id">
-            <ActorDetail isLoading={isLoading} setIsLoading={setIsLoading} />
+            <ActorDetail setIsLoading={setIsLoading} isLoading={isLoading} />
           </Route>
           <Route exact path="/about">
             <About />
           </Route>
+
           <Footer />
         </>
       </Switch>

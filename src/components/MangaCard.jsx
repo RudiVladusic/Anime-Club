@@ -12,24 +12,22 @@ const MangaCard = ({ manga }) => {
       <article
         onMouseEnter={handleClass}
         onMouseLeave={handleClass}
-        className="manga-card"
+        className="anime-card-article"
       >
         <img src={image_url} alt="manga poster" />
         <div
           className={
-            transparent ? "articleInformation active" : "articleInformation"
+            transparent ? "article-information active" : "article-information"
           }
         >
-          <header className="cardHeader">
+          <header className="card-header">
             <p>
               {title && title.length > 20 ? `${title.slice(0, 20)}...` : title}
             </p>
           </header>
-          <button className="cardDetails">Details</button>
+          <button className="card-details">Details</button>
           {start_date && (
-            <p className="cardStartDate">
-              Start date : {start_date.slice(0, 10)}
-            </p>
+            <p className="card-start-date">{start_date.slice(0, 10)}</p>
           )}
         </div>
       </article>

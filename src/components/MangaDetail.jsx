@@ -35,11 +35,11 @@ const MangaDetail = () => {
     genres,
   } = mangaDetails;
   return (
-    <main className="detail-content">
+    <main className="main-content anime-detail">
       {mangaDetails.length === 0 ? (
         <Loading />
       ) : (
-        <article>
+        <article className="main-content-wrapper anime-detail-wrapper">
           <div className="detail-content__information">
             <div className="detail-content__image">
               <img src={image_url} alt="manga poster" />

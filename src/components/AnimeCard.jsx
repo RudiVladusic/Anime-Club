@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+
 const AnimeCard = ({ anime }) => {
   const [transparent, setTransparent] = useState(false);
   const handleClass = () => {
@@ -11,6 +12,7 @@ const AnimeCard = ({ anime }) => {
   return (
     <Link className="anime-card" key={mal_id} to={`/anime/${mal_id}`}>
       <article
+        className="anime-card-article"
         onMouseEnter={() => {
           handleClass();
         }}
@@ -22,20 +24,18 @@ const AnimeCard = ({ anime }) => {
 
         <div
           className={
-            transparent ? "articleInformation active" : "articleInformation"
+            transparent ? "article-information active" : "article-information"
           }
         >
-          <header className="cardHeader">
+          <header className="card-header">
             <p>{name && name.length > 20 ? `${name.slice(0, 20)}...` : name}</p>
             <p>
               {title && title.length > 20 ? `${title.slice(0, 20)}...` : title}
             </p>
           </header>
-          <button className="cardDetails">Details</button>
+          <button className="card-details">Details</button>
           {start_date && (
-            <p className="cardStartDate">
-              Start date : {start_date.slice(0, 10)}
-            </p>
+            <p className="card-start-date">{start_date.slice(0, 10)}</p>
           )}
         </div>
       </article>

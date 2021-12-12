@@ -1,0 +1,11 @@
+.main-content__header {
+  color: $--wisteria;
+  text-transform: lowercase;
+  font-family: "Architects Daughter", cursive;
+
+  h2 {
+    padding: 0 0.5em;
+    font-size: $desktopHeaderSizeQuery;
+    font-weight: 400;
+  }
+}

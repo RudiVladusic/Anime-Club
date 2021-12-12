@@ -1,0 +1,20 @@
+.swiper-container {
+  margin: 2em 0;
+  box-shadow: 0 0.15em 0 $--blue-violet-color-wheel;
+}
+
+.swiper-wrapper {
+  padding: 1em 0;
+  animation: fade_in_article 0.75s ease-in-out;
+  .swiper-slide {
+    overflow: hidden;
+  }
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  &::after {
+    z-index: 2;
+    transform: scale(1.5);
+  }
+}

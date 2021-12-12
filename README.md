@@ -10,9 +10,12 @@ React JS, HTML/CSS, Font-Awesome free icons library, [Jikan API](https://jikan.m
 
 ## Todo
 
-- Add 404 page
-- Add "more like this" component
-- Add bookmark feature
+- [ ] Add 404 page
+- [ ] Add "more like this" component
+- [ ] Add bookmark feature
+- [ ] Add state managment library
+- [ ] Finish UI
+- [ ] Organize folder structure
 
 ## Future plans
 

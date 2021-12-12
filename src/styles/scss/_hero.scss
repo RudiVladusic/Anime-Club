@@ -1,0 +1,89 @@
+.hero {
+  animation: fade_in_article 0.5s ease-in-out;
+  min-height: 35em;
+  height: calc(100vh + 5em);
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("../../images/hero-alt.webp") no-repeat center right/ cover;
+}
+
+.hero-overlay-wrapper {
+  position: absolute;
+  top: 20%;
+  left: 0;
+  right: 0;
+  width: $--base-content-width;
+  margin: 0 auto;
+  animation: fade_in_article 0.5s ease-in-out;
+  padding: 1em;
+
+  .hero-overlay {
+    display: flex;
+    gap: 2em;
+    justify-content: space-evenly;
+    flex-direction: column;
+    max-width: max-content;
+
+    .hero-overlay__header {
+      h2 {
+        font-size: $desktopLargeHeaderQuery;
+        text-transform: uppercase;
+        color: $--wisteria;
+
+        font-family: "Architects Daughter", cursive;
+      }
+    }
+
+    .hero-overlay__description {
+      font-size: $defaultFontSizeQuery;
+      color: $white;
+      text-shadow: 0 0 0 $white;
+      max-width: 45ch;
+    }
+
+    .hero-overlay__link {
+      place-self: flex-end;
+      text-decoration: none;
+      padding: 1em 1.75em;
+      text-transform: lowercase;
+      text-align: center;
+      transition: all 0.25s ease-in-out;
+      border-radius: 0.5em;
+      background: transparent;
+      border: 0.15em solid $--sunglow;
+      color: $white;
+
+      svg {
+        color: $--sunglow;
+        transition: all 0.25s ease-in-out;
+      }
+
+      &:hover {
+        color: $black;
+        background: $--sunglow;
+
+        svg {
+          color: $black;
+        }
+      }
+    }
+
+    .hero-overlay__icon-stack {
+      display: flex;
+      place-items: center;
+      justify-content: flex-start;
+      gap: 3em;
+
+      a {
+        color: $white;
+        font-size: inherit;
+
+        &:hover {
+          text-shadow: 1em 0.5em 1em $white;
+        }
+      }
+    }
+  }
+}
